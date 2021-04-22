@@ -1,0 +1,18 @@
+<h1>LIST Comment</h1>
+<a style="" [routerLink]="'/create'">Create comment</a>
+<table class="table table-striped" border="1px">
+  <tr style="background: darkorchid">
+    <td>Content</td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let comment of listComment ; let i = index" >
+    <td>
+<!--      <a [routerLink]="'detail/'+b.id">-->
+        {{comment.content}}
+<!--      </a>-->
+    </td>
+    <td>
+      <button type="button" class="btn btn-outline-warning" [routerLink]="'edit/'+comment.id">Edit</button>
+<!--      <button type="button" class="btn btn-outline-warning" (click)="delete(b.id)" >Delete</button>-->
+  </tr>
+</table>
