@@ -5,8 +5,6 @@ import {ISong} from '../isong';
 import {SongService} from '../song.service';
 import {Router} from '@angular/router';
 import firebase from 'firebase';
-import TaskEvent = firebase.storage.TaskEvent;
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-create-song',
@@ -15,14 +13,20 @@ import {Observable} from 'rxjs';
 })
 export class CreateSongComponent {
   song: ISong = {};
-  upFileMp3(event: any): any {
+  audioFile: any;
+  createSuccess = false;
+  getFile(e: any): any{
+    this.audioFile = e.target.files[0];
+  }
+  upFileMp3(): any {
     const n = Date.now();
-    const file = event.target.files[0];
+    const file = this.audioFile;
     const filePath = `mp3/${n}`;
     const fileRef = this.storage.ref(filePath);
     this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
           this.song.fileMp3 = url;
+          this.createSuccess = true;
         });
       })
     )
@@ -34,8 +38,10 @@ export class CreateSongComponent {
     const filePath = `image/${n}`;
     const fileRef = this.storage.ref(filePath);
     this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
-        fileRef.getDownloadURL().subscribe(url => {
+        fileRef.getDownloadURL().subscribe(async url => {
           this.song.avatar = url;
+          await this.upFileMp3();
+          this.createSuccess = false;
         });
       })
     )
