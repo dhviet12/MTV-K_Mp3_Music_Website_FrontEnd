@@ -16,6 +16,8 @@ export class SignUp {
     this.phone = phone;
     this.role = ['ROLE_USER'];
   }
+  
+
 
 
 }
