@@ -6,13 +6,15 @@ import { CreateSongComponent } from './create-song/create-song.component';
 import { SongListComponent } from './song-list/song-list.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
 import {FormsModule} from '@angular/forms';
+import { EditSongComponent } from './edit-song/edit-song.component';
 
 
 @NgModule({
   declarations: [
     CreateSongComponent,
     SongListComponent,
-    SongDetailComponent
+    SongDetailComponent,
+    EditSongComponent
   ],
   imports: [
     CommonModule,

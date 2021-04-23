@@ -16,7 +16,7 @@ export class SongService {
   createBook(song: ISong): Observable<ISong>{
     return this.httpClient.post<ISong>('http://localhost:8080/create-song', song);
   }
-  editBook(id: number, song: ISong): Observable<ISong>{
+  editSong(id: number, song: ISong): Observable<ISong>{
     return this.httpClient.put<ISong>('http://localhost:8080/edit-song/' + id, song);
   }
   delSong(id: number): Observable<ISong>{

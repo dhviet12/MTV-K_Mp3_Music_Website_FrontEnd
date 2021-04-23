@@ -1,27 +1,27 @@
 <div class="container-fluid">
-  <form (ngSubmit)="createSong()">
-  <table>
-    <tr>
+  <form (ngSubmit)="editSong()">
+    <table>
+      <tr>
         <th>Tên bài hát</th>
         <td><input type="text" name="nameSong" [(ngModel)]="song.nameSong"></td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
         <th>Giới thiệu</th>
         <td><input type="text" name="desccription" [(ngModel)]="song.description"></td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
         <th>File Mp3</th>
         <td><input type="file" name="fileMp3" (change)="upFileMp3($event)"></td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
         <th>Avatar</th>
         <td><input type="file" name="Avatar" (change)="upFileImage($event)"></td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
         <th>Tác giả</th>
         <td><input type="text" name="author" [(ngModel)]="song.author"></td>
-    </tr>
-    <tr><button type="submit">tạo mới</button></tr>
-  </table>
+      </tr>
+      <tr><button type="submit">Sửa</button></tr>
+    </table>
   </form>
 </div>

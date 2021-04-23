@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {SongListComponent} from './song-list/song-list.component';
-import {SongDetailComponent} from './song-detail/song-detail.component';
 import {CreateSongComponent} from './create-song/create-song.component';
+import {EditSongComponent} from './edit-song/edit-song.component';
 
 const routes: Routes = [
   {
@@ -10,8 +10,8 @@ const routes: Routes = [
     component: SongListComponent
   },
   {
-    path: 'detail/:id',
-    component: SongDetailComponent
+    path: 'edit/:id',
+    component: EditSongComponent
   },
   {
     path: 'create',

@@ -14,19 +14,18 @@ import firebase from 'firebase';
 export class CreateSongComponent {
   song: ISong = {};
   audioFile: any;
-  createSuccess = false;
   getFile(e: any): any{
     this.audioFile = e.target.files[0];
   }
-  upFileMp3(): any {
+  upFileMp3(e: any): any {
     const n = Date.now();
-    const file = this.audioFile;
+    const file = e.target.files[0];
     const filePath = `mp3/${n}`;
     const fileRef = this.storage.ref(filePath);
     this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
           this.song.fileMp3 = url;
-          this.createSuccess = true;
+          console.log(this.song.fileMp3);
         });
       })
     )
@@ -38,16 +37,14 @@ export class CreateSongComponent {
     const filePath = `image/${n}`;
     const fileRef = this.storage.ref(filePath);
     this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
-        fileRef.getDownloadURL().subscribe(async url => {
+        fileRef.getDownloadURL().subscribe( url => {
           this.song.avatar = url;
-          await this.upFileMp3();
-          this.createSuccess = false;
+          console.log(this.song.avatar);
         });
       })
     )
       .subscribe();
   }
-
   constructor(private storage: AngularFireStorage, private songService: SongService, private router: Router) {
   }
   createSong(): any {
