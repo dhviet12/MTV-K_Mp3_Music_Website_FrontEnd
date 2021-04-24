@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {SignUp} from '../model/signUp';
+import {Component, OnInit} from '@angular/core';
+import {SignUpForm} from '../model/SignUpForm';
 import {FormControl, Validators} from '@angular/forms';
-import {FormSignUpService} from '../service/form-sign-up.service';
+import {Router} from '@angular/router';
+import {AuthenService} from '../service/authen.service';
 
 @Component({
   selector: 'app-register',
@@ -9,51 +10,47 @@ import {FormSignUpService} from '../service/form-sign-up.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  form: any= {};
+  form: any = {};
   // @ts-ignore
-  signUp: SignUp;
-  status= 'Please fill in the form';
+  signUp: SignUpForm;
+  status = 'Please fill in the form';
 
-  usernameValidate = new FormControl('',
-    Validators.required)
 
-  passwordValidate = new FormControl('',
-    Validators.required)
-  hide = true;
-  mess1: any ={
-    message: "Fail -> Username is already taken!"
+  mess1: any = {
+    message: 'Fail -> Username is already taken!'
+  };
+  mess2: any = {
+    message: 'User registered successfully!'
+  };
+
+
+  constructor(private authenService: AuthenService, private router: Router) {
   }
-  mess2: any ={
-    message: "User registered successfully!"
-  }
-
-
-
-
-
-  constructor(private formSignUpService:FormSignUpService) { }
 
   ngOnInit(): void {
   }
-  onSubmit(){
-    this.signUp= new SignUp(
-      this.form.username,
+
+  onSubmit() {
+    this.signUp = new SignUpForm(
+      this.form.username ,
       this.form.password,
       this.form.fullName,
       this.form.address,
       this.form.email,
       this.form.phone
-    )
-    this.formSignUpService.signUp(this.signUp).subscribe(data=>{
-      console.log('data',data)
-      if(JSON.stringify(data)== JSON.stringify(this.mess1)){
-        this.status= 'Username is existed'
-      }
-      if(JSON.stringify(data)== JSON.stringify(this.mess2)){
-        this.status= 'Created Successfully'
+    );
+    this.authenService.signUp(this.signUp).subscribe(data => {
+      console.log('data', data);
+      if (JSON.stringify(data) == JSON.stringify(this.mess1)) {
+        this.status = 'Username is existed';
         alert(this.status)
       }
-    })
+      if (JSON.stringify(data) == JSON.stringify(this.mess2)) {
+        this.status = 'Created Successfully';
+        alert(this.status);
+        this.router.navigate(['/']);
+      }
+    });
   }
 
 }

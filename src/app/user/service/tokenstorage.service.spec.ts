@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FormSignUpService } from './form-sign-up.service';
+import { TokenstorageService } from './tokenstorage.service';
 
-describe('FormSignUpService', () => {
-  let service: FormSignUpService;
+describe('TokenstorageService', () => {
+  let service: TokenstorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FormSignUpService);
+    service = TestBed.inject(TokenstorageService);
   });
 
   it('should be created', () => {

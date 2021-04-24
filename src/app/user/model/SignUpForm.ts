@@ -1,4 +1,4 @@
-export class SignUp {
+export class SignUpForm {
   username: string;
   password: string;
   fullName: string;
@@ -16,7 +16,7 @@ export class SignUp {
     this.phone = phone;
     this.role = ['ROLE_USER'];
   }
-  
+
 
 
 
