@@ -80,7 +80,10 @@ export class CreateSongComponent implements OnInit{
   createSong(): any {
     return this.songService.createBook(this.song).subscribe(() => {
       console.log(this.song);
-      this.router.navigate(['/songs/create']);
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      // @ts-ignore
+      this.router.navigateByUrl('songs/create') ;
     });
   }
 }

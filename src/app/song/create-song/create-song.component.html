@@ -62,7 +62,12 @@
                          required>
                 </div>
               </div>
-
+              <div class="form-row form-group">
+                <label for="description" class="col-md-4 text-md-right col-form-label">Description</label>
+                <div class="col-md-7">
+                  <textarea class="form-control" id="description" name="description" rows="4" [(ngModel)]="song.description"></textarea>
+                </div>
+              </div>
             </div>
             <div class="card-footer">
               <div class="row">
