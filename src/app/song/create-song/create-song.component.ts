@@ -4,48 +4,75 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {ISong} from '../isong';
 import {SongService} from '../song.service';
 import {Router} from '@angular/router';
-import firebase from 'firebase';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-create-song',
   templateUrl: './create-song.component.html',
   styleUrls: ['./create-song.component.scss']
 })
-export class CreateSongComponent {
-  song: ISong = {};
-  audioFile: any;
-  getFile(e: any): any{
-    this.audioFile = e.target.files[0];
+export class CreateSongComponent implements OnInit{
+  constructor(private storage: AngularFireStorage, private songService: SongService, private router: Router) {
   }
-  upFileMp3(e: any): any {
-    const n = Date.now();
+  song: ISong = {};
+  percentageMp3 = 0;
+  percentageImg = 0;
+  ngOnInit(): void {
+  }
+  // up file mp3 lên firebase storage
+  upFileMp3(e: any): Observable<number | undefined> {
     const file = e.target.files[0];
-    const filePath = `mp3/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
-        fileRef.getDownloadURL().subscribe(url => {
-          this.song.fileMp3 = url;
+    const fileName = file.name;
+    const filePath = `mp3/${fileName}`;
+    const storageRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        storageRef.getDownloadURL().subscribe(URL => {
+          this.song.fileMp3 = URL;
           console.log(this.song.fileMp3);
         });
       })
-    )
-      .subscribe();
+    ).subscribe();
+    return task.percentageChanges();
   }
-  upFileImage(event: any): any {
-    const n = Date.now();
-    const file = event.target.files[0];
-    const filePath = `image/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
-        fileRef.getDownloadURL().subscribe( url => {
-          this.song.fileImage = url;
+  // tiến trình upload fileMp3
+  processUploadMp3(e: any): void{
+    this.upFileMp3(e).subscribe(
+      percentage => {
+        this.percentageMp3 = Math.round(percentage ? percentage : 0);
+      }
+    );
+  }
+  // up file ảnh lên firebase storage
+  upFileImage(e: any): Observable<number | undefined> {
+    const file = e.target.files[0];
+    const fileName = file.name;
+    const filePath = `image/${fileName}`;
+    const storageRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        storageRef.getDownloadURL().subscribe(URL => {
+          this.song.fileImage = URL;
           console.log(this.song.fileImage);
         });
       })
-    )
-      .subscribe();
+    ).subscribe();
+    return task.percentageChanges();
   }
-  constructor(private storage: AngularFireStorage, private songService: SongService, private router: Router) {
+  // tiến trình upload file Img
+  processUploadImg(e: any): void{
+    this.upFileImage(e).subscribe(
+      percentage => {
+        this.percentageImg = Math.round(percentage ? percentage : 0);
+      }
+    );
+  }
+  // xóa bái hát trên firebase
+  delSong(): any{
+    const storageRef = this.storage.ref('mp3/');
+    storageRef.child('audio_xe_dap_oi.mp3').delete();
   }
   createSong(): any {
     return this.songService.createBook(this.song).subscribe(() => {

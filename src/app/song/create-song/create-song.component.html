@@ -1,27 +1,44 @@
 <div class="container-fluid">
   <form (ngSubmit)="createSong()">
-  <table>
-    <tr>
+    <table>
+      <tr>
         <th>Tên bài hát</th>
         <td><input type="text" name="nameSong" [(ngModel)]="song.nameSong"></td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
         <th>Giới thiệu</th>
         <td><input type="text" name="desccription" [(ngModel)]="song.description"></td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
         <th>File Mp3</th>
-        <td><input type="file" name="fileMp3" (change)="upFileMp3($event)"></td>
-    </tr>
-    <tr>
+        <td><label>
+          <input type="file" class="text-nowrap text-truncate" name="fileMp3" (change)="processUploadMp3($event)"/>
+        </label>
+        </td>
+      </tr>
+      <tr>
         <th>Avatar</th>
-        <td><input type="file" name="Avatar" (change)="upFileImage($event)"></td>
-    </tr>
-    <tr>
+        <td><input type="file" name="Avatar" (change)="processUploadImg($event)"></td>
+      </tr>
+      <tr>
         <th>Tác giả</th>
         <td><input type="text" name="author" [(ngModel)]="song.author"></td>
-    </tr>
-    <tr><button type="submit">tạo mới</button></tr>
-  </table>
+      </tr>
+      <tr>
+        <button type="submit">tạo mới</button>
+      </tr>
+    </table>
   </form>
+  <div class="progress mt-2">
+    <div class="progress-bar progress-bar-info"
+         role="progressbar" attr.aria-valuenow="{{ percentageMp3 }}" aria-valuemin="0" aria-valuemax="100"
+         [ngStyle]="{ width: percentageMp3 + '%' }">{{ percentageMp3 }}%
+    </div>
+  </div>
+  <div class="progress mt-2">
+    <div class="progress-bar progress-bar-info"
+         role="progressbar" attr.aria-valuenow="{{ percentageImg }}" aria-valuemin="0" aria-valuemax="100"
+         [ngStyle]="{ width: percentageImg + '%' }">{{ percentageImg }}%
+    </div>
+  </div>
 </div>
