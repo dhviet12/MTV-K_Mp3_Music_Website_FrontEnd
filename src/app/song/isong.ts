@@ -9,5 +9,5 @@ export interface ISong {
   poster?: any;
   category?: any;
   likes?: any;
-  commnet?: any;
+  comment?: any;
 }

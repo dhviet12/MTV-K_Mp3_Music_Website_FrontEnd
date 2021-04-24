@@ -5,6 +5,7 @@ import {ISong} from '../isong';
 import {SongService} from '../song.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import bsCustomFileInput from 'bs-custom-file-input';
 
 @Component({
   selector: 'app-create-song',
@@ -18,6 +19,8 @@ export class CreateSongComponent implements OnInit{
   percentageMp3 = 0;
   percentageImg = 0;
   ngOnInit(): void {
+    // hiển thị tên file trên thanh input file
+    bsCustomFileInput.init();
   }
   // up file mp3 lên firebase storage
   upFileMp3(e: any): Observable<number | undefined> {
@@ -36,14 +39,6 @@ export class CreateSongComponent implements OnInit{
     ).subscribe();
     return task.percentageChanges();
   }
-  // tiến trình upload fileMp3
-  processUploadMp3(e: any): void{
-    this.upFileMp3(e).subscribe(
-      percentage => {
-        this.percentageMp3 = Math.round(percentage ? percentage : 0);
-      }
-    );
-  }
   // up file ảnh lên firebase storage
   upFileImage(e: any): Observable<number | undefined> {
     const file = e.target.files[0];
@@ -60,6 +55,14 @@ export class CreateSongComponent implements OnInit{
       })
     ).subscribe();
     return task.percentageChanges();
+  }
+  // tiến trình upload fileMp3
+  processUploadMp3(e: any): void{
+    this.upFileMp3(e).subscribe(
+      percentage => {
+        this.percentageMp3 = Math.round(percentage ? percentage : 0);
+      }
+    );
   }
   // tiến trình upload file Img
   processUploadImg(e: any): void{
