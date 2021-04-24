@@ -3,6 +3,11 @@ export interface ISong {
   nameSong?: string;
   description?: string;
   fileMp3?: any;
-  avatar?: any;
+  fileImage?: any;
   author?: string;
+  singer?: any;
+  poster?: any;
+  category?: any;
+  likes?: any;
+  commnet?: any;
 }

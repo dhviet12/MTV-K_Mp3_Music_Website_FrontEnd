@@ -35,8 +35,8 @@ export class EditSongComponent implements OnInit {
     const fileRef = this.storage.ref(filePath);
     this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
         fileRef.getDownloadURL().subscribe( url => {
-          this.song.avatar = url;
-          console.log(this.song.avatar);
+          this.song.fileImage = url;
+          console.log(this.song.fileImage);
         });
       })
     )
