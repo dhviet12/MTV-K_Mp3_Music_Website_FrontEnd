@@ -1,7 +1,7 @@
 <h1>LIST Comment</h1>
 <a style="" [routerLink]="'/create'">Create comment</a>
-<table class="table table-striped" border="1px">
-  <tr style="background: darkorchid">
+<table border="1px">
+  <tr>
     <td>Content</td>
     <td></td>
   </tr>
@@ -16,3 +16,20 @@
 <!--      <button type="button" class="btn btn-outline-warning" (click)="delete(b.id)" >Delete</button>-->
   </tr>
 </table>
+<div class="form-group">
+  <label>Content</label>
+  <input type="text"  placeholder="Enter content" name="description"
+         [(ngModel)]="comment.content">
+</div>
+<input (click)="create()" type="submit" value="Create"/>
+
+<form (ngSubmit)="edit()">
+<div class="form-group">
+  <label>Name</label>
+  <input type="text"  placeholder="Enter content" name="content"
+         [(ngModel)]="comment.content">
+</div>
+  <input type="submit" value="Edit"/>
+</form>
+
+
