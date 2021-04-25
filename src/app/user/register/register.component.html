@@ -1,0 +1,68 @@
+<div id="signup">
+  <div class="container">
+    <div id="signup-row" class="row justify-content-center align-items-center">
+      <div id="signup-column" class="col-md-6">
+        <div id="signup-box" class="col-md-12">
+          <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate id="signup-form" class="form"
+                method="post">
+            <h3 class="text-center text-info">Sign up</h3>
+            <div class="form-group">
+              <label for="username" class="text-info">Username:</label><br>
+              <input type="text" name="username" id="username" class="form-control"
+                     placeholder="enter your username" [(ngModel)]="form.username" #username="ngModel" required minlength="6" maxlength="20">
+              <div *ngIf="f.submitted && username.invalid"></div>
+              <div style="color: red" *ngIf="username.hasError('required')">Username is required</div>
+              <div style="color: red" *ngIf="username.hasError('minlength')">Min 6 characters</div>
+              <div style="color: red" *ngIf="username.hasError('maxlength')">Max 20 characters</div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="text-info">Password:</label><br>
+              <input type="password" name="password" id="password" class="form-control "
+                     placeholder="enter your password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" maxlength="20">
+              <p *ngIf="f.submitted && password.invalid"></p>
+              <p style="color: red" *ngIf="password.hasError('required')">Password is required</p>
+              <p style="color: red" *ngIf="password.hasError('minlength')">Password between 6-20 characters</p>
+              <p style="color: red" *ngIf="password.hasError('maxlength')">Password between 6-20 characters</p>
+            </div>
+
+            <div class="form-group">
+              <label for="fullName" class="text-info">Full Name:</label><br>
+              <input type="text" name="fullName" id="fullName" class="form-control"
+                     placeholder="enter your full name" [(ngModel)]="form.fullName" #fullName="ngModel" required>
+              <p *ngIf="f.submitted && fullName.invalid"></p>
+              <p style="color: red" *ngIf="fullName.hasError('required')">Name is required</p>
+            </div>
+            <div class="form-group">
+              <label for="address" class="text-info">Address:</label><br>
+              <input type="text" name="address" id="address" class="form-control"
+                     placeholder="enter your address" [(ngModel)]="form.address">
+            </div>
+            <div class="form-group">
+              <label for="email" class="text-info">Email:</label><br>
+              <input type="text" name="email" id="email" class="form-control"
+                     placeholder="enter your email" [(ngModel)]="form.email" #email="ngModel" email required>
+              <p *ngIf="f.submitted && email.invalid"></p>
+              <p style="color: red" *ngIf="email.hasError('required')">Email is required</p>
+              <p style="color: red" *ngIf="email.hasError('email')">Email is invalid</p>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="text-info">Phone:</label><br>
+              <input type="text" name="phone" id="phone" class="form-control"
+                     placeholder="enter your phone" [(ngModel)]="form.phone" #phone="ngModel" required>
+              <p style="color: red" *ngIf="phone.hasError('required')">Phone is required</p>
+            </div>
+            <div class="form-group">
+              <input type="submit" [disabled]="f.invalid" name="submit" class="btn btn-info btn-md" value="register">
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
