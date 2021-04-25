@@ -6,6 +6,7 @@ import {SongService} from '../song.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import bsCustomFileInput from 'bs-custom-file-input';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-create-song',
@@ -13,11 +14,26 @@ import bsCustomFileInput from 'bs-custom-file-input';
   styleUrls: ['./create-song.component.scss']
 })
 export class CreateSongComponent implements OnInit{
-  constructor(private storage: AngularFireStorage, private songService: SongService, private router: Router) {
+  constructor(private storage: AngularFireStorage,
+              private songService: SongService,
+              private router: Router,
+              private fb: FormBuilder
+              ) {
   }
   song: ISong = {};
   percentageMp3 = 0;
   percentageImg = 0;
+  creSongForm = this.fb.group({
+    nameSong: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    fileImg: [''],
+    fileMp3: ['', [Validators.required]],
+    singer: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    author: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    description: ['', Validators.maxLength(300)]
+  });
   ngOnInit(): void {
     // hiển thị tên file trên thanh input file
     bsCustomFileInput.init();
@@ -72,14 +88,10 @@ export class CreateSongComponent implements OnInit{
       }
     );
   }
-  // xóa bái hát trên firebase
-  delSong(): any{
-    const storageRef = this.storage.ref('mp3/');
-    storageRef.child('audio_xe_dap_oi.mp3').delete();
-  }
   createSong(): any {
     return this.songService.createBook(this.song).subscribe(() => {
       console.log(this.song);
+      console.log(this.creSongForm.value);
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       // @ts-ignore

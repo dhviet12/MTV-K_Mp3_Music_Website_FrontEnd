@@ -26,6 +26,11 @@ export class SongListComponent implements OnInit {
       this.router.navigateByUrl('songs') ;
     });
   }
+  // xóa bái hát trên firebase
+  // delSong(): any{
+  //   const storageRef = this.storage.ref('mp3/');
+  //   storageRef.child('audio_xe_dap_oi.mp3').delete();
+  // }
   ngOnInit(): void {
   }
 }

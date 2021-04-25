@@ -5,7 +5,7 @@ import { SongRoutingModule } from './song-routing.module';
 import { CreateSongComponent } from './create-song/create-song.component';
 import { SongListComponent } from './song-list/song-list.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditSongComponent } from './edit-song/edit-song.component';
 
 
@@ -19,7 +19,8 @@ import { EditSongComponent } from './edit-song/edit-song.component';
   imports: [
     CommonModule,
     SongRoutingModule,
-    FormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class SongModule { }

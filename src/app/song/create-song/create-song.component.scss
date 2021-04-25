@@ -1,0 +1,9 @@
+sup {
+  color: red;
+}
+.form-control.ng-touched.ng-valid {
+border: 1.8px solid lightgreen;
+}
+.form-control.ng-touched.ng-invalid {
+  border: 1px solid red;
+}

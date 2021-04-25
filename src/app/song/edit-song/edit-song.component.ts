@@ -6,6 +6,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import bsCustomFileInput from 'bs-custom-file-input';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-song',
@@ -15,7 +16,10 @@ import bsCustomFileInput from 'bs-custom-file-input';
 export class EditSongComponent implements OnInit {
   constructor(private songService: SongService,
               private activatedRoute: ActivatedRoute,
-              private router: Router, private storage: AngularFireStorage) {
+              private router: Router,
+              private storage: AngularFireStorage,
+              private fb: FormBuilder
+              ) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.song.id = Number(paramMap.get('id'));
       this.getSongById(this.song.id);
@@ -25,6 +29,17 @@ export class EditSongComponent implements OnInit {
   sub: Subscription;
   percentageMp3 = 0;
   percentageImg = 0;
+  editSongForm = this.fb.group({
+    nameSong: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    fileImg: [''],
+    fileMp3: ['', [Validators.required]],
+    singer: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    author: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    description: ['', Validators.maxLength(300)]
+  });
   ngOnInit(): void {
     // hiển thị tên file trên thanh input file
     bsCustomFileInput.init();

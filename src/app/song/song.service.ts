@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {ISong} from './isong';
 import {HttpClient} from '@angular/common/http';
 
@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class SongService {
+  shouldRefresh = new Subject<any>();
   getAllSong(): Observable<ISong[]>{
     return this.httpClient.get<ISong[]>('http://localhost:8080/songs');
   }
