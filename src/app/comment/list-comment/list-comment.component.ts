@@ -25,7 +25,7 @@ export class ListCommentComponent implements OnInit {
     this.getAllComment();
     this.sub = this.activateRouter.paramMap.subscribe((p: ParamMap) => {
       this.id = p.get('id');
-      this.getCommentById(this.id);
+      // this.getCommentById(this.id);
     });
   }
 
@@ -44,20 +44,20 @@ export class ListCommentComponent implements OnInit {
   create(){
     this.commentService.createComment(this.comment).subscribe( c => {
       this.comment = c;
-    });
-    this.getAllComment();
-  }
-
-  // tslint:disable-next-line:typedef
-  private getCommentById(id: any) {
-    this.commentService.getCommentById(id).subscribe( c => {
-      this.comment = c;
+      this.getAllComment();
     });
   }
 
   // tslint:disable-next-line:typedef
-  edit(){
-    this.commentService.editComment(this.id, this.comment).subscribe( () => {
+  // private getCommentById(id: any) {
+  //   this.commentService.getCommentById(id).subscribe( c => {
+  //     this.comment = c;
+  //   });
+  // }
+
+  // tslint:disable-next-line:typedef
+  edit(id: number){
+    this.commentService.editComment(id, this.comment).subscribe( () => {
       this.getAllComment();
     });
   }

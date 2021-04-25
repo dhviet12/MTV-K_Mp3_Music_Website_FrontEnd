@@ -20,14 +20,14 @@ export class CommentService {
   }
 
   public editComment(id: number, iComment: IComment): Observable<IComment> {
-    return this.httpClient.put<IComment>(URL + '/commentSong/edit/' + `${id}`, iComment);
+    return this.httpClient.put<IComment>(URL + 'commentSong/edit/' + `${id}`, iComment);
   }
 
   public getCommentById(id: number): Observable<IComment> {
-    return this.httpClient.get<IComment>(URL + '/commentSong/' + `${id}`);
+    return this.httpClient.get<IComment>(URL + 'commentSong/' + `${id}`);
   }
 
   public deleteComment(id: number): Observable<IComment> {
-    return this.httpClient.delete<IComment>(URL + '/commentSong/delete/' + `${id}`);
+    return this.httpClient.delete<IComment>(URL + 'commentSong/delete/' + `${id}`);
   }
 }
