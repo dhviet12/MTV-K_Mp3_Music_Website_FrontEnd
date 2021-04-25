@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
 
   mess1: any = {
-    message: 'Fail -> Username is already taken!'
+    message: 'Existed Username'
   };
   mess2: any = {
     message: 'User registered successfully!'
