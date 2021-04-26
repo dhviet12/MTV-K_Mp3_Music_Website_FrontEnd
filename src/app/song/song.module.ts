@@ -7,6 +7,7 @@ import { SongListComponent } from './song-list/song-list.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditSongComponent } from './edit-song/edit-song.component';
+import {TopSongsViewComponent} from './top-songs-view/top-songs-view.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { EditSongComponent } from './edit-song/edit-song.component';
     CreateSongComponent,
     SongListComponent,
     SongDetailComponent,
-    EditSongComponent
+    EditSongComponent,
+    TopSongsViewComponent
   ],
   imports: [
     CommonModule,
