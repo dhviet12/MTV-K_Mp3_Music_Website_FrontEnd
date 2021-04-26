@@ -18,7 +18,7 @@ export class SongDetailComponent implements OnInit {
       this.getSongById(this.song.id);
     });
   }
-  getSongById(id: number){
+  getSongById(id: number): any {
     return this.songService.getSongById(id).subscribe(song =>{
       this.song = song;
     });

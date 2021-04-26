@@ -23,5 +23,8 @@ export class SongService {
   delSong(id: number): Observable<ISong>{
     return this.httpClient.delete<ISong>('http://localhost:8080/delete-song/' + id);
   }
+  searchSong(nameSong: string): Observable<ISong[]> {
+    return this.httpClient.get<ISong[]>('http://localhost:8080/search-song?name=' + nameSong);
+  }
   constructor(private httpClient: HttpClient) { }
 }

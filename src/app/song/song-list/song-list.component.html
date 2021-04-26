@@ -4,6 +4,12 @@
     <div class="col">
       <button type="button" class="btn btn-outline-primary" [routerLink]="'/songs/create'">Thêm bài mới</button>
     </div>
+    <div class="col">
+      <form class="d-flex">
+        <input [(ngModel)]="keyword" name="keyword" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button (click)="searchSong()" class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
   </div>
   <table class="table text-center">
     <thead class="thead-dark">
