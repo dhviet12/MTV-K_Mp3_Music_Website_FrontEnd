@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IUser} from '../model/IUser';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
@@ -23,14 +23,14 @@ export class EditProfileUserComponent implements OnInit {
     address: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required]],
-    avatar:['']
+    avatar: ['']
   });
 
-  constructor( private activatedRoute: ActivatedRoute,
-               private router: Router,
-               private storage: AngularFireStorage,
-               private fb: FormBuilder,
-               private userServie: UserService) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private storage: AngularFireStorage,
+              private fb: FormBuilder,
+              private userServie: UserService) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.user.id = Number(paramMap.get('id'));
       this.getUserById(this.user.id);
@@ -40,13 +40,13 @@ export class EditProfileUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getUserById(id: number){
-    return this.userServie.getUserProfileByID(id).subscribe(user =>{
+  getUserById(id: number) {
+    return this.userServie.getUserProfileByID(id).subscribe(user => {
       this.user = user;
     });
   }
 
-  upFileAvatar(e: any)  {
+  upFileAvatar(e: any) {
     const file = e.target.files[0];
     const fileName = file.name;
     const filePath = `image/${fileName}`;
@@ -62,10 +62,14 @@ export class EditProfileUserComponent implements OnInit {
     ).subscribe();
   }
 
-  editProfile(): any{
-    return this.userServie.editUserProfile(this.user.id, this.user).subscribe(()=>{
+  editProfile(): any {
+    return this.userServie.editUserProfile(this.user.id, this.user).subscribe(() => {
       this.router.navigate(['/songs']);
-    })
-  }
 
+    });
+  }
+  changeClick(){
+    // @ts-ignore
+    document.getElementById("avatar").click();
+  }
 }

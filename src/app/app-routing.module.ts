@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {RegisterComponent} from './user/register/register.component';
-import {LoginComponent} from './user/login/login.component';
-import {SignoutComponent} from './user/signout/signout.component';
 
 const routes: Routes = [
   {
     path: 'songs',
     loadChildren: () => import('./song/song.module').then(module => module.SongModule)
   },
+<<<<<<< HEAD
   { path: 'signup',
     component: RegisterComponent
   },
@@ -20,8 +18,10 @@ const routes: Routes = [
     path: 'logout',
     component: SignoutComponent
   },
+=======
+>>>>>>> 7e0dcdda9d608d45b28205ceea3578e465076019
   {
-    path:'user',
+    path: 'user',
     loadChildren: () => import('./user/user.module').then(module => module.UserModule)
   }
 ];
