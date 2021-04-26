@@ -10,8 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
-import { TopSongsViewComponent } from './song/top-songs-view/top-songs-view.component';
-
 
 @NgModule({
   declarations: [

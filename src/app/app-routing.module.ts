@@ -9,15 +9,15 @@ const routes: Routes = [
     path: 'songs',
     loadChildren: () => import('./song/song.module').then(module => module.SongModule)
   },
-  { path:'signup',
+  { path: 'signup',
     component: RegisterComponent
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path:'logout',
+    path: 'logout',
     component: SignoutComponent
   },
   {
