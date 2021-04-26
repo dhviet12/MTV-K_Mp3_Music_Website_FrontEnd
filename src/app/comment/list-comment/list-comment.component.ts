@@ -13,6 +13,7 @@ import {Subscription} from 'rxjs';
 export class ListCommentComponent implements OnInit {
   sub: Subscription;
   id: any;
+  panelOpenState = false;
   comment: IComment = {
     id: 0,
     content: '',

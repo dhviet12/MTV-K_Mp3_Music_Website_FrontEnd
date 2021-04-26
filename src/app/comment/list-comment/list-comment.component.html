@@ -1,20 +1,4 @@
-<table border="1px">
-  <tr>
-    <td>Content</td>
-    <td></td>
-  </tr>
-  <tr *ngFor="let comment of listComment ; let i = index" >
-    <td>
-<!--      <a [routerLink]="'detail/'+b.id">-->
-        {{comment.content}}
-<!--      </a>-->
-    </td>
-    <td>
-      <button type="button" class="btn btn-outline-warning" (click)="edit(comment.id)">Edit</button>
-      <button type="button" class="btn btn-outline-warning" (click)="delete(comment.id)" >Delete</button>
-  </tr>
-</table>
-<div class="form-group">
+<div class="form-group" id="create">
   <label>Content</label>
   <input type="text"  placeholder="Enter content" name="description"
          [(ngModel)]="comment.content">
@@ -30,3 +14,27 @@
 <!--    <td mat-cell> {{comment.content}} </td>-->
 <!--  </ng-container>-->
 <!--</table>-->
+<table width="50%">
+        <tr>
+          <td><mat-panel-title>
+            Comment
+          </mat-panel-title></td>
+        </tr>
+        <tr *ngFor="let comment of listComment">
+          <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{comment.content}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-title>
+              <button type="button" class="btn btn-outline-warning" (click)="edit(comment.id)">Edit</button>
+              <button type="button" class="btn btn-outline-warning" (click)="delete(comment.id)" >Delete</button>
+            </mat-panel-title>
+          </mat-expansion-panel>
+          </mat-accordion>
+        </tr>
+</table>
+
+
