@@ -93,7 +93,7 @@ export class EditSongComponent implements OnInit {
       }
     );
   }
-  getSongById(id: number): any{
+  getSongById(id: number){
     return this.songService.getSongById(id).subscribe(song => {
       this.song = song;
     });
