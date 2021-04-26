@@ -42,11 +42,11 @@ export class RegisterComponent implements OnInit {
     this.authenService.signUp(this.signUp).subscribe(data => {
       console.log('data', data);
       if (JSON.stringify(data) == JSON.stringify(this.mess1)) {
-        this.status = 'Username is existed';
+        this.status = 'Tên tài khoản đã tồn tại';
         alert(this.status)
       }
       if (JSON.stringify(data) == JSON.stringify(this.mess2)) {
-        this.status = 'Created Successfully';
+        this.status = 'Đăng ký thành công';
         alert(this.status);
         this.router.navigate(['/user']);
       }
