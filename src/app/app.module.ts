@@ -4,8 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
+
 import {UserModule} from './user/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud')
+
   ],
   providers: [],
   bootstrap: [AppComponent]
