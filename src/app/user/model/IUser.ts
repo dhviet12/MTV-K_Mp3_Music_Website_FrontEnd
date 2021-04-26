@@ -1,10 +1,10 @@
 export interface IUser{
-  id?: number,
+  id?: any,
   username?: string,
   password? : string,
   fullName? : string,
   address? : string,
   email? : string
   phone? : string,
-  avatar? : string
+  avatar? : any
 }

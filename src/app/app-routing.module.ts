@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path:'logout',
     component: SignoutComponent
+  },
+  {
+    path:'user',
+    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
   }
 ];
 

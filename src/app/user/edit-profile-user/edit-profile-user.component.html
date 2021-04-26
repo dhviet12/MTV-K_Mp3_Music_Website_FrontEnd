@@ -1,1 +1,91 @@
-<p>edit-profile-user works!</p>
+<div class="container-fluid">
+  <div class="main-container" id="appRoute">
+    <div class="row section">
+      <div class="col-xl-8 col-md-10 mx-auto">
+        <form [formGroup]="editUserProfileForm" (ngSubmit)="editProfile()">
+          <div class="card">
+            <div class="card-header">
+              <h6 class="card-title mb-0">Edit Profile</h6>
+            </div>
+            <div class="card-body">
+              <div class="form-row form-group">
+                <label for="fullName" class="col-md-4 text-md-right col-form-label">Full Name <sup>*</sup></label>
+                <div class="col-md-7">
+                  <input type="text" id="fullName" class="form-control" [(ngModel)]="user.fullName" formControlName="fullName" required>
+                  <small *ngIf="editUserProfileForm.get('fullName')?.invalid " class="text-danger" >
+                    Nhập tên bài hát độ tài tối thiểu 2 ký tự , không sử dụng ký tự đặc biệt !
+                  </small>
+                </div>
+              </div>
+              <div class="form-row form-group">
+                <label for="avatar" class="col-md-4 text-md-right col-form-label">Avatar</label>
+                <div class="col-md-7">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="avatar" accept="image/*"
+                           (change)="upFileAvatar($event)" formControlName="avatar">
+<!--                    <small *ngIf="editSongForm.get('fileImg')?.invalid && editSongForm.get('fileImg')?.touched" class="text-danger" >-->
+<!--                      Vui lòng chọn đúng định dạng ảnh !-->
+<!--                    </small>-->
+                    <label class="custom-file-label" for="avatar">Choose file...</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row form-group">
+                <label for="password" class="col-md-4 text-md-right col-form-label">Password <sup>*</sup></label>
+                <div class="col-md-7">
+                  <input type="password" id="password" class="form-control" [(ngModel)]="user.password" formControlName="password" required>
+                  <small *ngIf="editUserProfileForm.get('password')?.invalid" class="text-danger" >
+                   Password validate
+                  </small>
+                </div>
+              </div>
+              <div class="form-row form-group">
+                <label for="address" class="col-md-4 text-md-right col-form-label">Address <sup>*</sup></label>
+                <div class="col-md-7">
+                  <input type="text" id="address" class="form-control" [(ngModel)]="user.address" formControlName="address"
+                         required>
+                  <small *ngIf="editUserProfileForm.get('address')?.invalid" class="text-danger" >
+                    Address validate
+                  </small>
+                </div>
+              </div>
+              <div class="form-row form-group">
+                <label for="email" class="col-md-4 text-md-right col-form-label">Email</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="email" [(ngModel)]="user.email" formControlName="email">
+                  <small *ngIf="editUserProfileForm.get('email')?.invalid " class="text-danger" >
+                    Email validate
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="form-row form-group">
+              <label for="phone" class="col-md-4 text-md-right col-form-label">Phone <sup>*</sup></label>
+              <div class="col-md-7">
+                <input type="number" id="phone" class="form-control" [(ngModel)]="user.phone" formControlName="phone"
+                       required>
+                <small *ngIf="editUserProfileForm.get('phone')?.invalid" class="text-danger" >
+                  Phone validate
+                </small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                  <button type="submit" class="btn btn-dark" [disabled]="editUserProfileForm.invalid">
+                    <i class="fa fa-upload" aria-hidden="true"></i> Edit Profile
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
