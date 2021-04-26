@@ -8,38 +8,38 @@
                 (ngSubmit)="f.form.valid && onSubmit()"
                 #f="ngForm"
                 novalidate>
-            <h3 class="text-center text-info">Login</h3>
+            <h1 class="text-center text-info">Đăng nhập</h1>
             <p class="text-danger"></p>
             <div class="form-group">
-              <label for="username" class="text-info">Username:</label><br>
-              <input type="text" name="username" id="username" class="form-control" placeholder="enter your username"
+              <label for="username" class="text-info">Tên tài khoản:</label><br>
+              <input type="text" name="username" id="username" class="form-control" placeholder="Nhập tên tài khoản"
                      [(ngModel)]="form.username"
                      required
                      #username="ngModel">
               <div style="color: red;"
                 *ngIf="username.hasError('required') ">
-                Username is required
+                Tên tài khoản không được để trống
               </div>
             </div>
             <div class="form-group">
-              <label for="password" class="text-info">Password:</label><br>
+              <label for="password" class="text-info">Mật khẩu:</label><br>
               <input type="password" name="password" id="password" class="form-control"
-                     placeholder="enter your password"  [(ngModel)]="form.password"
+                     placeholder="Nhập mật khẩu"  [(ngModel)]="form.password"
                      required
                      minlength="6"
                      #password="ngModel">
               <div *ngIf="password.errors && f.submitted"> </div>
-                <div style="color: red" *ngIf="password.hasError('required')">Password is required</div>
+                <div style="color: red" *ngIf="password.hasError('required')">Mật khẩu không được để trống</div>
                 <div style="color: red;" *ngIf="password.hasError('minlength')">
-                  Password must be at least 6 characters
+                  Mật khẩu có độ dài tối thiểu 6 ký tự
                 </div>
             </div>
             <div class="form-group">
-              <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+              <input type="submit" name="submit" class="btn btn-info btn-md" value="Đăng nhập">
             </div>
             <br>
             <div id="register-link" class="text-right">
-              <a routerLink="/signup" class="text-info">Register here</a>
+              <a [routerLink]="'/user/signup'" class="text-info">Đăng ký</a>
             </div>
             <br>
             <br>

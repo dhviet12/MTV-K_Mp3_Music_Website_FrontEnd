@@ -12,6 +12,7 @@ export class SongListComponent implements OnInit {
   constructor(private songService: SongService, private router: Router) {
     this.getAllSong();
   }
+  keyword: any;
   songList: ISong[] = [];
   getAllSong(): any {
     return this.songService.getAllSong().subscribe( songs => {
@@ -22,7 +23,6 @@ export class SongListComponent implements OnInit {
     this.songService.delSong(id).subscribe( () => {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
-      // @ts-ignore
       this.router.navigateByUrl('songs') ;
     });
   }
@@ -31,6 +31,13 @@ export class SongListComponent implements OnInit {
   //   const storageRef = this.storage.ref('mp3/');
   //   storageRef.child('audio_xe_dap_oi.mp3').delete();
   // }
+  searchSong(): any {
+    this.songService.searchSong(this.keyword).subscribe(songList => {
+      console.log(this.keyword);
+      this.songList = songList;
+      console.log(this.songList);
+    });
+  }
   ngOnInit(): void {
   }
 }

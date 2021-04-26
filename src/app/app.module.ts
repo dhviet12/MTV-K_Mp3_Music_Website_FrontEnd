@@ -13,7 +13,6 @@ import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 
-
 @NgModule({
   declarations: [
     AppComponent

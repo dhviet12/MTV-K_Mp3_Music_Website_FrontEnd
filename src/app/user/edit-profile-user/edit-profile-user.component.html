@@ -1,1 +1,92 @@
-<p>edit-profile-user works!</p>
+<div class="container-fluid">
+  <div class="main-container under-banner-content">
+    <div class="row section">
+      <div class="col-xl-10 mx-auto">
+        <div class="row">
+          <div class="col-xl-4 col-md-5">
+            <div class="card h-auto">
+              <div class="card-body text-center">
+                <div class="avatar avatar-xl avatar-circle mx-auto mb-4">
+                  <img src="{{user.avatar}}" width="128" height="128" alt="avatar">
+                </div>
+                <h4 class="mb-3">Xin chào: {{user.fullName}}</h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-danger btn-air" (click)="changeClick()">Change Avatar</button>
+                  </div>
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-danger btn-air">My Playlist</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 col-md-7">
+            <div class="card h-auto">
+              <div class="card-body">
+                <form [formGroup]="editUserProfileForm" (ngSubmit)="editProfile()" class="row">
+                  <div class="col-xl-6 form-group">
+                    <label for="firstName" class="form-label">Họ tên:</label>
+                    <input type="text" id="firstName" class="form-control" [(ngModel)]="user.fullName"
+                           formControlName="fullName" required>
+                    <small *ngIf="editUserProfileForm.get('fullName')?.invalid " class="text-danger">
+                      Nhập tên bài hát độ tài tối thiểu 2 ký tự , không sử dụng ký tự đặc biệt !
+                    </small>
+                  </div>
+                  <div class="col-xl-6 form-group">
+                    <label for="lastName" class="form-label">Email:</label>
+                    <input type="text" id="lastName" class="form-control" [(ngModel)]="user.email"
+                           formControlName="email">
+                    <small *ngIf="editUserProfileForm.get('email')?.invalid " class="text-danger">
+                      Email validate
+                    </small>
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="displayName" class="form-label">Địa chỉ:</label>
+                    <input type="text" id="displayName" class="form-control" [(ngModel)]="user.address"
+                           formControlName="address"
+                           required>
+                    <small *ngIf="editUserProfileForm.get('address')?.invalid" class="text-danger">
+                      Address validate
+                    </small>
+                  </div>
+                  <div class="col-xl-6 form-group">
+                    <label for="userType" class="form-label">User Type</label>
+                    <select name="userType" id="userType" class="form-control">
+                      <option value="0">Admin</option>
+                      <option value="1">Artist</option>
+                      <option value="2">Producer</option>
+                      <option value="3">User</option>
+                    </select>
+                  </div>
+                  <div class="col-xl-6 form-group">
+                    <label for="loc" class="form-label">Location</label>
+                    <input type="text" id="loc" class="form-control" [(ngModel)]="user.phone" formControlName="phone"
+                           required>
+                    <small *ngIf="editUserProfileForm.get('phone')?.invalid" class="text-danger">
+                      Phone validate
+                    </small>
+                  </div>
+                  <div class="col-12 form-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="avatar" accept="image/*"
+                             (change)="upFileAvatar($event)" formControlName="avatar" hidden>
+                    </div>
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="about" class="form-label">About</label>
+                    <textarea name="about" id="about" cols="30" rows="5" class="form-control"></textarea>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-air">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

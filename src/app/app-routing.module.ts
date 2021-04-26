@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {RegisterComponent} from './user/register/register.component';
-import {LoginComponent} from './user/login/login.component';
-import {SignoutComponent} from './user/signout/signout.component';
 
+
+// @ts-ignore
 const routes: Routes = [
   {
     path: 'songs',
@@ -23,7 +22,10 @@ const routes: Routes = [
   {
     path: 'logout',
     component: SignoutComponent
-
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
   }
 ];
 

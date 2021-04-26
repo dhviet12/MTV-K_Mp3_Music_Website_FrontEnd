@@ -15,7 +15,7 @@ export class AuthenService {
   // @ts-ignore
   private currentUserSubject: BehaviorSubject<IUserToken>;
   // @ts-ignore
-  private currentUser: Observable<IUserToken>;
+  public currentUser: Observable<IUserToken>;
 
 
   constructor(private httpClient: HttpClient) {
