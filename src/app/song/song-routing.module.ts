@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {SongListComponent} from './song-list/song-list.component';
 import {CreateSongComponent} from './create-song/create-song.component';
 import {EditSongComponent} from './edit-song/edit-song.component';
+import {TopSongsViewComponent} from './top-songs-view/top-songs-view.component';
+import {TopSongsNewComponent} from './top-songs-new/top-songs-new.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'create',
     component: CreateSongComponent
+  },
+  {
+    path: 'top10songsview',
+    component: TopSongsViewComponent
+  },
+  {
+    path: 'top10songsnew',
+    component: TopSongsNewComponent
   },
 ];
 
