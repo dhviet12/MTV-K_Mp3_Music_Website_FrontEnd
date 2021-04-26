@@ -13,11 +13,11 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path:'logout',
+    path: 'logout',
     component: SignoutComponent
   },
   {
