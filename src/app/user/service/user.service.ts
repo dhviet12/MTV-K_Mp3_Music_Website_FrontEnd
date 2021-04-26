@@ -24,7 +24,7 @@ export class UserService {
     avatar: ''
   };
 
-  getUserByID(id: number): Observable<IUser> {
+  getUserProfileByID(id: number): Observable<IUser> {
     return this.httpClient.get<IUser>(URL_USER_CONTROLLER + `profile/${id}`);
   }
 
