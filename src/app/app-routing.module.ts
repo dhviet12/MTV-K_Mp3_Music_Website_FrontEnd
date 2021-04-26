@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+
+// @ts-ignore
 const routes: Routes = [
   {
     path: 'songs',
