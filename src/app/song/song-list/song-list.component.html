@@ -44,7 +44,7 @@
     <tbody>
     <tr *ngFor="let s of songList, let i = index">
       <th scope="row">{{i + 1}}</th>
-      <td><a [routerLink]="'detail/'+s.id">{{s.nameSong}}</a></td>
+      <td><a [routerLink]="'/songs/detail/'+s.id">{{s.nameSong}}</a></td>
       <td>{{s.description}}</td>
       <td>
           <audio controls>

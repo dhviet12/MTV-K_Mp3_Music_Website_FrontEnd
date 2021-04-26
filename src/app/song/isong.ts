@@ -1,3 +1,5 @@
+import {IUser} from '../user/model/IUser';
+
 export interface ISong {
   id?: any;
   nameSong?: string;
@@ -5,8 +7,11 @@ export interface ISong {
   fileMp3?: any;
   fileImage?: any;
   author?: string;
+  createdTime?: any;
+  updatedTime?: any;
+  numberOfView?: number;
   singer?: any;
-  poster?: any;
+  createdBy?: IUser;
   category?: any;
   likes?: any;
   comment?: any;
