@@ -4,6 +4,8 @@ import {RegisterComponent} from './user/register/register.component';
 import {LoginComponent} from './user/login/login.component';
 import {SignoutComponent} from './user/signout/signout.component';
 
+
+// @ts-ignore
 const routes: Routes = [
   {
     path: 'songs',

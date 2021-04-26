@@ -30,7 +30,7 @@ export class EditProfileUserComponent implements OnInit {
                private router: Router,
                private storage: AngularFireStorage,
                private fb: FormBuilder,
-               private userServie: UserService) {
+               private userService: UserService) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.user.id = Number(paramMap.get('id'));
       this.getUserById(this.user.id);
@@ -41,7 +41,7 @@ export class EditProfileUserComponent implements OnInit {
   }
 
   getUserById(id: number){
-    return this.userServie.getUserProfileByID(id).subscribe(user =>{
+    return this.userService.getUserProfileByID(id).subscribe(user =>{
       this.user = user;
     });
   }
@@ -63,7 +63,7 @@ export class EditProfileUserComponent implements OnInit {
   }
 
   editProfile(): any{
-    return this.userServie.editUserProfile(this.user.id, this.user).subscribe(()=>{
+    return this.userService.editUserProfile(this.user.id, this.user).subscribe(()=>{
       this.router.navigate(['/songs']);
     })
   }
