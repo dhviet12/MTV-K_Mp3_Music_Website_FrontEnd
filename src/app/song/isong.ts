@@ -1,7 +1,7 @@
 import {IUser} from '../user/model/IUser';
 
 export interface ISong {
-  id?: any;
+  id: number;
   nameSong?: string;
   description?: string;
   fileMp3?: any;

@@ -20,7 +20,9 @@ export class CreateSongComponent implements OnInit{
               private fb: FormBuilder
               ) {
   }
-  song: ISong = {};
+  song: ISong = {
+    id: 0
+  };
   percentageMp3 = 0;
   percentageImg = 0;
   creSongForm = this.fb.group({
