@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
       if (JSON.stringify(data) == JSON.stringify(this.mess2)) {
         this.status = 'Created Successfully';
         alert(this.status);
-        this.router.navigate(['/']);
+        this.router.navigate(['/user']);
       }
     });
   }
