@@ -7,6 +7,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 
+import {UserModule} from './user/user.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +23,10 @@ import {MatSliderModule} from '@angular/material/slider';
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    BrowserAnimationsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud')
   ],
   providers: [],
   bootstrap: [AppComponent]

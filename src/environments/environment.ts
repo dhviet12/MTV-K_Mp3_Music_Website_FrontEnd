@@ -4,7 +4,20 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
   url: 'http://localhost:8080/'
+=======
+  firebaseConfig : {
+    apiKey: 'AIzaSyCh4PpJAZSzokttMQM9b29E_B5ytUXRK6g',
+    authDomain: 'website-mp3-mtvk.firebaseapp.com',
+    databaseUrl: 'https://website-mp3-mtvk-default-rtdb.firebaseio.com/',
+    projectId: 'website-mp3-mtvk',
+    storageBucket: 'website-mp3-mtvk.appspot.com',
+    messagingSenderId: '192969502344',
+    appId: '1:192969502344:web:4f5407a465f0861757393d',
+    measurementId: 'G-X2MHY0KCCT'
+  }
+>>>>>>> 8be018e959b97dbd3a11b63496bc35c75a83b3b4
 };
 
 /*

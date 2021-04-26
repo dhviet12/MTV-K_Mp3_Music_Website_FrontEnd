@@ -1,0 +1,110 @@
+<div class="container-fluid">
+  <div class="main-container" id="appRoute">
+    <div class="row section">
+      <div class="col-xl-8 col-md-10 mx-auto">
+        <form [formGroup]="editSongForm" (ngSubmit)="editSong()">
+          <div class="card">
+            <div class="card-header">
+              <h6 class="card-title mb-0">Add Music</h6>
+            </div>
+            <div class="card-body">
+              <div class="form-row form-group">
+                <label for="songName" class="col-md-4 text-md-right col-form-label">Song Name <sup>*</sup></label>
+                <div class="col-md-7">
+                  <input type="text" id="songName" class="form-control" [(ngModel)]="song.nameSong" formControlName="nameSong" required>
+                  <small *ngIf="editSongForm.get('nameSong')?.invalid " class="text-danger" >
+                    Nhập tên bài hát độ tài tối thiểu 2 ký tự , không sử dụng ký tự đặc biệt !
+                  </small>
+                </div>
+              </div>
+              <div class="form-row form-group">
+                <label for="songImage" class="col-md-4 text-md-right col-form-label">Song Cover Image</label>
+                <div class="col-md-7">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="songImage" accept="image/*"
+                           (change)="processUploadImg($event)" formControlName="fileImg">
+                    <small *ngIf="editSongForm.get('fileImg')?.invalid && editSongForm.get('fileImg')?.touched" class="text-danger" >
+                      Vui lòng chọn đúng định dạng ảnh !
+                    </small>
+                    <label class="custom-file-label" for="songImage">Choose file...</label>
+                  </div>
+                  <div class="progress mt-2" *ngIf="editSongForm.get('fileImg')?.value">
+                    <div class="progress-bar progress-bar-info"
+                         role="progressbar" attr.aria-valuenow="{{ percentageImg }}" aria-valuemin="0"
+                         aria-valuemax="100"
+                         [ngStyle]="{ width: percentageImg + '%' }">{{ percentageImg }}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row form-group">
+                <label class="col-md-4 text-md-right col-form-label">Song File <sup>*</sup></label>
+                <div class="col-md-7">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFileInput" accept="audio/*"
+                           (change)="processUploadMp3($event)" formControlName="fileMp3" required>
+                    <small *ngIf="editSongForm.get('fileMp3')?.invalid && editSongForm.get('fileMp3')?.touched" class="text-danger" >
+                      Vui lòng lựa chọn tệp âm thanh của bạn !
+                    </small>
+                    <label class="custom-file-label" for="customFileInput">Choose file...</label>
+                  </div>
+                  <div class="progress mt-2" *ngIf="editSongForm.get('fileMp3')?.valid">
+                    <div class="progress-bar progress-bar-info"
+                         role="progressbar" attr.aria-valuenow="{{ percentageMp3 }}" aria-valuemin="0"
+                         aria-valuemax="100"
+                         [ngStyle]="{ width: percentageMp3 + '%' }">{{ percentageMp3 }}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row form-group">
+                <label for="artistName" class="col-md-4 text-md-right col-form-label">Singer Name <sup>*</sup></label>
+                <div class="col-md-7">
+                  <input type="text" id="artistName" class="form-control" formControlName="singer" required>
+                  <small *ngIf="editSongForm.get('singer')?.invalid" class="text-danger" >
+                    Vui Lòng nhập tên ca sỹ, không được chứa ký tự đặc biệt !
+                  </small>
+                </div>
+              </div>
+              <div class="form-row form-group">
+                <label for="composerName" class="col-md-4 text-md-right col-form-label">Author Name <sup>*</sup></label>
+                <div class="col-md-7">
+                  <input type="text" id="composerName" class="form-control" [(ngModel)]="song.author" formControlName="author"
+                         required>
+                  <small *ngIf="editSongForm.get('author')?.invalid" class="text-danger" >
+                    Vui Lòng nhập tên tác giả, không được chứa ký tự đặc biệt !
+                  </small>
+                </div>
+              </div>
+              <div class="form-row form-group">
+                <label for="description" class="col-md-4 text-md-right col-form-label">Description</label>
+                <div class="col-md-7">
+                  <textarea class="form-control" id="description" rows="4" [(ngModel)]="song.description" formControlName="description"></textarea>
+                  <small *ngIf="editSongForm.get('description')?.invalid && editSongForm.get('description')?.touched" class="text-danger" >
+                    Mô tả không vượt quá 300 ký tự !
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                  <button type="submit" class="btn btn-dark" [disabled]="editSongForm.invalid">
+                    <i class="fa fa-upload" aria-hidden="true"></i> Upload
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <button type="reset" class="btn btn-dark"><i class="fa fa-times" aria-hidden="true"></i> Remove it
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
