@@ -18,6 +18,9 @@ import {SearchSongComponent} from './search-song/search-song.component';
     EditSongComponent,
     SearchSongComponent
   ],
+  exports: [
+    SearchSongComponent
+  ],
   imports: [
     CommonModule,
     SongRoutingModule,

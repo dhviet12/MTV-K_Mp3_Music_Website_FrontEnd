@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {SongListComponent} from './song-list/song-list.component';
 import {CreateSongComponent} from './create-song/create-song.component';
 import {EditSongComponent} from './edit-song/edit-song.component';
+import {SearchSongComponent} from './search-song/search-song.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'create',
     component: CreateSongComponent
+  },
+  {
+    path: 'search-song',
+    component: SearchSongComponent
   },
 ];
 

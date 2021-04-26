@@ -11,6 +11,7 @@ import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import { SearchSongComponent } from './song/search-song/search-song.component';
+import {SongModule} from './song/song.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SearchSongComponent } from './song/search-song/search-song.component';
     HttpClientModule,
     BrowserAnimationsModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud')
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
+    SongModule
 
   ],
   providers: [],
