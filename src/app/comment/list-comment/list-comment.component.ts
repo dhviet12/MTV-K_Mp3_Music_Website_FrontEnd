@@ -3,6 +3,8 @@ import {IComment} from '../icomment';
 import {CommentService} from '../comment.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {any} from "codelyzer/util/function";
+import {comment} from "postcss";
 
 
 @Component({
@@ -14,12 +16,18 @@ export class ListCommentComponent implements OnInit {
   sub: Subscription;
   id: any;
   panelOpenState = false;
-  comment: IComment = {
+  commentCreate: IComment = {
     id: 0,
     content: '',
+    user: {
+      fullName: ''
+    }
   };
+  commentEdit: IComment = {
+    id: 0,
+    content: '',
+  }
   listComment: IComment[] = [];
-
   constructor(private commentService: CommentService,
               private router: Router,
               private activateRouter: ActivatedRoute) {
@@ -43,8 +51,9 @@ export class ListCommentComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   create(){
-    this.commentService.createComment(this.comment).subscribe( c => {
-      this.comment = c;
+    console.log(this.commentCreate.user.fullName);
+    this.commentService.createComment(this.commentCreate).subscribe( c => {
+      this.commentCreate = c;
       this.getAllComment();
     });
   }
@@ -58,7 +67,7 @@ export class ListCommentComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   edit(id: number){
-    this.commentService.editComment(id, this.comment).subscribe( () => {
+    this.commentService.editComment(id, this.commentEdit  ).subscribe( () => {
       this.getAllComment();
     });
   }
