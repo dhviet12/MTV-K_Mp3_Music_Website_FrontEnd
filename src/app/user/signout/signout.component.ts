@@ -13,7 +13,7 @@ export class SignoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.tokenStorageService.signOut();
-    this.router.navigate(['/user/']);
+    this.router.navigate(['/user/login']);
   }
 
 }

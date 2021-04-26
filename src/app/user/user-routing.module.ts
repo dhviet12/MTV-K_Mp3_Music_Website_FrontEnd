@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {SignoutComponent} from './signout/signout.component';
+import {EditProfileUserComponent} from './edit-profile-user/edit-profile-user.component';
 
 const routes: Routes = [
   {
@@ -10,13 +11,18 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
   },
   {
     path: 'logout',
     component: SignoutComponent
-  }];
+  },
+  {
+    path: 'profile/:id',
+    component: EditProfileUserComponent
+  }
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
