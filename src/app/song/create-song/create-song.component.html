@@ -5,11 +5,11 @@
         <form [formGroup]="creSongForm" (ngSubmit)="createSong()">
           <div class="card">
             <div class="card-header">
-              <h6 class="card-title mb-0">Add Music</h6>
+              <h3 class="card-title mb-0">THÊM BÀI HÁT</h3>
             </div>
             <div class="card-body">
               <div class="form-row form-group">
-                <label for="songName" class="col-md-4 text-md-right col-form-label">Song Name <sup>*</sup></label>
+                <label for="songName" class="col-md-4 text-md-right col-form-label">Tên bài hát <sup>*</sup></label>
                 <div class="col-md-7">
                   <input type="text" id="songName" class="form-control" [(ngModel)]="song.nameSong" formControlName="nameSong" required>
                   <small *ngIf="creSongForm.get('nameSong')?.invalid " class="text-danger" >
@@ -18,7 +18,7 @@
                 </div>
               </div>
               <div class="form-row form-group">
-                <label for="songImage" class="col-md-4 text-md-right col-form-label">Song Cover Image</label>
+                <label for="songImage" class="col-md-4 text-md-right col-form-label">Ảnh </label>
                 <div class="col-md-7">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="songImage" accept="image/*"
@@ -26,7 +26,7 @@
                     <small *ngIf="creSongForm.get('fileImg')?.invalid" class="text-danger" >
                       Vui lòng chọn đúng định dạng ảnh !
                     </small>
-                    <label class="custom-file-label" for="songImage">Choose file...</label>
+                    <label class="custom-file-label" for="songImage">Chọn tập tin...</label>
                   </div>
                   <div class="progress mt-2" *ngIf="creSongForm.get('fileImg')?.value">
                     <div class="progress-bar progress-bar-info"
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="form-row form-group">
-                <label class="col-md-4 text-md-right col-form-label">Song File <sup>*</sup></label>
+                <label class="col-md-4 text-md-right col-form-label">Nhạc <sup>*</sup></label>
                 <div class="col-md-7">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFileInput" accept="audio/*"
@@ -46,7 +46,7 @@
                     <small *ngIf="creSongForm.get('fileMp3')?.invalid && creSongForm.get('fileMp3')?.touched" class="text-danger" >
                         Vui lòng lựa chọn tệp âm thanh của bạn !
                     </small>
-                    <label class="custom-file-label" for="customFileInput">Choose file...</label>
+                    <label class="custom-file-label" for="customFileInput">Chọn tập tin...</label>
                   </div>
                   <div class="progress mt-2" *ngIf="creSongForm.get('fileMp3')?.valid">
                     <div class="progress-bar progress-bar-info"
@@ -58,7 +58,7 @@
                 </div>
               </div>
               <div class="form-row form-group">
-                <label for="artistName" class="col-md-4 text-md-right col-form-label">Singer Name <sup>*</sup></label>
+                <label for="artistName" class="col-md-4 text-md-right col-form-label">Ca sỹ <sup>*</sup></label>
                 <div class="col-md-7">
                   <input type="text" id="artistName" class="form-control" formControlName="singer" required>
                   <small *ngIf="creSongForm.get('singer')?.invalid" class="text-danger" >
@@ -67,7 +67,7 @@
                 </div>
               </div>
               <div class="form-row form-group">
-                <label for="composerName" class="col-md-4 text-md-right col-form-label">Author Name <sup>*</sup></label>
+                <label for="composerName" class="col-md-4 text-md-right col-form-label">Tác giả <sup>*</sup></label>
                 <div class="col-md-7">
                   <input type="text" id="composerName" class="form-control" [(ngModel)]="song.author" formControlName="author"
                          required>
@@ -77,7 +77,7 @@
                 </div>
               </div>
               <div class="form-row form-group">
-                <label for="description" class="col-md-4 text-md-right col-form-label">Description</label>
+                <label for="description" class="col-md-4 text-md-right col-form-label">Giới thiệu </label>
                 <div class="col-md-7">
                   <textarea class="form-control" id="description" rows="4" [(ngModel)]="song.description" formControlName="description"></textarea>
                   <small *ngIf="creSongForm.get('description')?.invalid && creSongForm.get('description')?.touched" class="text-danger" >
@@ -91,11 +91,11 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-2">
                   <button type="submit" class="btn btn-dark" [disabled]="creSongForm.invalid">
-                    <i class="fa fa-upload" aria-hidden="true"></i> Upload
+                    <i class="fa fa-upload" aria-hidden="true"></i> Tạo mới
                   </button>
                 </div>
                 <div class="col-md-6">
-                  <button type="reset" class="btn btn-dark"><i class="fa fa-times" aria-hidden="true"></i> Remove it
+                  <button type="reset" class="btn btn-dark"><i class="fa fa-times" aria-hidden="true"></i> Nhập lại
                   </button>
                 </div>
               </div>
