@@ -91,9 +91,9 @@
     <div class="section">
       <form [formGroup]="commentForm" (ngSubmit)="createComment()">
       <div class="mb-4">
-        <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control"></textarea>
+        <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control" required></textarea>
         <div class="text-right mt-2">
-          <button type="submit" class="btn btn-info">Comment</button>
+          <button type="submit" class="btn btn-info" [disabled]="commentForm.invalid">Comment</button>
         </div>
       </div>
       </form>
