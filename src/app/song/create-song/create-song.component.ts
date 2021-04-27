@@ -43,7 +43,7 @@ export class CreateSongComponent implements OnInit{
   creSongForm = this.fb.group({
     nameSong: ['', [Validators.required, Validators.minLength(2),
       Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
-    fileImg: [''],
+    fileImage: [''],
     fileMp3: ['', [Validators.required]],
     singer: ['', [Validators.required, Validators.minLength(2),
       Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
@@ -83,7 +83,7 @@ export class CreateSongComponent implements OnInit{
     task.snapshotChanges().pipe(
       finalize(() => {
         storageRef.getDownloadURL().subscribe(URL => {
-          this.creSongForm.get('fileImg')?.setValue(URL);
+          this.creSongForm.get('fileImage')?.setValue(URL);
           console.log(this.song.fileImage);
         });
       })
