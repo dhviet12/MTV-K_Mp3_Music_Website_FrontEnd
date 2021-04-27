@@ -25,7 +25,9 @@ export class EditSongComponent implements OnInit {
       this.getSongById(this.song.id);
     });
   }
-  song: ISong = {};
+  song: ISong = {
+    id: 0
+  };
   sub: Subscription;
   percentageMp3 = 0;
   percentageImg = 0;

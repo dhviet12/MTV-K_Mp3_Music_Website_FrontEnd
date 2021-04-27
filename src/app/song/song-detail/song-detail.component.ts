@@ -10,7 +10,9 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
   styleUrls: ['./song-detail.component.scss']
 })
 export class SongDetailComponent implements OnInit {
-  song: ISong = {};
+  song: ISong = {
+    id: 0
+  };
   sub: Subscription;
   constructor(private songService: SongService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
@@ -25,5 +27,6 @@ export class SongDetailComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+
 
 }
