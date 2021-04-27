@@ -1,5 +1,6 @@
 import {IUser} from '../user/model/IUser';
 import {Timestamp} from 'rxjs';
+import {IUserToken} from '../user/model/IUserToken';
 
 export interface ISong {
   id: number;
@@ -12,7 +13,7 @@ export interface ISong {
   updatedTime?: any;
   numberOfView?: number;
   singer?: any;
-  createdBy?: IUser;
+  createdBy?: IUserToken;
   category?: any;
   likes?: any;
   comment?: any;

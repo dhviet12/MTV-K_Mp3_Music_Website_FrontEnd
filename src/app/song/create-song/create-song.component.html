@@ -22,7 +22,7 @@
                 <div class="col-md-7">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="songImage" accept="image/*"
-                           (change)="processUploadImg($event)" formControlName="fileImg">
+                           (change)="processUploadImg($event)" formControlName="fileImg" required>
                     <small *ngIf="creSongForm.get('fileImg')?.invalid" class="text-danger" >
                       Vui lòng chọn đúng định dạng ảnh !
                     </small>

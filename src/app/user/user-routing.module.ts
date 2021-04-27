@@ -19,7 +19,7 @@ const routes: Routes = [
     component: SignoutComponent
   },
   {
-    path: 'profile/:id',
+    path: 'profile',
     component: EditProfileUserComponent
   }
   ];
