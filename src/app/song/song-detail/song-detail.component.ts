@@ -27,7 +27,7 @@ export class SongDetailComponent implements OnInit {
     }
   };
   commentForm = this.formBuider.group({
-    content: ['', [Validators.maxLength(500)]],
+    content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
     song: [''],
     user: ['']
   });
