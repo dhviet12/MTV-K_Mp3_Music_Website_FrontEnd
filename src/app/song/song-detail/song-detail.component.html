@@ -54,7 +54,7 @@
             <li class="list-group-item pl-0 border-0">Thể hiện: <span class="font-weight-bold">{{song.singer}}</span></li>
             <li class="list-group-item pl-0 border-0">Tác giả: <span class="font-weight-bold">{{song.author}}</span></li>
             <li class="list-group-item pl-0 border-0">Thể loại: <span class="font-weight-bold">{{song.category}}</span></li>
-            <li class="list-group-item pl-0 border-0">Ngày đăng: <span class="font-weight-bold">{{song.createdTime}}</span></li>
+            <li class="list-group-item pl-0 border-0">Ngày đăng: <span class="font-weight-bold">{{song.createdTime | date:'dd/MM/yyyy'}}</span></li>
             <li class="list-group-item pl-0 border-0">Người đăng: <span class="font-weight-bold">{{song.createdBy}}</span></li>
             <li class="list-group-item pl-0 border-0">Cập nhật gần nhất: <span class="font-weight-bold">{{song.updatedTime}}</span></li>
           </ul>
@@ -89,19 +89,23 @@
 
     <!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
     <div class="section">
+      <form [formGroup]="commentForm" (ngSubmit)="createComment()">
       <div class="mb-4">
-        <textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
+        <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control"></textarea>
         <div class="text-right mt-2">
-          <button class="btn btn-info">Comment</button>
+          <button type="submit" class="btn btn-info">Comment</button>
         </div>
       </div>
+      </form>
       <div class="d-flex mb-4">
         <div class="avatar avatar-sm avatar-circle">
           <img src="" alt="avatar">
         </div>
         <div class="pl-3 flex-grow-1 flex-basis-0">
-          <span class="d-block font-weight-bold mb-1">comment.name</span>
-          <p class="mb-2">content</p>
+          <div *ngFor="let c of comments">
+          <span class="d-block font-weight-bold mb-1">ABC</span>
+          <p class="mb-2">{{c.content}}</p>
+          </div>
         </div>
       </div>
     </div>
