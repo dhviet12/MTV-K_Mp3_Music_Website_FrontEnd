@@ -25,11 +25,11 @@ const routes: Routes = [
     component: SongDetailComponent
   },
   {
-    path: 'top10songsview',
+    path: 'top10/view',
     component: TopSongsViewComponent
   },
   {
-    path: 'top10songsnew',
+    path: 'top10/new',
     component: TopSongsNewComponent
   },
 ];
