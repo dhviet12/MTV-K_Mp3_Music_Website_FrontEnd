@@ -10,7 +10,7 @@ const URL_SERVER = 'http://localhost:8080/auth/';
   providedIn: 'root'
 })
 export class AuthenService {
-  update= new EventEmitter<string>();
+  update = new EventEmitter<string>();
 
   // @ts-ignore
   private currentUserSubject: BehaviorSubject<IUserToken>;
@@ -20,7 +20,7 @@ export class AuthenService {
 
   constructor(private httpClient: HttpClient) {
     // @ts-ignore
-    this.currentUserSubject= new BehaviorSubject<IUserToken>(JSON.parse(localStorage.getItem('user')));
+    this.currentUserSubject = new BehaviorSubject<IUserToken>(JSON.parse(localStorage.getItem('user')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -31,6 +31,7 @@ export class AuthenService {
     return this.httpClient.post(URL_SERVER + 'login', {username, password})
       .pipe(map(user => {
         localStorage.setItem('user', JSON.stringify(user));
+        // @ts-ignore
         this.currentUserSubject.next(user);
         this.update.emit('login');
         return user;
@@ -38,6 +39,6 @@ export class AuthenService {
   }
 
   signUp(signUp: SignUpForm): Observable<any>{
-    return this.httpClient.post<any>(URL_SERVER + 'signup',signUp);
+    return this.httpClient.post<any>(URL_SERVER + 'signup', signUp);
   }
 }

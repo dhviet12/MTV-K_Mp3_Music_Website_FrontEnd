@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import bsCustomFileInput from 'bs-custom-file-input';
 import {FormBuilder, Validators} from '@angular/forms';
+import {AuthenService} from '../../user/service/authen.service';
 
 @Component({
   selector: 'app-create-song',
@@ -17,11 +18,25 @@ export class CreateSongComponent implements OnInit{
   constructor(private storage: AngularFireStorage,
               private songService: SongService,
               private router: Router,
-              private fb: FormBuilder
+              private fb: FormBuilder,
+              private authen: AuthenService
               ) {
+    this.song.createdBy = this.authen.currentUserValue;
+    console.log(this.song.createdBy);
   }
   song: ISong = {
-    id: 0
+    id: 0,
+    createdBy: {
+      id: 0,
+      username: '',
+      password: '',
+      fullName: '',
+      address: '',
+      email: '',
+      phone: '',
+      avatar: '',
+      token: '',
+    }
   };
   percentageMp3 = 0;
   percentageImg = 0;
@@ -34,7 +49,8 @@ export class CreateSongComponent implements OnInit{
       Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
     author: ['', [Validators.required, Validators.minLength(2),
       Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
-    description: ['', Validators.maxLength(300)]
+    description: ['', Validators.maxLength(300)],
+    createBy: ['']
   });
   ngOnInit(): void {
     // hiển thị tên file trên thanh input file
@@ -50,7 +66,7 @@ export class CreateSongComponent implements OnInit{
     task.snapshotChanges().pipe(
       finalize(() => {
         storageRef.getDownloadURL().subscribe(URL => {
-          this.song.fileMp3 = URL;
+          this.creSongForm.get('fileMp3')?.setValue(URL);
           console.log(this.song.fileMp3);
         });
       })
@@ -67,7 +83,7 @@ export class CreateSongComponent implements OnInit{
     task.snapshotChanges().pipe(
       finalize(() => {
         storageRef.getDownloadURL().subscribe(URL => {
-          this.song.fileImage = URL;
+          this.creSongForm.get('fileImg')?.setValue(URL);
           console.log(this.song.fileImage);
         });
       })
@@ -91,7 +107,8 @@ export class CreateSongComponent implements OnInit{
     );
   }
   createSong(): any {
-    return this.songService.createBook(this.song).subscribe(() => {
+    this.creSongForm.get('createBy')?.setValue(this.authen.currentUserValue);
+    return this.songService.createBook(this.creSongForm.value).subscribe(() => {
       console.log(this.song);
       console.log(this.creSongForm.value);
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
