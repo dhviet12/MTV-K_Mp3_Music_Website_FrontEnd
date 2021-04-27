@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from '../model/IUser';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../service/user.service';
-import {Observable, Subscription} from 'rxjs';
 import {finalize} from 'rxjs/operators';
 import {IUserToken} from '../model/IUserToken';
 import {AuthenService} from '../service/authen.service';
@@ -26,7 +24,6 @@ export class EditProfileUserComponent implements OnInit {
     avatar: '',
     token: ''
   };
-  // sub: Subscription;
   editUserProfileForm = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(2),
       Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
@@ -43,24 +40,12 @@ export class EditProfileUserComponent implements OnInit {
                private fb: FormBuilder,
                private userService: UserService,
                private authen: AuthenService) {
-    // this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-    //   this.user.id = Number(paramMap.get('id'));
-    //   this.getUserById(this.user.id);
-    // });
     this.userToken = this.authen.currentUserValue;
     console.log(this.userToken);
   }
 
   ngOnInit(): void {
   }
-
-
-  // getUserById(id: number){
-  //   return this.userService.getUserProfileByID(id).subscribe(user =>{
-  //     this.user = user;
-  //   });
-  // }
-
   upFileAvatar(e: any): any {
     const file = e.target.files[0];
     const fileName = file.name;
@@ -76,8 +61,6 @@ export class EditProfileUserComponent implements OnInit {
       })
     ).subscribe();
   }
-
-
   editProfile(): any{
     return this.userService.editUserProfile(this.userToken.id, this.userToken).subscribe(() => {
       this.router.navigate(['/songs']);
