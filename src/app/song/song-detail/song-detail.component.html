@@ -56,7 +56,7 @@
             <li class="list-group-item pl-0 border-0">Thể loại: <span class="font-weight-bold">{{song.category}}</span></li>
             <li class="list-group-item pl-0 border-0">Ngày đăng: <span class="font-weight-bold">{{song.createdTime | date:'dd/MM/yyyy'}}</span></li>
             <li class="list-group-item pl-0 border-0">Người đăng: <span class="font-weight-bold">{{song.createdBy}}</span></li>
-            <li class="list-group-item pl-0 border-0">Cập nhật gần nhất: <span class="font-weight-bold">{{song.updatedTime}}</span></li>
+            <li class="list-group-item pl-0 border-0">Cập nhật gần nhất: <span class="font-weight-bold">{{song.updatedTime | date:'dd/MM/yyyy'}}</span></li>
           </ul>
         </div>
         <div class="tab-pane fade show" id="lyrics" role="tabpanel" aria-labelledby="lyrics-tab">
@@ -98,12 +98,12 @@
       </div>
       </form>
       <div class="d-flex mb-4">
+        <div *ngFor="let c of comments">
         <div class="avatar avatar-sm avatar-circle">
-          <img src="" alt="avatar">
+          <img src="{{c.createdBy.avatar}}" alt="avatar">
         </div>
         <div class="pl-3 flex-grow-1 flex-basis-0">
-          <div *ngFor="let c of comments">
-          <span class="d-block font-weight-bold mb-1">ABC</span>
+          <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
           <p class="mb-2">{{c.content}}</p>
           </div>
         </div>
