@@ -21,4 +21,8 @@ export class PlayListService {
     return this.httpClient.post<PlayList>(API_URL + `/playlists/user/create/${username}`, playlist);
   }
 
+  deletePlayListById(id: number, username: string): Observable<PlayList> {
+    return this.httpClient.delete<PlayList>(API_URL + `/playlists/user/delete/${username}/${id}`);
+  }
+
 }

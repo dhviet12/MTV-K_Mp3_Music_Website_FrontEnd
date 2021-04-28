@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
-// @ts-ignore
 const routes: Routes = [
   {
     path: 'songs',
@@ -11,6 +9,10 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+  },
+  {
+    path: 'playlist',
+    loadChildren: () => import('./play-list/play-list.module').then(module => module.PlayListModule)
   }
 ];
 
