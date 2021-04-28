@@ -9,7 +9,7 @@ const routes: Routes = [
     component: PlaylistListComponent
   },
   {
-    path: 'create',
+    path: 'create/:username',
     component: CreatePlaylistComponent
   },
 ];

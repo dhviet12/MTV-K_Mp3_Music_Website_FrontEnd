@@ -28,14 +28,19 @@ export class PlaylistListComponent implements OnInit {
   getAllPlayList(): any {
     this.playlistService.getAllPlayList(this.currentUser.username).subscribe(playlist => {
       this.playlist = playlist;
+      console.log(this.playlist);
     }, error => console.log(error));
+  }
+
+  createPlayList(): any {
+    this.route.navigate(['/playlist/create/' + this.currentUser.username]);
   }
 
   deletePlayList(id: number): any {
     if (confirm('Bạn chắc chắn xoá không ?')) {
       this.playlistService.deletePlayListById(id, this.currentUser.username).subscribe(async () => {
-        await this.route.navigate(['/create-playlist/' + this.currentUser.username]);
-        await this.route.navigate(['/playlist-list/' + this.currentUser.username]);
+        await this.route.navigate(['/playlist/create' + this.currentUser.username]);
+        await this.route.navigate(['/playlist' + this.currentUser.username]);
       });
     }
   }
