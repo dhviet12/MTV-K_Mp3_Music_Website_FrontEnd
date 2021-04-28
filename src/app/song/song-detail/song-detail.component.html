@@ -103,7 +103,7 @@
         </div>
         <div class="pl-3 flex-grow-1 flex-basis-0">
           <div *ngFor="let c of comments">
-          <span class="d-block font-weight-bold mb-1">ABC</span>
+          <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
           <p class="mb-2">{{c.content}}</p>
           </div>
         </div>
