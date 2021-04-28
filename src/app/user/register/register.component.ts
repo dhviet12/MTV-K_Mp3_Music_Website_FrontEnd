@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
       if (JSON.stringify(data) == JSON.stringify(this.mess2)) {
         this.status = 'Đăng ký thành công';
         alert(this.status);
-        this.router.navigate(['/user']);
+        this.router.navigate(['/user/login']);
       }
     });
   }

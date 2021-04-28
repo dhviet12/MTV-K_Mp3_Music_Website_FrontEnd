@@ -10,10 +10,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
+import { LikesongComponent } from './likesong/likesong.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LikesongComponent
   ],
   imports: [
     BrowserModule,
