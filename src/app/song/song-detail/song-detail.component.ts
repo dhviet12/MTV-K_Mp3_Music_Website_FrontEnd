@@ -6,6 +6,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import {CommentService} from '../../comment/comment.service';
 import {IComment} from '../../comment/icomment';
+import {AuthenService} from '../../user/service/authen.service';
 
 @Component({
   selector: 'app-song-detail',
@@ -17,19 +18,23 @@ export class SongDetailComponent implements OnInit {
     id: 0
   };
   comment: IComment = {
-    id: 0,
     content: '',
-    song: {
-      id: 0
-    },
-    user: {
-      fullName: ''
+    createdBy: {
+      id: 0,
+      username: '',
+      password: '',
+      fullName: '',
+      address: '',
+      email: '',
+      phone: '',
+      avatar: '',
+      token: '',
     }
   };
   commentForm = this.formBuider.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
     song: [''],
-    user: ['']
+    createdBy: ['']
   });
   comments: IComment[] = [];
   sub: Subscription;
@@ -38,11 +43,13 @@ export class SongDetailComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuider: FormBuilder,
-              private commentService: CommentService) {
+              private commentService: CommentService,
+              private authen: AuthenService) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.song.id = Number(paramMap.get('id'));
       this.getSongById(this.song.id);
       this.getAllCommentByIdSong(this.song.id);
+      this.commentForm.get('createdBy')?.setValue(this.authen.currentUserValue);
     });
   }
 
