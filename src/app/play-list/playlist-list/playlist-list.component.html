@@ -1,0 +1,46 @@
+<div class="container">
+  <header class="jumbotron">
+    <div class="container emp-profile">
+      <form method="post">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="profile-head">
+              <h2 style="text-align: center">
+                <strong>DANH SÁCH PLAYLIST</strong>
+              </h2>
+              <button (click)="createPlayList()" class="btn btn-primary profile-button">Tạo playlist</button>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="tab-content profile-tab" id="myTabContent">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Tên Playlist</th>
+                  <th scope="col">Ngày tạo</th>
+                  <th scope="col" colspan="2"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let playlist of playlist; let i = index">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>
+                    <a [routerLink]="['/listsongs-playlist/',currentUser.username,playlist.id]">{{playlist.name}}</a>
+                  </td>
+                  <td>{{playlist.timeCreate.substring(0, 10)}}</td>
+<!--                  <td>-->
+<!--                    <a [routerLink]="['/update-playlist/',currentUser.username,playlist.id]">Edit</a></td>-->
+<!--                  <td>-->
+<!--                    <button type="button" class="btn btn-secondary" (click)="deletePlayList(playlist.id)">Delete</button>-->
+<!--                  </td>-->
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </header>
+</div>
