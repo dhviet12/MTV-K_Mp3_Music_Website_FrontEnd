@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {PlayList} from '../play-list';
+import {PlayListService} from '../play-list.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-playlist-list',
@@ -6,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./playlist-list.component.scss']
 })
 export class PlaylistListComponent implements OnInit {
+  playlist: PlayList[] = [];
 
-  constructor() { }
+  constructor(private playlistService: PlayListService,
+              private route: Router) { }
 
   ngOnInit(): void {
   }

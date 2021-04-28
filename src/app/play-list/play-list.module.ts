@@ -5,7 +5,6 @@ import { PlayListRoutingModule } from './play-list-routing.module';
 import { PlaylistListComponent } from './playlist-list/playlist-list.component';
 import { CreatePlaylistComponent } from './create-playlist/create-playlist.component';
 
-
 @NgModule({
   declarations: [
     PlaylistListComponent,
