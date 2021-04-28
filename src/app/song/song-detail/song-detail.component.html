@@ -98,11 +98,11 @@
       </div>
       </form>
       <div class="d-flex mb-4">
+        <div *ngFor="let c of comments">
         <div class="avatar avatar-sm avatar-circle">
-          <img src="" alt="avatar">
+          <img src="{{c.createdBy.avatar}}" alt="avatar">
         </div>
         <div class="pl-3 flex-grow-1 flex-basis-0">
-          <div *ngFor="let c of comments">
           <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
           <p class="mb-2">{{c.content}}</p>
           </div>
