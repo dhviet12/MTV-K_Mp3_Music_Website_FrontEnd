@@ -7,6 +7,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {CommentService} from '../../comment/comment.service';
 import {IComment} from '../../comment/icomment';
 import {AuthenService} from '../../user/service/authen.service';
+import {ILikeSong} from '../../likesong/ILikeSong';
+import {LikeSongService} from '../../likesong/likesong.service';
 
 @Component({
   selector: 'app-song-detail',
@@ -39,17 +41,32 @@ export class SongDetailComponent implements OnInit {
   comments: IComment[] = [];
   sub: Subscription;
 
+  // @ts-ignore
+  //
+
+  likeSongForm = this.formBuider.group(
+    {
+      user: [''],
+      song: [''],
+      canLike: true
+    }
+  );
+
   constructor(private songService: SongService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuider: FormBuilder,
               private commentService: CommentService,
-              private authen: AuthenService) {
+              private authen: AuthenService,
+              private likeSongService: LikeSongService) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.song.id = Number(paramMap.get('id'));
       this.getSongById(this.song.id);
       this.getAllCommentByIdSong(this.song.id);
       this.commentForm.get('createdBy')?.setValue(this.authen.currentUserValue);
+      ///
+      this.likeSongForm.get('user')?.setValue(this.authen.currentUserValue);
+
     });
   }
 
@@ -76,5 +93,18 @@ export class SongDetailComponent implements OnInit {
       this.comments = commentList;
     });
   }
+
+  //
+  like(){
+    this.likeSongForm.get('song')?.setValue(this.song);
+    this.likeSongForm.get('canLike')?.setValue(false);
+    return this.likeSongService.likeSong(this.likeSongForm.value).subscribe(() => {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigateByUrl('songs/detail/' + this.song.id);
+    })
+  }
+
+
 
 }
