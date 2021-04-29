@@ -107,14 +107,17 @@ export class CreateSongComponent implements OnInit{
     );
   }
   createSong(): any {
-    this.creSongForm.get('createBy')?.setValue(this.authen.currentUserValue);
-    return this.songService.createBook(this.creSongForm.value).subscribe(() => {
-      console.log(this.song);
-      console.log(this.creSongForm.value);
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.onSameUrlNavigation = 'reload';
-      // @ts-ignore
-      this.router.navigateByUrl('songs/create') ;
-    });
+    if(confirm("Bạn có chắc muốn tạo bài hát này")){
+      this.creSongForm.get('createBy')?.setValue(this.authen.currentUserValue);
+      return this.songService.createBook(this.creSongForm.value).subscribe(() => {
+        console.log(this.song);
+        console.log(this.creSongForm.value);
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        // @ts-ignore
+        this.router.navigateByUrl('songs/create') ;
+      });
+    }
+
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ISong} from '../isong';
 import {Observable, Subscription} from 'rxjs';
 import {SongService} from '../song.service';
@@ -19,12 +19,13 @@ export class EditSongComponent implements OnInit {
               private router: Router,
               private storage: AngularFireStorage,
               private fb: FormBuilder
-              ) {
+  ) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.song.id = Number(paramMap.get('id'));
       this.getSongById(this.song.id);
     });
   }
+
   song: ISong = {
     id: 0
   };
@@ -42,10 +43,12 @@ export class EditSongComponent implements OnInit {
       Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
     description: ['', Validators.maxLength(300)]
   });
+
   ngOnInit(): void {
     // hiển thị tên file trên thanh input file
     bsCustomFileInput.init();
   }
+
   upFileMp3(e: any): Observable<number | undefined> {
     const file = e.target.files[0];
     const fileName = file.name;
@@ -62,6 +65,7 @@ export class EditSongComponent implements OnInit {
     ).subscribe();
     return task.percentageChanges();
   }
+
   // up file ảnh lên firebase storage
   upFileImage(e: any): Observable<number | undefined> {
     const file = e.target.files[0];
@@ -79,28 +83,34 @@ export class EditSongComponent implements OnInit {
     ).subscribe();
     return task.percentageChanges();
   }
+
   // tiến trình upload fileMp3
-  processUploadMp3(e: any): void{
+  processUploadMp3(e: any): void {
     this.upFileMp3(e).subscribe(
       percentage => {
         this.percentageMp3 = Math.round(percentage ? percentage : 0);
       }
     );
   }
+
   // tiến trình upload file Img
-  processUploadImg(e: any): void{
+  processUploadImg(e: any): void {
     this.upFileImage(e).subscribe(
       percentage => {
         this.percentageImg = Math.round(percentage ? percentage : 0);
       }
     );
   }
-  getSongById(id: number){
+
+  getSongById(id: number) {
     return this.songService.getSongById(id).subscribe(song => {
       this.song = song;
     });
   }
-  editSong(): any{
-    return this.songService.editSong(this.song.id, this.song).subscribe(window.location.reload);
+
+  editSong(): any {
+    if (confirm('Bạn có chắc chắn muốn sửa thông tin bài hát')) {
+      return this.songService.editSong(this.song.id, this.song).subscribe(window.location.reload);
+    }
   }
 }
