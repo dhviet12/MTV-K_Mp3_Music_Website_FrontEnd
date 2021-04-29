@@ -39,7 +39,7 @@ export class PlaylistListComponent implements OnInit {
   deletePlayList(id: any): any {
     if (confirm('Bạn chắc chắn xoá không ?')) {
       this.playlistService.deletePlayListById(id, this.currentUser.username).subscribe( () => {
-        this.route.navigate(['/playlist' + this.currentUser.username]);
+        this.getAllPlayList();
       });
     }
   }
