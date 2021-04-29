@@ -65,6 +65,8 @@ export class SongDetailComponent implements OnInit {
   };
   statusLike: any = localStorage.getItem('statusLike');
 
+  currentUser: any = localStorage.getItem('user');
+
   constructor(private songService: SongService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -80,6 +82,8 @@ export class SongDetailComponent implements OnInit {
       ///
       this.likeSongForm.get('user')?.setValue(this.authen.currentUserValue);
       console.log(this.likeSong);
+      console.log(this.currentUser);
+      console.log(this.statusLike);
     });
   }
 
