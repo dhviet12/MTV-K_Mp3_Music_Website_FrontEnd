@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  url: 'http://localhost:8080/',
   firebaseConfig : {
     apiKey: 'AIzaSyCh4PpJAZSzokttMQM9b29E_B5ytUXRK6g',
     authDomain: 'website-mp3-mtvk.firebaseapp.com',
@@ -14,7 +15,6 @@ export const environment = {
     appId: '1:192969502344:web:4f5407a465f0861757393d',
     measurementId: 'G-X2MHY0KCCT'
   },
-  url: 'http://localhost:8080/'
 };
 
 /*

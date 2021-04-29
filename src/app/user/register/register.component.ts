@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit(): any {
     this.signUp = new SignUpForm(
       this.form.username ,
       this.form.password,
@@ -42,6 +42,8 @@ export class RegisterComponent implements OnInit {
     this.authenService.signUp(this.signUp).subscribe(data => {
       console.log('data', data);
       if (JSON.stringify(data) == JSON.stringify(this.mess1)) {
+        this.status = 'Username is existed';
+        alert(this.status);
         this.status = 'Tên tài khoản đã tồn tại';
         alert(this.status)
       }

@@ -10,6 +10,7 @@ import {AuthenService} from '../../user/service/authen.service';
 import {ILikeSong} from '../../likesong/ILikeSong';
 import {LikeSongService} from '../../likesong/likesong.service';
 
+
 @Component({
   selector: 'app-song-detail',
   templateUrl: './song-detail.component.html',
@@ -31,8 +32,14 @@ export class SongDetailComponent implements OnInit {
       phone: '',
       avatar: '',
       token: '',
+    },
+    user: {
+      id: 0,
+      fullName: '',
+      avatar: ''
     }
   };
+  checkUser =false;
   commentForm = this.formBuider.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
     song: [''],
@@ -86,9 +93,16 @@ export class SongDetailComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  check() {
+    if (this.authen.currentUserValue == null){
+      alert('Mời bạn đăng nhập để comment')
+      this.router.navigateByUrl('user/login')
+      return this.checkUser =false;
+    }else {
+      return this.checkUser =true;
+  }}
   createComment() {
     this.commentForm.get('song')?.setValue(this.song);
     return this.commentService.createComment(this.commentForm.value).subscribe(() => {
