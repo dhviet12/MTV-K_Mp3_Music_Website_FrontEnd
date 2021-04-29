@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {PlaylistListComponent} from './playlist-list/playlist-list.component';
 import {CreatePlaylistComponent} from './create-playlist/create-playlist.component';
+import {EditPlaylistComponent} from './edit-playlist/edit-playlist.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'create/:username',
     component: CreatePlaylistComponent
+  },
+  {
+    path: 'edit/:username',
+    component: EditPlaylistComponent
   },
 ];
 
