@@ -10,7 +10,9 @@ import {AuthenService} from '../../user/service/authen.service';
   styleUrls: ['./create-playlist.component.scss']
 })
 export class CreatePlaylistComponent implements OnInit {
-  playlist: PlayList = {};
+  playlist: PlayList = {
+    id: 0
+  };
   currentUser: any;
   username: any;
   createSuccess = false;

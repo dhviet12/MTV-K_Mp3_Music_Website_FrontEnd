@@ -1,5 +1,5 @@
 export interface PlayList {
-  id?: number;
+  id: number;
   name?: string;
   song?: any;
   kindOfMusic?: string;
