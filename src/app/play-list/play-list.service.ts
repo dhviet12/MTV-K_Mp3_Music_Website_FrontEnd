@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {PlayList} from './play-list';
+import {ISong} from "../song/isong";
 
 const API_URL = `${environment.url}`;
 
@@ -24,8 +25,8 @@ export class PlayListService {
   deletePlayListById(id: number, username: string): Observable<PlayList> {
     return this.httpClient.delete<PlayList>(API_URL + 'playlist/user/delete/' + username + '/' + id);
   }
-  getPlaylistById (id: number): Observable<PlayList[]>{
-    return this.httpClient.get<PlayList[]>(API_URL + 'playlist/' + id);
+  getPlaylistById (id: number): Observable<PlayList>{
+    return this.httpClient.get<PlayList>(API_URL + 'playlist/' + id);
   }
 
 }

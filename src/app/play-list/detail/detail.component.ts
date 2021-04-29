@@ -65,7 +65,6 @@ export class DetailComponent implements OnInit {
   }
   getPlaylistById(id: number){
     return this.playlistService.getPlaylistById(id).subscribe(p => {
-      // @ts-ignore
       this.playList = p
     })
   }
