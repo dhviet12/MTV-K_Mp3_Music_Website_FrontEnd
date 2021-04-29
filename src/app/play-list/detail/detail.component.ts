@@ -31,13 +31,7 @@ export class DetailComponent implements OnInit {
       phone: '',
       avatar: '',
       token: '',
-    },
-    user: {
-      id: 0,
-      fullName: '',
-      avatar: ''
-    },
-
+    }
   }
   constructor(private playlistService: PlayListService,
               private activatedRoute: ActivatedRoute,
@@ -48,8 +42,11 @@ export class DetailComponent implements OnInit {
     this.sub = this.activatedRoute.paramMap.subscribe((p: ParamMap) => {
       this.playList.id = Number(p.get('id'));
       this.getPlaylistById(this.playList.id);
+      console.log(this.playList.id);
       this.getAllCommentByPlaylist(this.playList.id);
-      // this.commentForm.get('user')?.setValue(this.authenService.currentPlaylistValue);
+      console.log(this.playList.id)
+      this.commentForm.get('user')?.setValue(this.authenService.currentUserValue);
+      console.log(this.authenService.currentUserValue)
     })
   }
   commentForm =this.formBuilder.group({
@@ -59,8 +56,8 @@ export class DetailComponent implements OnInit {
   });
 
   getAllCommentByPlaylist(id: number){
-    return this.commentService.getAllCommentByPlayListId(id).subscribe((listCommnet) =>{
-      this.comments =listCommnet;
+    return this.commentService.getAllCommentByPlayListId(id).subscribe((listComment) =>{
+      this.comments =listComment;
     })
   }
   getPlaylistById(id: number){

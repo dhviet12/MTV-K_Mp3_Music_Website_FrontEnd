@@ -32,11 +32,6 @@ export class SongDetailComponent implements OnInit {
       phone: '',
       avatar: '',
       token: '',
-    },
-    user: {
-      id: 0,
-      fullName: '',
-      avatar: ''
     }
   };
   checkUser =false;
@@ -117,7 +112,6 @@ export class SongDetailComponent implements OnInit {
       this.comments = commentList;
     });
   }
-
   //
   like() {
     localStorage.setItem('statusLike', 'true');
