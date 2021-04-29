@@ -89,14 +89,16 @@ export class SongDetailComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    if (this.authen.currentUser != null){
-      this.checkUser =true
-    }else {
-      this.checkUser =false;
-    }
-  }
+  ngOnInit(): void {}
 
+  check() {
+    if (this.authen.currentUserValue == null){
+      alert('Mời bạn đăng nhập để comment')
+      this.router.navigateByUrl('user/login')
+      return this.checkUser =false;
+    }else {
+      return this.checkUser =true;
+  }}
   createComment() {
     this.commentForm.get('song')?.setValue(this.song);
     return this.commentService.createComment(this.commentForm.value).subscribe(() => {
