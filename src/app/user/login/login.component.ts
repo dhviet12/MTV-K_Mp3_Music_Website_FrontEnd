@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   };
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = 'Invalid Username or password';
+  errorMessage = 'Sai tên đăng nhập hoặc mật khẩu';
   roles: string[] = [];
 
 

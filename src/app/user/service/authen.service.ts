@@ -43,4 +43,9 @@ export class AuthenService {
   signUp(signUp: SignUpForm): Observable<any>{
     return this.httpClient.post<any>(URL_SERVER + 'signup', signUp);
   }
+  logout() {
+    localStorage.removeItem('user');
+    // @ts-ignore
+    this.currentUserSubject.next(null);
+  }
 }

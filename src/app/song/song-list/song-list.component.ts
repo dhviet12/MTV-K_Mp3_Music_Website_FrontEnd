@@ -20,11 +20,14 @@ export class SongListComponent implements OnInit {
     });
   }
   delSong(id: number): any {
-    this.songService.delSong(id).subscribe( () => {
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.onSameUrlNavigation = 'reload';
-      this.router.navigateByUrl('songs') ;
-    });
+    if(confirm("Bạn có chắc muốn xoá bài hát này ?")){
+      this.songService.delSong(id).subscribe( () => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl('songs') ;
+      });
+    }
+
   }
   // xóa bái hát trên firebase
   // delSong(): any{
