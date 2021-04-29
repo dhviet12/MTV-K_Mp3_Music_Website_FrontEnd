@@ -1,16 +1,19 @@
 <form (ngSubmit)="createPlayList()">
-<div class="container rounded bg-white mt-5 mb-5"><span class="text-uppercase name" style="font-size: 20px">CẬP NHẬT PLAYLIST</span>
-  <div class="row">
-    <div class="col-md-3 border-right">
-      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><span class="font-weight-bold"></span><span class="text-black-50"></span><span> </span></div>
-    </div>
-    <div class="col-md-5 border-right">
+<div class="container rounded bg-white mt-5 mb-5">
+  <span class="text-uppercase name" style="text-align: center">
+    <h1>CẬP NHẬT PLAYLIST</h1>
+  </span>
+  <div>
+    <div>
       <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4 class="text-right">Playlist Settings</h4>
+        <div class="row mt-3">
+          <div class="col-md-12"><label class="labels">Tên Playlist</label><input type="text" class="form-control" placeholder="Tên playlist" name="name" [(ngModel)]="playlist.name"></div>
         </div>
         <div class="row mt-3">
-          <div class="col-md-12"><label class="labels">Tên Playlist</label><input type="text" class="form-control" placeholder="tên playlist" name="name" [(ngModel)]="playlist.name"></div>
+          <div class="col-md-12"><label class="labels">Dòng nhạc</label><input type="text" class="form-control" placeholder="Dòng nhạc" name="kindOfMusic" [(ngModel)]="playlist.kindOfMusic"></div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12"><label class="labels">Mô tả</label><input type="text" class="form-control" placeholder="Mô tả" name="description" [(ngModel)]="playlist.description"></div>
         </div>
       </div>
       <div>
@@ -18,7 +21,7 @@
       </div>
       <div>
         <div class="mt-5 text-center">
-          <button class="btn btn-primary profile-button" type="submit" style="margin: 5px">Save</button>
+          <button class="btn btn-primary profile-button" type="submit">Save</button>
         </div>
       </div>
     </div>
