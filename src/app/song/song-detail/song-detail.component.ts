@@ -8,6 +8,7 @@ import {CommentService} from '../../comment/comment.service';
 import {IComment} from '../../comment/icomment';
 import {AuthenService} from '../../user/service/authen.service';
 
+
 @Component({
   selector: 'app-song-detail',
   templateUrl: './song-detail.component.html',
@@ -29,8 +30,14 @@ export class SongDetailComponent implements OnInit {
       phone: '',
       avatar: '',
       token: '',
+    },
+    user: {
+      id: 0,
+      fullName: '',
+      avatar: ''
     }
   };
+  checkUser =false;
   commentForm = this.formBuider.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
     song: [''],
@@ -60,6 +67,11 @@ export class SongDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.authen.currentUser != null){
+      this.checkUser =true
+    }else {
+      this.checkUser =false;
+    }
   }
 
   createComment() {

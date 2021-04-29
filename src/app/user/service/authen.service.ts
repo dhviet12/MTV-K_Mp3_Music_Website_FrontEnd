@@ -4,6 +4,7 @@ import {IUserToken} from '../model/IUserToken';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {SignUpForm} from '../model/SignUpForm';
+import {IUser} from "../model/IUser";
 
 const URL_SERVER = 'http://localhost:8080/auth/';
 @Injectable({
@@ -22,6 +23,7 @@ export class AuthenService {
     // @ts-ignore
     this.currentUserSubject = new BehaviorSubject<IUserToken>(JSON.parse(localStorage.getItem('user')));
     this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   public get currentUserValue(): IUserToken {

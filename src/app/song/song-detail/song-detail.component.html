@@ -88,12 +88,15 @@
     <!-- End | Section -->
 
     <!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
-    <div class="section">
-      <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+    <div class="section" >
+      <div *ngIf="!checkUser">
+        <p>Hãy <a routerLink="user/login">đăng nhập</a> để bình luận. Nếu chưa có tài khoản hãy <a routerLink="user/register">đăng kí</a></p>
+      </div>
+      <form [formGroup]="commentForm" *ngIf="checkUser" (ngSubmit)="createComment()">
       <div class="mb-4">
         <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control" required></textarea>
         <div class="text-right mt-2">
-          <button type="submit" class="btn btn-info" [disabled]="commentForm.invalid">Comment</button>
+          <button type="submit" class="btn btn-info"  [disabled]="commentForm.invalid">Comment</button>
         </div>
       </div>
       </form>
