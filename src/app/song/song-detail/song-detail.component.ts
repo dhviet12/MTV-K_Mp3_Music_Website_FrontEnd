@@ -20,6 +20,7 @@ export class SongDetailComponent implements OnInit {
   song: ISong = {
     id: 0
   };
+  // @ts-ignore
   comment: IComment = {
     content: '',
     createdBy: {

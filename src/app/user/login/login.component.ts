@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     if (this.token.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.token.getUser().roles;
+      this.router.navigate(['/songs']);
     }
   }
   onSubmit(): void {
