@@ -44,13 +44,19 @@ export class SongDetailComponent implements OnInit {
   // @ts-ignore
   //
 
+
   likeSongForm = this.formBuider.group(
     {
       user: [''],
-      song: [''],
-      canLike: true
+      song: ['']
     }
   );
+
+  likeSong: ILikeSong = {
+    user: this.authen.currentUserValue,
+    song: this.song
+  };
+  statusLike: any = localStorage.getItem('statusLike');
 
   constructor(private songService: SongService,
               private activatedRoute: ActivatedRoute,
@@ -66,7 +72,7 @@ export class SongDetailComponent implements OnInit {
       this.commentForm.get('createdBy')?.setValue(this.authen.currentUserValue);
       ///
       this.likeSongForm.get('user')?.setValue(this.authen.currentUserValue);
-
+      console.log(this.likeSong);
     });
   }
 
@@ -95,16 +101,35 @@ export class SongDetailComponent implements OnInit {
   }
 
   //
-  like(){
+  like() {
+    localStorage.setItem('statusLike', 'true');
     this.likeSongForm.get('song')?.setValue(this.song);
-    this.likeSongForm.get('canLike')?.setValue(false);
     return this.likeSongService.likeSong(this.likeSongForm.value).subscribe(() => {
+      console.log( this.likeSongForm);
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl('songs/detail/' + this.song.id);
-    })
+      console.log(localStorage.getItem('statusLike'))
+
+      //
+    });
   }
 
+  unlike() {
+    // @ts-ignore
+    localStorage.setItem('statusLike', null);
+    // this.statusLike = localStorage.getItem('statusLike')
+    console.log('id song:', this.song.id);
+    return this.likeSongService.unlikeSong(this.song.id).subscribe(() => {
+      this.likeSongForm.get('canLike')?.setValue(true);
+      console.log(this.likeSongForm);
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigateByUrl('songs/detail/' + this.song.id);
+      console.log(localStorage.getItem('statusLike'))
+    });
+
+  }
 
 
 }

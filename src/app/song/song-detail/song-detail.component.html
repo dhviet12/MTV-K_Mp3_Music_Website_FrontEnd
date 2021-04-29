@@ -33,13 +33,23 @@
     </div>
 
 
-    <form [formGroup]="likeSongForm" (ngSubmit)="like()">
+    <form *ngIf="statusLike=='null'" [formGroup]="likeSongForm" (ngSubmit)="like()">
       <div class="mb-4">
         <div class="text-right mt-2">
           <button type="submit" class="btn btn-info" >Like</button>
         </div>
       </div>
     </form>
+
+    <form  *ngIf="statusLike=='true'" [formGroup]="likeSongForm" (ngSubmit)="unlike()">
+      <div class="mb-4">
+        <div class="text-right mt-2">
+          <button type="submit" class="btn btn-warning" >Unlike</button>
+        </div>
+      </div>
+    </form>
+
+
 
     <!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
     <div class="section">

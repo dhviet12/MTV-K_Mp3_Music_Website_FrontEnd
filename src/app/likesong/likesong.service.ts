@@ -18,7 +18,8 @@ export class LikeSongService {
   }
 
 
-  public unlikeSong(id: number): Observable<ILikeSong> {
-      return this.httpClient.delete<ILikeSong>(URL + 'likeSong/unlike/' + `${id}`);
+  public unlikeSong(sid: number): Observable<any> {
+    console.log('call service', sid)
+      return this.httpClient.delete<any>(URL + 'likeSong/unlike/' + `${sid}`);
     }
 }
