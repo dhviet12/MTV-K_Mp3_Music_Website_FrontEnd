@@ -30,10 +30,11 @@
                   </td>
                   <td>{{playlist.timeCreate.substring(0, 10)}}</td>
 <!--                  <td>-->
-<!--                    <a [routerLink]="['/update-playlist/',currentUser.username,playlist.id]">Edit</a></td>-->
-<!--                  <td>-->
-<!--                    <button type="button" class="btn btn-secondary" (click)="deletePlayList(playlist.id)">Delete</button>-->
+<!--                    <a [routerLink]="['/update-playlist/',currentUser.username,playlist.id]">Edit</a>-->
 <!--                  </td>-->
+                  <td>
+                    <button type="button" class="btn btn-secondary" (click)="deletePlayList(playlist.id)">Delete</button>
+                  </td>
                 </tr>
                 </tbody>
               </table>
