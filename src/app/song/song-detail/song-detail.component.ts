@@ -76,6 +76,7 @@ export class SongDetailComponent implements OnInit {
       this.likeSongForm.get('user')?.setValue(this.authen.currentUserValue);
       console.log(this.likeSong);
       console.log(this.currentUser);
+      console.log(this.statusLike);
     });
   }
 
