@@ -14,7 +14,7 @@ const routes: Routes = [
     component: CreatePlaylistComponent
   },
   {
-    path: 'edit/:username',
+    path: 'edit/:username/:id',
     component: EditPlaylistComponent
   },
 ];
