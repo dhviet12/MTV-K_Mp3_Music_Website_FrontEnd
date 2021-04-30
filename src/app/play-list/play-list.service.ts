@@ -28,7 +28,8 @@ export class PlayListService {
   deletePlayListById(id: number, username: string): Observable<PlayList> {
     return this.httpClient.delete<PlayList>(API_URL + 'playlist/user/delete/' + username + '/' + id);
   }
-  getPlaylistById (id: number): Observable<PlayList[]>{
+
+  getPlaylistById(id: number): Observable<PlayList[]>{
     return this.httpClient.get<PlayList[]>(API_URL + 'playlist/' + id);
   }
 
