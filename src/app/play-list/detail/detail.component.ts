@@ -37,8 +37,8 @@ export class DetailComponent implements OnInit {
       fullName: '',
       avatar: ''
     },
-
   };
+
   constructor(private playlistService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -58,18 +58,18 @@ export class DetailComponent implements OnInit {
     user: ['']
   });
 
-  getAllCommentByPlaylist(id: number){
+  getAllCommentByPlaylist(id: number): any{
     return this.commentService.getAllCommentByPlayListId(id).subscribe((listCommnet) => {
       this.comments = listCommnet;
     });
   }
-  getPlaylistById(id: number){
+  getPlaylistById(id: number): any {
     return this.playlistService.getPlaylistById(id).subscribe(p => {
       // @ts-ignore
       this.playList = p;
     });
   }
-  createComment() {
+  createComment(): any {
     this.commentForm.get('playList')?.setValue(this.playList);
     return this.commentService.createCommentPlaylist(this.commentForm.value).subscribe(() => {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
