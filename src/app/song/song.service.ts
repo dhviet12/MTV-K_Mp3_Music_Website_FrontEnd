@@ -32,5 +32,9 @@ export class SongService {
   topSongsNew(): Observable<ISong[]> {
     return this.httpClient.get<ISong[]>('http://localhost:8080/top10songsnew');
   }
+
+  getSongsOfUserCurrent(id: any): Observable<ISong[]>{
+    return this.httpClient.get<ISong[]>('http://localhost:8080/song-user/' + id );
+  }
   constructor(private httpClient: HttpClient) { }
 }
