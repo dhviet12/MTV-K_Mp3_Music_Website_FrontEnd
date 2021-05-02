@@ -1,0 +1,1518 @@
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] TOP-VIEW-->
+<div class="section">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Nghe nhiều</h4>
+        <p>Những bài hát thịnh hành</p>
+      </div>
+      <a href="songs.html" class="btn btn-sm btn-pill btn-air btn-primary">Xem</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-5 arrow-pos-3">
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <div class="custom-card--info">
+          <ul class="custom-card--labels d-flex">
+            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span>
+            </li>
+          </ul>
+          <div class="dropdown dropdown-icon">
+            <a href="javascript:void(0);" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              <i class="ion-md-more"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link favorite">
+                  <i class="la la-heart-o"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-plus"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-download"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-share-alt"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a href="javascript:void(0);" class="external"
+           data-audio='{"name": "I Love You Mummy", "artist": "Arebica Luna", "album": "Mummy", "url": "../assets/audio/ringtone-1.mp3", "cover_art_url": "../assets/images/cover/small/1.jpg"}'>
+          <img src="../assets/images/cover/large/1.jpg" alt="I Love You Mummy"
+               class="card-img--radius-lg">
+        </a>
+      </div>
+
+      <a href="song-details.html" class="custom-card--link mt-2">
+        <h6>I Love You Mummy</h6>
+        <p>Arebica Luna</p>
+      </a>
+    </div>
+  </div>
+
+</div>
+<!-- End | Section -->
+
+<div class="row">
+  <!-- Begin | Section [[ Find at scss/base/core.scss ]] SỰ KIỆN-->
+  <div class="section col-xl-7 col-lg-6">
+    <div class="row h-100">
+      <div class="col-sm-5 pb-4">
+        <div class="h-100 event event-v bg-img bg-img-radius-lg"
+             style="background-image: url('../assets/images/background/vertical/1.jpg')">
+          <div class="event-content p-4">
+            <a href="event-details.html"><h6>New Year Party</h6></a>
+            <span class="countdown mb-3"></span>
+            <a href="#" class="btn btn-bold btn-pill btn-air btn-warning btn-sm">Buy Ticket</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="h-50 pb-4">
+          <div class="h-100 event event-h bg-img bg-img-radius-lg"
+               style="background-image: url('../assets/images/background/horizontal/1.jpg')">
+            <div class="event-content p-4">
+              <a href="event-details.html"><h6>Dance with DJ Nowan</h6></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consectetur,
+                ex explicabo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="h-50 pb-4">
+          <div class="h-100 event event-h bg-img bg-img-radius-lg"
+               style="background-image: url('../assets/images/background/horizontal/2.jpg')">
+            <div class="event-content p-4">
+              <a href="event-details.html"><h6>Move You's Legs</h6></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consectetur,
+                ex explicabo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End | Section -->
+
+  <!-- Begin | Section [[ Find at scss/base/core.scss ]] LIST NHẠC-->
+  <div class="section col-xl-5 col-lg-6">
+    <!-- Begin | Line Tabs [[ Find at scss/framework/components/line-tabs.scss ]] -->
+    <ul class="nav nav-tabs line-tabs line-tabs-primary text-uppercase mb-4" id="songsList"
+        role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
+           aria-controls="recent" aria-selected="true">Recent</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="trending-tab" data-toggle="tab" href="#trending" role="tab"
+           aria-controls="trending" aria-selected="false">Trending</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="international-tab" data-toggle="tab" href="#international"
+           role="tab" aria-controls="international" aria-selected="false">International</a>
+      </li>
+    </ul>
+    <!-- End | Line Tabs -->
+
+    <!-- Begin | Tab Content -->
+    <div class="tab-content" id="songsListContent">
+      <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+        <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+        <div class="custom-list">
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <!--                                    <div class="text-dark custom-card&#45;&#45;inline">-->
+            <!--                                        <div class="custom-card&#45;&#45;inline-img">-->
+            <!--                                            <img src="../assets/images/cover/small/1.jpg" alt="" class="card-img&#45;&#45;radius-sm">-->
+            <!--                                        </div>-->
+
+            <!--                                        <div class="custom-card&#45;&#45;inline-desc">-->
+            <!--                                            <p class="text-truncate mb-0">I Love You Mummy 111</p>-->
+            <!--                                            <p class="text-truncate text-muted font-sm">Arebica Luna</p>-->
+            <!--                                        </div>-->
+            <!--                                    </div>-->
+            <div class="text-dark custom-card--inline amplitude-song-container amplitude-play-pause"
+                 data-amplitude-song-index="0" data-amplitude-playlist="special">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/1.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">I Love You Mummy 222</p>
+                <p class="text-truncate text-muted font-sm">Arebica Luna</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-warning"><i
+                class="la la-star"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/2.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Shack your butty</p>
+                <p class="text-truncate text-muted font-sm">Gerrina Linda</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/3.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Do it your way(Female)</p>
+                <p class="text-truncate text-muted font-sm">Zunira Willy & Nutty Nina</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-danger"><i
+                class="la la-heart"></i></span></li>
+              <li><span class="badge badge-pill badge-warning"><i
+                class="la la-star"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/4.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Say yes</p>
+                <p class="text-truncate text-muted font-sm">Johnny Marro</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/5.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Where is your letter</p>
+                <p class="text-truncate text-muted font-sm">Jina Moore & Lenisa Gory</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-danger"><i
+                class="la la-heart"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/6.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Hey not me</p>
+                <p class="text-truncate text-muted font-sm">Rasomi Pelina</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/7.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Deep inside</p>
+                <p class="text-truncate text-muted font-sm">Pimila Holliwy</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+        </div>
+        <!-- End | Custom List -->
+      </div>
+      <div class="tab-pane fade" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+        <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+        <div class="custom-list">
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/1.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">I Love You Mummy</p>
+                <p class="text-truncate text-muted font-sm">Arebica Luna</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-warning"><i
+                class="la la-star"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/2.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Shack your butty</p>
+                <p class="text-truncate text-muted font-sm">Gerrina Linda</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/3.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Do it your way(Female)</p>
+                <p class="text-truncate text-muted font-sm">Zunira Willy & Nutty Nina</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-danger"><i
+                class="la la-heart"></i></span></li>
+              <li><span class="badge badge-pill badge-warning"><i
+                class="la la-star"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/4.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Say yes</p>
+                <p class="text-truncate text-muted font-sm">Johnny Marro</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/5.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Where is your letter</p>
+                <p class="text-truncate text-muted font-sm">Jina Moore & Lenisa Gory</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-danger"><i
+                class="la la-heart"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/6.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Hey not me</p>
+                <p class="text-truncate text-muted font-sm">Rasomi Pelina</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/7.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Deep inside</p>
+                <p class="text-truncate text-muted font-sm">Pimila Holliwy</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+        </div>
+        <!-- End | Custom List -->
+      </div>
+      <div class="tab-pane fade" id="international" role="tabpanel"
+           aria-labelledby="international-tab">
+        <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+        <div class="custom-list">
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/1.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">I Love You Mummy</p>
+                <p class="text-truncate text-muted font-sm">Arebica Luna</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-warning"><i
+                class="la la-star"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/2.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Shack your butty</p>
+                <p class="text-truncate text-muted font-sm">Gerrina Linda</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/3.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Do it your way(Female)</p>
+                <p class="text-truncate text-muted font-sm">Zunira Willy & Nutty Nina</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-danger"><i
+                class="la la-heart"></i></span></li>
+              <li><span class="badge badge-pill badge-warning"><i
+                class="la la-star"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/4.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Say yes</p>
+                <p class="text-truncate text-muted font-sm">Johnny Marro</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/5.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Where is your letter</p>
+                <p class="text-truncate text-muted font-sm">Jina Moore & Lenisa Gory</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-danger"><i
+                class="la la-heart"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/6.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Hey not me</p>
+                <p class="text-truncate text-muted font-sm">Rasomi Pelina</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="../assets/images/cover/small/7.jpg" alt=""
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">Deep inside</p>
+                <p class="text-truncate text-muted font-sm">Pimila Holliwy</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Favorite</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Add to Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Download</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Share</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Song Info</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+        </div>
+        <!-- End | Custom List -->
+      </div>
+    </div>
+    <!-- End | Tab Content -->
+
+  </div>
+  <!-- End | Section -->
+</div>
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] BÀI HÁT MỚI-->
+<div class="section">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Bài hát mới</h4>
+        <p>Những tác phẩm mới ra</p>
+      </div>
+      <a href="songs.html" class="btn btn-sm btn-pill btn-air btn-primary">Xem</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-5 arrow-pos-3">
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <div class="custom-card--info">
+          <ul class="custom-card--labels d-flex">
+            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span>
+            </li>
+          </ul>
+          <div class="dropdown dropdown-icon">
+            <a href="javascript:void(0);" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              <i class="ion-md-more"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link favorite">
+                  <i class="la la-heart-o"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-plus"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-download"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-share-alt"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a href="javascript:void(0);" class="external"
+           data-audio='{"name": "I Love You Mummy", "artist": "Arebica Luna", "album": "Mummy", "url": "../assets/audio/ringtone-1.mp3", "cover_art_url": "../assets/images/cover/small/1.jpg"}'>
+          <img src="../assets/images/cover/large/1.jpg" alt="I Love You Mummy"
+               class="card-img--radius-lg">
+        </a>
+      </div>
+
+      <a href="song-details.html" class="custom-card--link mt-2">
+        <h6>I Love You Mummy</h6>
+        <p>Arebica Luna</p>
+      </a>
+    </div>
+  </div>
+
+</div>
+<!-- End | Section -->
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] ALBUMS THỊNH HÀNH-->
+<div class="section">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Albums thịnh hành</h4>
+        <p>Những ca khúc nổi bật</p>
+      </div>
+      <a href="playlist.html" class="btn btn-sm btn-pill btn-air btn-primary">Xem</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-4 arrow-pos-1">
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/1.jpg" alt="DJ Remix"
+               class="card-img--radius-lg">
+          <span class="bg-blur">DJ Remix</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- End | Section -->
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] ALBUMS MỚI-->
+<div class="section">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Albums thịnh hành</h4>
+        <p>Những ca khúc nổi bật</p>
+      </div>
+      <a href="playlist.html" class="btn btn-sm btn-pill btn-air btn-primary">Xem</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-4 arrow-pos-1">
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/1.jpg" alt="DJ Remix"
+               class="card-img--radius-lg">
+          <span class="bg-blur">DJ Remix</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- End | Section -->
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] THỂ LOẠI-->
+<div class="section">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Thể loại</h4>
+        <p>Dòng nhạc bất hủ</p>
+      </div>
+      <a href="genres.html" class="btn btn-sm btn-pill btn-air btn-primary">Xem</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-6 arrow-pos-1">
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/1.jpg" alt="Remix Songs"
+               class="card-img--radius-md">
+          <span class="bg-blur">Remix Songs</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- End | Section -->
