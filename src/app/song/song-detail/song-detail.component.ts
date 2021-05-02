@@ -40,7 +40,7 @@ export class SongDetailComponent implements OnInit {
       avatar: ''
     }
   };
-  checkUser =false;
+  checkUser = false;
   commentForm = this.formBuider.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
     song: [''],
@@ -48,10 +48,6 @@ export class SongDetailComponent implements OnInit {
   });
   comments: IComment[] = [];
   sub: Subscription;
-
-  // @ts-ignore
-  //
-
 
   likeSongForm = this.formBuider.group(
     {
@@ -96,15 +92,15 @@ export class SongDetailComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  check() {
+  check(): any {
     if (this.authen.currentUserValue == null){
-      alert('Mời bạn đăng nhập để comment')
-      this.router.navigateByUrl('user/login')
-      return this.checkUser =false;
+      alert('Mời bạn đăng nhập để comment');
+      this.router.navigateByUrl('user/login');
+      return this.checkUser = false;
     }else {
-      return this.checkUser =true;
+      return this.checkUser = true;
   }}
-  createComment() {
+  createComment(): any {
     this.commentForm.get('song')?.setValue(this.song);
     return this.commentService.createComment(this.commentForm.value).subscribe(() => {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -113,14 +109,14 @@ export class SongDetailComponent implements OnInit {
     });
   }
 
-  getAllCommentByIdSong(id: number) {
+  getAllCommentByIdSong(id: number): any {
     return this.commentService.getAllCommentBySongId(id).subscribe(commentList => {
       this.comments = commentList;
     });
   }
 
   //
-  like() {
+  like(): any{
     localStorage.setItem('statusLike', 'true');
     this.likeSongForm.get('song')?.setValue(this.song);
     return this.likeSongService.likeSong(this.likeSongForm.value).subscribe(() => {
@@ -128,13 +124,13 @@ export class SongDetailComponent implements OnInit {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl('songs/detail/' + this.song.id);
-      console.log(localStorage.getItem('statusLike'))
+      console.log(localStorage.getItem('statusLike'));
 
       //
     });
   }
 
-  unlike() {
+  unlike(): any {
     // @ts-ignore
     localStorage.setItem('statusLike', null);
     // this.statusLike = localStorage.getItem('statusLike')
@@ -145,10 +141,20 @@ export class SongDetailComponent implements OnInit {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl('songs/detail/' + this.song.id);
-      console.log(localStorage.getItem('statusLike'))
+      console.log(localStorage.getItem('statusLike'));
     });
 
   }
+  delSong(id: number): any {
+    if (confirm('Bạn có chắc muốn xoá bài hát này ?')){
+      this.songService.delSong(id).subscribe( () => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        alert('Đã xóa bài hát ' + this.song.nameSong);
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl('songs/my-song') ;
+      });
+    }
 
+  }
 
 }

@@ -1,10 +1,9 @@
 <div class="row align-items-end">
   <span class="col-6 font-weight-bold">{{mySongs.length}} bài hát</span>
   <div class="col-6 ml-auto">
-    <form action="#" class="form-inline justify-content-end">
+    <form class="form-inline justify-content-end">
       <label class="mr-2" for="filter2">Sắp xếp:</label>
       <select class="custom-select mr-sm-2" id="filter2">
-        <option selected>Popular</option>
         <option value="1">Mới nhất</option>
         <option value="2">Yêu thich</option>
       </select>
@@ -55,9 +54,9 @@
             </a>
           </li>
           <li class="dropdown-item">
-            <a href="javascript:void(0);" class="dropdown-link">
-              <i class="la la-share-alt"></i>
-              <span>Chia sẻ</span>
+            <a (click)="delSong(s.id)" class="dropdown-link">
+              <i class="la la-trash-o"></i>
+              <span>Xóa</span>
             </a>
           </li>
           <li class="dropdown-item">
