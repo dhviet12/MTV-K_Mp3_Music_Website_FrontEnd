@@ -18,7 +18,6 @@
                   <th scope="col">Thứ tự</th>
                   <th scope="col">Tên bài</th>
                   <th scope="col">Ca sĩ</th>
-                  <th scope="col">Ngày tạo</th>
                   <th scope="col">Lượt xem</th>
                   <th scope="col">Avatar</th>
                   <th scope="col">Xoá</th>
@@ -31,7 +30,6 @@
                     <a [routerLink]="['/songs/detail/' + song.id]">{{song.nameSong}}</a>
                   </td>
                   <td>{{song.author}}</td>
-                  <td>{{song.createdTime}}</td>
                   <td>{{song.numberOfView}}</td>
                   <td><img width="100" height="100" src="{{song.fileImage}}" alt="song avatar"></td>
                   <td>
@@ -47,6 +45,6 @@
     </div>
   </header>
   <div>
-    <button type="button" class="btn btn-secondary" [routerLink]="'/playlist'">Trở lại Playlist</button>
+    <button type="button" class="btn btn-warning" [routerLink]="'/playlist'">Trở lại Playlist</button>
   </div>
 </div>

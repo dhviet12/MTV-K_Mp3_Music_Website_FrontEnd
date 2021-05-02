@@ -20,7 +20,6 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Tên Playlist</th>
-                  <th scope="col">Ngày tạo</th>
                   <th scope="col" colspan="2"></th>
                 </tr>
                 </thead>
@@ -29,9 +28,6 @@
                   <th scope="row">{{i + 1}}</th>
                   <td>
                     <a [routerLink]="['/playlist/listsongs/' + currentUser.username + '/' + playlist.id]">{{playlist.name}}</a>
-                  </td>
-                  <td>
-                    {{playlist.timeUpdate}}
                   </td>
                   <td>
                     <a [routerLink]="['/playlist/edit/' + currentUser.username + '/' + playlist.id]">
@@ -50,7 +46,7 @@
       </form>
     </div>
     <div>
-      <button [routerLink]="'/songs'" class="btn btn-primary profile-button">Danh sách bài hát</button>
+      <button [routerLink]="'/songs'" class="btn btn-warning profile-button">Danh sách bài hát</button>
     </div>
   </header>
 </div>
