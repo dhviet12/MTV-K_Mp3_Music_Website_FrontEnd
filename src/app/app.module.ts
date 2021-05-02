@@ -15,11 +15,13 @@ import {AngularFireModule} from '@angular/fire';
 import { LikesongComponent } from './likesong/likesong.component';
 import {JwtInterceptor} from './user/helper/jwt.interceptor';
 import {ErrorInterceptor} from './user/helper/error.interceptor';
+import {SearchComponent} from './shared/searchBar/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LikesongComponent
+    LikesongComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

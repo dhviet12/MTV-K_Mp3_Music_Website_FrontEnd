@@ -272,19 +272,19 @@ $(function () {
             var History = window.history;
             History.pushState("", "", url);
 
-            $.ajax({
-                url: url,
-                context: document.body
-            }).done(function (response) {
-                var content = $('<div>' + response + '</div>');
-                changeTitle(content);
-                replaceImageBanner(content);
-                replaceContent(content);
-                setActiveClass();
-            }).fail(function(jqXHR, textStatus){
-                alert('Something went wrong. Please try again');
-                return false;
-            });
+            // $.ajax({
+            //     url: url,
+            //     context: document.body
+            // }).done(function (response) {
+            //     var content = $('<div>' + response + '</div>');
+            //     changeTitle(content);
+            //     replaceImageBanner(content);
+            //     replaceContent(content);
+            //     setActiveClass();
+            // }).fail(function(jqXHR, textStatus){
+            //     alert('Something went wrong. Please try again');
+            //     return false;
+            // });
 
             // Change old title with new one
             function changeTitle(newContent) {
