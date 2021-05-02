@@ -16,12 +16,16 @@ import { LikesongComponent } from './likesong/likesong.component';
 import {JwtInterceptor} from './user/helper/jwt.interceptor';
 import {ErrorInterceptor} from './user/helper/error.interceptor';
 import {SearchComponent} from './shared/searchBar/search/search.component';
+import {TimeConversionPipe} from './shared/audio/pipes/time-conversion.pipe';
+import {PlayMusicComponent} from './shared/audio/play-music/play-music.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LikesongComponent,
-    SearchComponent
+    SearchComponent,
+    TimeConversionPipe,
+    PlayMusicComponent
   ],
   imports: [
     BrowserModule,
