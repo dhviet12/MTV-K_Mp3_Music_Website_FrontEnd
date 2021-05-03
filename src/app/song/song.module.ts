@@ -13,20 +13,23 @@ import { MySongComponent } from './my-song/my-song.component';
 
 
 @NgModule({
-  declarations: [
-    CreateSongComponent,
-    SongListComponent,
-    SongDetailComponent,
-    EditSongComponent,
-    TopSongsViewComponent,
-    TopSongsNewComponent,
-    MySongComponent
-  ],
-  imports: [
-    CommonModule,
-    SongRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ]
+    declarations: [
+        CreateSongComponent,
+        SongListComponent,
+        SongDetailComponent,
+        EditSongComponent,
+        TopSongsViewComponent,
+        TopSongsNewComponent,
+        MySongComponent
+    ],
+    exports: [
+        SongDetailComponent
+    ],
+    imports: [
+        CommonModule,
+        SongRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+    ]
 })
 export class SongModule { }

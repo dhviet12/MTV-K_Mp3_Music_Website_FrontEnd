@@ -18,6 +18,7 @@ import {ErrorInterceptor} from './user/helper/error.interceptor';
 import {SearchComponent} from './shared/searchBar/search/search.component';
 import {TimeConversionPipe} from './shared/audio/pipes/time-conversion.pipe';
 import {PlayMusicComponent} from './shared/audio/play-music/play-music.component';
+import {SongModule} from './song/song.module';
 
 @NgModule({
   declarations: [
@@ -27,16 +28,17 @@ import {PlayMusicComponent} from './shared/audio/play-music/play-music.component
     TimeConversionPipe,
     PlayMusicComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NoopAnimationsModule,
-    MatSliderModule,
-    BrowserAnimationsModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud')
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NoopAnimationsModule,
+        MatSliderModule,
+        BrowserAnimationsModule,
+        AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
+        SongModule
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

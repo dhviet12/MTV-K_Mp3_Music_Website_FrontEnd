@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ISong} from '../isong';
 import {Subscription} from 'rxjs';
 import {SongService} from '../song.service';
@@ -55,7 +55,7 @@ export class SongDetailComponent implements OnInit {
       song: ['']
     }
   );
-
+  @Output() songCurrent = new EventEmitter();
   likeSong: ILikeSong = {
     user: this.authen.currentUserValue,
     song: this.song
@@ -155,6 +155,10 @@ export class SongDetailComponent implements OnInit {
       });
     }
 
+  }
+  playSong(song: any): any{
+    console.log(song);
+    this.songCurrent.emit(song);
   }
 
 }
