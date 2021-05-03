@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenService} from '../../../user/service/authen.service';
-import {IUserToken} from '../../../user/model/IUserToken';
-import {Router} from '@angular/router';
 import {TokenStorageService} from '../../../user/service/tokenstorage.service';
 
 @Component({
@@ -26,5 +24,8 @@ export class SearchComponent implements OnInit {
   signOut(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
+  }
+  getKeyWord(event: any): any{
+    console.log(event.target.value);
   }
 }

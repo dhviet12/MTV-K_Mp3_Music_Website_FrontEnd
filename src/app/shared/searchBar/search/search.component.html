@@ -12,7 +12,7 @@
     <form action="#" id="searchForm">
 
       <button type="button" class="btn ion-ios-search"></button>
-      <input type="text" placeholder="Tìm kiếm..." id="searchInput" class="form-control">
+      <input type="text" placeholder="Tìm kiếm..." id="searchInput" class="form-control" (change)="getKeyWord($event)">
 
       <!-- Begin | Search Card [[ Find at scss/framework/base/search/search.scss ]] BÀI HÁT GỢI Ý-->
       <div class="search-card" data-scrollable="true">
