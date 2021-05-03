@@ -7,6 +7,12 @@
             <div class="profile-head">
               <h2 style="text-align: center">
                 <strong>DANH SÁCH PLAYLIST</strong>
+                <div class="col">
+                  <form class="d-flex">
+                    <input [(ngModel)]="keyword" name="keyword" class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">
+                    <button (click)="searchPlaylist()" class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
               </h2>
               <div>
               <button (click)="createPlayList()" class="btn btn-primary profile-button">Tạo playlist</button>
