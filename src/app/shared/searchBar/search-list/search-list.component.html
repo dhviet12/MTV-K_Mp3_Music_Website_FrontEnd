@@ -22,7 +22,7 @@
       </div>
 
       <div class="custom-card--inline-desc">
-        <p class="text-truncate mb-0">{{s.nameSong}}</p>
+        <a class="text-truncate mb-0" [routerLink]="'/songs/detail/' + s.id">{{s.nameSong}}</a>
         <p class="text-truncate text-muted font-sm">{{s.singer}}</p>
       </div>
     </div>

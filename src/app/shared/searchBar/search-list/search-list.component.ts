@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ISong} from '../../../song/isong';
 import {SongService} from '../../../song/song.service';
 import {DataService} from '../../ dataTransmission/data.service';
@@ -8,10 +8,11 @@ import {DataService} from '../../ dataTransmission/data.service';
   templateUrl: './search-list.component.html',
   styleUrls: ['./search-list.component.scss']
 })
-export class SearchListComponent implements OnInit {
+export class SearchListComponent implements OnInit{
 
   constructor(private songService: SongService,
-              private data: DataService) { }
+              private data: DataService) {
+  }
   keyWord = '';
   searchList: ISong[] = [];
   ngOnInit(): void {
@@ -20,7 +21,7 @@ export class SearchListComponent implements OnInit {
   }
   getKeyWord(): any{
     this.data.keyWord.subscribe( keyWord => {
-      // this.keyWord = keyWord.toString();
+      this.keyWord = keyWord;
       console.log('key: ' + this.keyWord);
     });
   }

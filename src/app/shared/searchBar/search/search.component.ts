@@ -3,6 +3,8 @@ import {AuthenService} from '../../../user/service/authen.service';
 import {TokenStorageService} from '../../../user/service/tokenstorage.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../ dataTransmission/data.service';
+import {ISong} from '../../../song/isong';
+import {SongService} from '../../../song/song.service';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +18,7 @@ export class SearchComponent implements OnInit {
               private data: DataService) { }
   checkLogin = false;
   user: any;
+  keyWord: any;
   ngOnInit(): void {
     this.login();
   }
@@ -30,8 +33,13 @@ export class SearchComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
-  getKeyWord(event: any): any{
-    this.data.changeKeyWord(event);
-    this.router.navigate(['/songs/search']);
+
+  getKeyWord(): any{
+    console.log(this.keyWord);
+    this.data.changeKeyWord(this.keyWord);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    // @ts-ignore
+    this.router.navigateByUrl('songs/search');
   }
 }
