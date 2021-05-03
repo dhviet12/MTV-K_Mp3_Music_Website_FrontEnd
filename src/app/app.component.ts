@@ -24,14 +24,14 @@ export class AppComponent {
       title: 'Sample 3',
       cover: 'https://lh3.googleusercontent.com/proxy/fZlb0nHY7vEQ0JMMaPaT5ZyTJ8k1DJQGZQ2xOSuGY104Xs2A8Os8leMzJqtOAMb8hJYuP54rnE6YU3JIp70YyLFrHGbMvMoOrqSwjxgmVzdXK8BfGZix8uZnr2HqbM7n'
     }];
-  currentSongHandle(event: ISong): any{
-    // this.audioList[0].id = event.id;
-    console.log(event + 'xin chào');
-    this.audioList[0].url = event.fileMp3;
-    if (event.nameSong != null) {
-      this.audioList[0].title = event.nameSong;
-    }
-    this.audioList[0].cover = event.fileImage;
-    this.audioList[0].artist = event.singer;
-  }
+  // currentSongHandle(event: ISong): any{
+  //   // this.audioList[0].id = event.id;
+  //   console.log(event + 'xin chào');
+  //   this.audioList[0].url = event.fileMp3;
+  //   if (event.nameSong != null) {
+  //     this.audioList[0].title = event.nameSong;
+  //   }
+  //   this.audioList[0].cover = event.fileImage;
+  //   this.audioList[0].artist = event.singer;
+  // }
 }
