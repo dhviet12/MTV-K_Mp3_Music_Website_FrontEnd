@@ -9,6 +9,8 @@ import {IComment} from '../../comment/icomment';
 import {AuthenService} from '../../user/service/authen.service';
 import {ILikeSong} from '../../likesong/ILikeSong';
 import {LikeSongService} from '../../likesong/likesong.service';
+import {PlayListService} from '../../play-list/play-list.service';
+import {PlayList} from '../../play-list/play-list';
 
 
 @Component({
@@ -20,6 +22,10 @@ export class SongDetailComponent implements OnInit {
   song: ISong = {
     id: 0
   };
+  playlist: PlayList = {
+    id: 0
+  };
+  idPlaylist: any;
   // @ts-ignore
   comment: IComment = {
     content: '',
@@ -40,7 +46,7 @@ export class SongDetailComponent implements OnInit {
       avatar: ''
     }
   };
-  checkUser =false;
+  checkUser = false;
   commentForm = this.formBuider.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
     song: [''],
@@ -68,16 +74,25 @@ export class SongDetailComponent implements OnInit {
 
   currentUser: any = localStorage.getItem('user');
 
+  listPlaylist: PlayList[] = [];
+
   constructor(private songService: SongService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuider: FormBuilder,
               private commentService: CommentService,
               private authen: AuthenService,
-              private likeSongService: LikeSongService) {
+              private likeSongService: LikeSongService,
+              private playListService: PlayListService) {
+    this.authen.currentUser.subscribe(value => {
+      this.currentUser = value;
+      this.getAllPlaylistByUsername(this.currentUser.username);
+    });
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.song.id = Number(paramMap.get('id'));
+      console.log(this.song.id);
       this.getSongById(this.song.id);
+      this.getPlaylistById(this.playlist.id);
       this.getAllCommentByIdSong(this.song.id);
       this.commentForm.get('createdBy')?.setValue(this.authen.currentUserValue);
       ///
@@ -98,11 +113,11 @@ export class SongDetailComponent implements OnInit {
 
   check() {
     if (this.authen.currentUserValue == null){
-      alert('Mời bạn đăng nhập để comment')
-      this.router.navigateByUrl('user/login')
-      return this.checkUser =false;
+      alert('Mời bạn đăng nhập để comment');
+      this.router.navigateByUrl('user/login');
+      return this.checkUser = false;
     }else {
-      return this.checkUser =true;
+      return this.checkUser = true;
   }}
   createComment() {
     this.commentForm.get('song')?.setValue(this.song);
@@ -145,9 +160,31 @@ export class SongDetailComponent implements OnInit {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl('songs/detail/' + this.song.id);
-      console.log(localStorage.getItem('statusLike'))
+      console.log(localStorage.getItem('statusLike'));
     });
+  }
 
+  getPlaylistById(id: number): any {
+    return this.playListService.getPlayListById(id, this.currentUser.username).subscribe(playlist => {
+      this.playlist = playlist;
+    });
+  }
+
+  getAllPlaylistByUsername(username: string): any {
+    this.playListService.getPlaylistByUsername(username).subscribe(value => {
+      this.listPlaylist = value;
+    });
+  }
+
+  addSongToPlayList(idSong: number, idPlaylist: number): any {
+    this.playListService.addSongToPlaylist(idSong, idPlaylist).subscribe(value => {
+      if (value == null) {
+        alert('Đã tồn tại bài hát trong playlist');
+      } else {
+        alert('Đã thêm bài hát vào playlist');
+        this.getAllPlaylistByUsername(this.currentUser.username);
+      }
+    });
   }
 
 

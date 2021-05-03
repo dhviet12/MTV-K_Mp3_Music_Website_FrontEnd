@@ -3,7 +3,7 @@
 
   </div>
   <!-- Begin | Main Container [[ Find at scss/base/core.scss ]] -->
-  <div class="main-container mt-5" id="appRoute" >
+  <div class="main-container mt-5" id="appRoute">
     <div class="row section text-center text-md-left">
       <div class="col-xl-3 col-lg-4 col-sm-5">
         <img src="{{song.fileImage}}" alt="banner" class="card-img--radius-lg">
@@ -20,10 +20,20 @@
               </audio>
             </div>
           </div>
+          <div>
+            <h3>Thêm vào Playlist: </h3>
+            <div *ngFor="let playlist of listPlaylist">
+              <button type="button" class="btn btn-outline-primary"
+                      (click)="addSongToPlayList(song.id, playlist.id)">{{playlist.name}}
+              </button>
+            </div>
+          </div>
           <div class="col-xl-4 col-lg-6">
             <div class="pt-3 pt-lg-0 text-lg-right">
               <button class="btn btn-pill btn-air btn-danger btn-icon-only"><i class="la la-heart-o"></i></button>
-              <button class="btn btn-pill btn-air btn-warning btn-icon-only"><i class="la la-plus"></i></button>
+              <button class="btn btn-pill btn-air btn-warning btn-icon-only">
+                <i class="la la-plus"></i>
+              </button>
               <button class="btn btn-pill btn-air btn-success btn-icon-only"><i class="la la-download"></i></button>
               <button class="btn btn-pill btn-air btn-brand btn-icon-only"><i class="la la-share-alt"></i></button>
             </div>
@@ -36,19 +46,18 @@
     <form *ngIf="statusLike=='null' && currentUser!=null" [formGroup]="likeSongForm" (ngSubmit)="like()">
       <div class="mb-4">
         <div class="text-right mt-2">
-          <button type="submit" class="btn btn-info" >Like</button>
+          <button type="submit" class="btn btn-info">Like</button>
         </div>
       </div>
     </form>
 
-    <form  *ngIf="statusLike=='true'" [formGroup]="likeSongForm" (ngSubmit)="unlike()">
+    <form *ngIf="statusLike=='true'" [formGroup]="likeSongForm" (ngSubmit)="unlike()">
       <div class="mb-4">
         <div class="text-right mt-2">
-          <button type="submit" class="btn btn-warning" >Unlike</button>
+          <button type="submit" class="btn btn-warning">Unlike</button>
         </div>
       </div>
     </form>
-
 
 
     <!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
@@ -56,10 +65,12 @@
       <!-- Begin | Line Tabs [[ Find at scss/framework/components/line-tabs.scss ]] -->
       <ul class="nav nav-tabs line-tabs line-tabs-primary text-uppercase mb-4" id="songDetails" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+          <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab"
+             aria-controls="overview" aria-selected="true">Overview</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="lyrics-tab" data-toggle="tab" href="#lyrics" role="tab" aria-controls="lyrics" aria-selected="false">Lyrics</a>
+          <a class="nav-link" id="lyrics-tab" data-toggle="tab" href="#lyrics" role="tab" aria-controls="lyrics"
+             aria-selected="false">Lyrics</a>
         </li>
       </ul>
       <!-- End | Line Tabs -->
@@ -68,14 +79,22 @@
       <div class="tab-content" id="songDetailsContent">
         <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item pl-0 border-0">Lượt nghe: <span class="font-weight-bold">{{song.numberOfView}}</span></li>
-            <li class="list-group-item pl-0 border-0">Giới thiệu: <span class="font-weight-bold">{{song.description}}</span></li>
-            <li class="list-group-item pl-0 border-0">Thể hiện: <span class="font-weight-bold">{{song.singer}}</span></li>
-            <li class="list-group-item pl-0 border-0">Tác giả: <span class="font-weight-bold">{{song.author}}</span></li>
-            <li class="list-group-item pl-0 border-0">Thể loại: <span class="font-weight-bold">{{song.category}}</span></li>
-            <li class="list-group-item pl-0 border-0">Ngày đăng: <span class="font-weight-bold">{{song.createdTime | date:'dd/MM/yyyy'}}</span></li>
-            <li class="list-group-item pl-0 border-0">Người đăng: <span class="font-weight-bold">{{song.createdBy}}</span></li>
-            <li class="list-group-item pl-0 border-0">Cập nhật gần nhất: <span class="font-weight-bold">{{song.updatedTime | date:'dd/MM/yyyy'}}</span></li>
+            <li class="list-group-item pl-0 border-0">Lượt nghe: <span
+              class="font-weight-bold">{{song.numberOfView}}</span></li>
+            <li class="list-group-item pl-0 border-0">Giới thiệu: <span
+              class="font-weight-bold">{{song.description}}</span></li>
+            <li class="list-group-item pl-0 border-0">Thể hiện: <span class="font-weight-bold">{{song.singer}}</span>
+            </li>
+            <li class="list-group-item pl-0 border-0">Tác giả: <span class="font-weight-bold">{{song.author}}</span>
+            </li>
+            <li class="list-group-item pl-0 border-0">Thể loại: <span class="font-weight-bold">{{song.category}}</span>
+            </li>
+            <li class="list-group-item pl-0 border-0">Ngày đăng: <span
+              class="font-weight-bold">{{song.createdTime | date:'dd/MM/yyyy'}}</span></li>
+            <li class="list-group-item pl-0 border-0">Người đăng: <span
+              class="font-weight-bold">{{song.createdBy}}</span></li>
+            <li class="list-group-item pl-0 border-0">Cập nhật gần nhất: <span
+              class="font-weight-bold">{{song.updatedTime | date:'dd/MM/yyyy'}}</span></li>
           </ul>
         </div>
         <div class="tab-pane fade show" id="lyrics" role="tabpanel" aria-labelledby="lyrics-tab">
@@ -107,16 +126,19 @@
     <!-- End | Section -->
 
     <!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
-    <div class="section" >
-      <form [formGroup]="commentForm"  (ngSubmit)="createComment()">
-      <div class="mb-4">
-        <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control" required></textarea>
-        <div class="text-right mt-2">
-          <button type="submit" class="btn btn-info" (click)="check()"  [disabled]="commentForm.invalid">Comment</button>
+    <div class="section">
+      <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+        <div class="mb-4">
+          <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5"
+                    class="form-control" required></textarea>
+          <div class="text-right mt-2">
+            <button type="submit" class="btn btn-info" (click)="check()" [disabled]="commentForm.invalid">Comment
+            </button>
+          </div>
         </div>
-      </div>
-      </form><div class="d-flex mb-4">
-      <table>
+      </form>
+      <div class="d-flex mb-4">
+        <table>
           <div *ngFor="let c of comments">
             <div class="avatar avatar-sm avatar-circle">
               <img src="{{c.createdBy.avatar}}" alt="avatar">
@@ -126,8 +148,8 @@
               <p class="mb-2">{{c.content}}</p>
             </div>
           </div>
-      </table>
-    </div>
+        </table>
+      </div>
     </div>
     <!-- End | Section -->
 

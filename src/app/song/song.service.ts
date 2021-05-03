@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {ISong} from './isong';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+
+const API_URL = `${environment.url}`;
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +34,12 @@ export class SongService {
   }
   topSongsNew(): Observable<ISong[]> {
     return this.httpClient.get<ISong[]>('http://localhost:8080/top10songsnew');
+  }
+  getSongsByPlaylistId(username: string, id: number): Observable<ISong[]>{
+    return this.httpClient.get<ISong[]>('http://localhost:8080/song-playlist/' + id + '/user/' + username);
+  }
+  deleteSongOutPlaylist(idPlaylist: number, username: string, idSong: number): Observable<ISong[]>{
+    return this.httpClient.delete<ISong[]>('http://localhost:8080/song-playlist/' + idPlaylist + '/user/' + username + '/delete/' + idSong);
   }
   constructor(private httpClient: HttpClient) { }
 }
