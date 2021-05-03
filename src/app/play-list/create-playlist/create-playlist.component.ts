@@ -11,7 +11,14 @@ import {AuthenService} from '../../user/service/authen.service';
 })
 export class CreatePlaylistComponent implements OnInit {
   playlist: PlayList = {
-    id: 0
+    id: 0,
+    name: '',
+    song: [],
+    kindOfMusic: '',
+    timeCreate: 0,
+    description: '',
+    timeUpdate: null,
+    view: 1,
   };
   currentUser: any;
   username: any;
@@ -23,6 +30,7 @@ export class CreatePlaylistComponent implements OnInit {
               private router: Router) {
     this.authen.currentUser.subscribe(value => {
       this.currentUser = value;
+      console.log(this.currentUser);
     });
   }
 
@@ -35,6 +43,7 @@ export class CreatePlaylistComponent implements OnInit {
 
   createPlayList(): any {
     return this.playListService.createNewPlayList(this.playlist, this.currentUser.username).subscribe( () => {
+      console.log(this.playlist);
       this.router.navigate(['/playlist']);
     });
   }

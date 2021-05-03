@@ -20,7 +20,7 @@ export class SongListComponent implements OnInit {
     });
   }
   delSong(id: number): any {
-    if(confirm("Bạn có chắc muốn xoá bài hát này ?")){
+    if (confirm('Bạn có chắc muốn xoá bài hát này ?')){
       this.songService.delSong(id).subscribe( () => {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {PlayList} from "../play-list";
-import {IComment} from "../../comment/icomment";
-import {PlayListService} from "../play-list.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {FormBuilder, Validators} from "@angular/forms";
-import {CommentService} from "../../comment/comment.service";
-import {AuthenService} from "../../user/service/authen.service";
-import {Subscription} from "rxjs";
+import {PlayList} from '../play-list';
+import {IComment} from '../../comment/icomment';
+import {PlayListService} from '../play-list.service';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {CommentService} from '../../comment/comment.service';
+import {AuthenService} from '../../user/service/authen.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-detail',
@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
   sub: Subscription;
   comment: IComment = {
     content: '',
-    createdBy:{
+    createdBy: {
       id: 0,
       username: '',
       password: '',
@@ -38,7 +38,7 @@ export class DetailComponent implements OnInit {
       avatar: ''
     },
 
-  }
+  };
   constructor(private playlistService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -50,24 +50,24 @@ export class DetailComponent implements OnInit {
       this.getPlaylistById(this.playList.id);
       this.getAllCommentByPlaylist(this.playList.id);
       // this.commentForm.get('user')?.setValue(this.authenService.currentPlaylistValue);
-    })
+    });
   }
-  commentForm =this.formBuilder.group({
+  commentForm = this.formBuilder.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
     playlist: [''],
     user: ['']
   });
 
   getAllCommentByPlaylist(id: number){
-    return this.commentService.getAllCommentByPlayListId(id).subscribe((listCommnet) =>{
-      this.comments =listCommnet;
-    })
+    return this.commentService.getAllCommentByPlayListId(id).subscribe((listCommnet) => {
+      this.comments = listCommnet;
+    });
   }
   getPlaylistById(id: number){
     return this.playlistService.getPlaylistById(id).subscribe(p => {
       // @ts-ignore
-      this.playList = p
-    })
+      this.playList = p;
+    });
   }
   createComment() {
     this.commentForm.get('playList')?.setValue(this.playList);

@@ -26,14 +26,19 @@
                 <tr *ngFor="let playlist of playlist; let i = index">
                   <th scope="row">{{i + 1}}</th>
                   <td>
-                    <a [routerLink]="'/playlist/detail/'+playlist.id">{{playlist.name}}</a>
+                    <a [routerLink]="['/playlist/' + currentUser.username + '/' + playlist.id]">{{playlist.name}}</a>
                   </td>
-                  <td>{{playlist.timeCreate.substring(0, 10)}}</td>
-<!--                  <td>-->
-<!--                    <a [routerLink]="['/update-playlist/',currentUser.username,playlist.id]">Edit</a></td>-->
-<!--                  <td>-->
-<!--                    <button type="button" class="btn btn-secondary" (click)="deletePlayList(playlist.id)">Delete</button>-->
-<!--                  </td>-->
+                  <td>
+                    {{playlist.timeUpdate}}
+                  </td>
+                  <td>
+                    <a [routerLink]="['/playlist/edit/' + currentUser.username + '/' + playlist.id]">
+                      <button type="button" class="btn btn-secondary">Edit</button>
+                    </a>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-secondary" (click)="deletePlayList(playlist.id)">Delete</button>
+                  </td>
                 </tr>
                 </tbody>
               </table>
