@@ -18,7 +18,7 @@
                   <th scope="col">Thứ tự</th>
                   <th scope="col">Tên bài</th>
                   <th scope="col">Ca sĩ</th>
-                  <th scope="col">Lượt xem</th>
+                  <th scope="col">Mp3</th>
                   <th scope="col">Avatar</th>
                   <th scope="col">Xoá</th>
                 </tr>
@@ -30,8 +30,14 @@
                     <a [routerLink]="['/songs/detail/' + song.id]">{{song.nameSong}}</a>
                   </td>
                   <td>{{song.author}}</td>
-                  <td>{{song.numberOfView}}</td>
-                  <td><img width="100" height="100" src="{{song.fileImage}}" alt="song avatar"></td>
+                  <td>
+                    <audio controls>
+                      <source src="{{song.fileMp3}}" type="audio/mpeg">
+                    </audio>
+                  </td>
+                  <td>
+                    <img src="{{song.fileImage}}" alt="banner" width="100" height="100">
+                  </td>
                   <td>
                     <button type="button" class="btn btn-secondary" (click)="deleteSong(song.id)">Delete</button>
                   </td>
