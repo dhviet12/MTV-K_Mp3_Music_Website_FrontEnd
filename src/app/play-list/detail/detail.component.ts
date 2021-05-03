@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {PlayList} from "../play-list";
-import {IComment} from "../../comment/icomment";
-import {PlayListService} from "../play-list.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {FormBuilder, Validators} from "@angular/forms";
-import {CommentService} from "../../comment/comment.service";
-import {AuthenService} from "../../user/service/authen.service";
-import {Subscription} from "rxjs";
+import {PlayList} from '../play-list';
+import {IComment} from '../../comment/icomment';
+import {PlayListService} from '../play-list.service';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {CommentService} from '../../comment/comment.service';
+import {AuthenService} from '../../user/service/authen.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-detail',
@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
   sub: Subscription;
   comment: IComment = {
     content: '',
-    createdBy:{
+    createdBy: {
       id: 0,
       username: '',
       password: '',
@@ -32,7 +32,7 @@ export class DetailComponent implements OnInit {
       avatar: '',
       token: '',
     }
-  }
+  };
   constructor(private playlistService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -42,28 +42,26 @@ export class DetailComponent implements OnInit {
     this.sub = this.activatedRoute.paramMap.subscribe((p: ParamMap) => {
       this.playList.id = Number(p.get('id'));
       this.getPlaylistById(this.playList.id);
-      console.log(this.playList.id);
-      this.getAllCommentByPlaylist(this.playList.id);
-      console.log(this.playList.id)
-      this.commentForm.get('user')?.setValue(this.authenService.currentUserValue);
-      console.log(this.authenService.currentUserValue)
-    })
+      this.getAllCommentByPlaylistId(this.playList.id);
+      this.commentForm.get('createdBy')?.setValue(this.authenService.currentUserValue);
+      console.log(this.authenService.currentUserValue);
+    });
   }
-  commentForm =this.formBuilder.group({
+  commentForm = this.formBuilder.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
-    playlist: [''],
-    user: ['']
+    playList: [''],
+    createdBy: ['']
   });
 
-  getAllCommentByPlaylist(id: number){
-    return this.commentService.getAllCommentByPlayListId(id).subscribe((listComment) =>{
-      this.comments =listComment;
-    })
+  getAllCommentByPlaylistId(id: number){
+    return this.commentService.getAllCommentByPlayListId(id).subscribe((listCommnet) => {
+      this.comments = listCommnet;
+    });
   }
-  getPlaylistById(id: number){
+  getPlaylistById(id: number): any{
     return this.playlistService.getPlaylistById(id).subscribe(p => {
-      this.playList = p
-    })
+      this.playList = p;
+    });
   }
   createComment() {
     this.commentForm.get('playList')?.setValue(this.playList);
@@ -73,7 +71,6 @@ export class DetailComponent implements OnInit {
       this.router.navigateByUrl('playlist/detail/' + this.playList.id);
     });
   }
-
   ngOnInit(): void {
   }
 

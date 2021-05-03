@@ -10,10 +10,10 @@
   <div class="d-flex mb-4">
     <div *ngFor="let c of comments">
       <div class="avatar avatar-sm avatar-circle">
-<!--        <img src="{{c.user.avatar}}" alt="avatar">-->
+        <img src="{{c.createdBy.avatar}}" alt="avatar">
       </div>
       <div class="pl-3 flex-grow-1 flex-basis-0">
-        <span class="d-block font-weight-bold mb-1">ABC</span>
+        <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
         <p class="mb-2">{{c.content}}</p>
       </div>
     </div>
