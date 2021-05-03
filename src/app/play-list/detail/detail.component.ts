@@ -33,6 +33,7 @@ export class DetailComponent implements OnInit {
       token: '',
     }
   };
+  checkUser = false;
   constructor(private playlistService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -63,6 +64,15 @@ export class DetailComponent implements OnInit {
       this.playList = p;
     });
   }
+  // tslint:disable-next-line:typedef
+  check() {
+    if (this.authenService.currentUserValue == null){
+      alert('Mời bạn đăng nhập để comment');
+      this.router.navigateByUrl('user/login');
+      return this.checkUser = false;
+    }else {
+      return this.checkUser = true;
+    }}
   createComment() {
     this.commentForm.get('playList')?.setValue(this.playList);
     return this.commentService.createCommentPlaylist(this.commentForm.value).subscribe(() => {
