@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenService} from '../../../user/service/authen.service';
 import {IUserToken} from '../../../user/model/IUserToken';
 import {Router} from '@angular/router';
+import {TokenStorageService} from '../../../user/service/tokenstorage.service';
 
 @Component({
   selector: 'app-search',
@@ -9,7 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  constructor(private authen: AuthenService) { }
+  constructor(private authen: AuthenService, private tokenStorageService:TokenStorageService) { }
   checkLogin = false;
   user: any;
   ngOnInit(): void {
@@ -20,5 +21,10 @@ export class SearchComponent implements OnInit {
       this.user = this.authen.currentUserValue;
       this.checkLogin = true;
     }
+  }
+
+  signOut(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
 }

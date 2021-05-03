@@ -45,6 +45,9 @@ export class EditProfileUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.authen.currentUserValue == null){
+      this.router.navigateByUrl('/user/login');
+    }
   }
   upFileAvatar(e: any): any {
     const file = e.target.files[0];
