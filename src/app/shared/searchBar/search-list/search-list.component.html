@@ -1,1 +1,133 @@
-<p>search-list works!</p>
+<div class="row align-items-end mt-5">
+  <span class="col-6 font-weight-bold">{{searchList.length}} bài hát</span>
+  <div class="col-6 ml-auto">
+    <form class="form-inline justify-content-end">
+      <label class="mr-2" for="filter2">Sắp xếp:</label>
+      <select class="custom-select mr-sm-2" id="filter2">
+        <option value="1">Mới nhất</option>
+        <option value="2">Yêu thich</option>
+      </select>
+    </form>
+  </div>
+  <div class="col-12"><hr></div>
+</div>
+
+<!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+<div class="section custom-list mt-5">
+  <!-- Begin | Custom List Item -->
+  <div class="custom-list--item" *ngFor="let s of searchList">
+    <div class="text-dark custom-card--inline">
+      <div class="custom-card--inline-img">
+        <img src="{{s.fileImage}}" alt="banner" class="card-img--radius-sm">
+      </div>
+
+      <div class="custom-card--inline-desc">
+        <p class="text-truncate mb-0">{{s.nameSong}}</p>
+        <p class="text-truncate text-muted font-sm">{{s.singer}}</p>
+      </div>
+    </div>
+    <ul class="custom-card--labels d-flex ml-auto">
+      <li><span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span></li>
+      <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+      <li>05:03</li>
+      <li class="dropleft">
+        <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="la la-ellipsis-h"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-item">
+            <a href="javascript:void(0);" class="dropdown-link favorite">
+              <i class="la la-heart-o"></i>
+              <span>Yêu thích</span>
+            </a>
+          </li>
+          <li class="dropdown-item">
+            <a href="javascript:void(0);" class="dropdown-link">
+              <i class="la la-plus"></i>
+              <span>Thêm vào Play List</span>
+            </a>
+          </li>
+          <li class="dropdown-item">
+            <a href="javascript:void(0);" class="dropdown-link">
+              <i class="la la-download"></i>
+              <span>Tải nhạc</span>
+            </a>
+          </li>
+          <li class="dropdown-item">
+            <a [routerLink]="'/songs/detail/' + s.id" class="dropdown-link">
+              <i class="la la-info-circle"></i>
+              <span>Chi tiết</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <!-- End | Custom List Item -->
+
+</div>
+<!-- End | Custom List -->
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
+<div class="section mt-5">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Also Like</h4>
+        <p>Check it out these songs</p>
+      </div>
+      <a href="songs.html" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-5 arrow-pos-3">
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <div class="custom-card--info">
+          <ul class="custom-card--labels d-flex">
+            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+          </ul>
+          <div class="dropdown dropdown-icon">
+            <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="ion-md-more"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link favorite">
+                  <i class="la la-heart-o"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-plus"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-download"></i>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-share-alt"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a href="javascript:void(0);" class="external" data-audio='{"name": "I Love You Mummy", "artist": "Arebica Luna", "album": "Mummy", "url": "../assets/audio/ringtone-1.mp3", "cover_art_url": "../assets/images/cover/small/1.jpg"}'>
+          <img src="../assets/images/cover/large/1.jpg" alt="I Love You Mummy" class="card-img--radius-lg">
+        </a>
+      </div>
+
+      <a href="song-details.html" class="custom-card--link mt-2">
+        <h6>I Love You Mummy</h6>
+        <p>Arebica Luna</p>
+      </a>
+    </div>
+  </div>
+
+</div>
+<!-- End | Section -->

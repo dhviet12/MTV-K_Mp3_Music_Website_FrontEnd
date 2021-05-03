@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenService} from '../../../user/service/authen.service';
 import {TokenStorageService} from '../../../user/service/tokenstorage.service';
+import {Router} from '@angular/router';
+import {DataService} from '../../ dataTransmission/data.service';
 
 @Component({
   selector: 'app-search',
@@ -8,7 +10,10 @@ import {TokenStorageService} from '../../../user/service/tokenstorage.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  constructor(private authen: AuthenService, private tokenStorageService: TokenStorageService) { }
+  constructor(private authen: AuthenService,
+              private tokenStorageService: TokenStorageService,
+              private router: Router,
+              private data: DataService) { }
   checkLogin = false;
   user: any;
   ngOnInit(): void {
@@ -26,6 +31,7 @@ export class SearchComponent implements OnInit {
     window.location.reload();
   }
   getKeyWord(event: any): any{
-    console.log(event.target.value);
+    this.data.changeKeyWord(event);
+    this.router.navigate(['/songs/search']);
   }
 }
