@@ -73,12 +73,15 @@
           <div class="form-row form-group">
             <label for="password" class="col-md-4 text-md-right col-form-label">Mật khẩu</label>
             <div class="col-md-7">
-              <input type="text" id="password" class="form-control" name="password" placeholder="Nhập mật khẩu"
+              <input type="password" id="password" class="form-control" name="password" placeholder="Nhập mật khẩu"
                      [(ngModel)]="form.password" required minlength="6" #password="ngModel">
               <div *ngIf="password.errors && f.submitted"></div>
               <div style="color: red" *ngIf="password.hasError('required')">Mật khẩu không được để trống</div>
               <div style="color: red;" *ngIf="password.hasError('minlength')">
                 Mật khẩu có độ dài tối thiểu 6 ký tự
+              </div>
+              <div style="color: red;" *ngIf="f.submitted && isLoginFailed">-->
+                {{ errorMessage }}
               </div>
             </div>
           </div>
@@ -90,7 +93,7 @@
               <button type="submit" class="btn btn-brand btn-air">Đăng nhập</button>
             </div>
             <div class="col-md-5">
-              <button [routerLink]="'user/signup'" class="btn btn-outline-secondary">Đăng ký</button>
+              <button [routerLink]="'/user/signup'" class="btn btn-outline-secondary">Đăng ký</button>
             </div>
           </div>
         </div>
