@@ -64,6 +64,7 @@ export class SongDetailComponent implements OnInit {
 
   currentUser: any = localStorage.getItem('user');
 
+
   constructor(private songService: SongService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -82,7 +83,9 @@ export class SongDetailComponent implements OnInit {
       console.log(this.likeSong);
       console.log(this.currentUser);
       console.log(this.statusLike);
+
     });
+
   }
 
   getSongById(id: number): any {
