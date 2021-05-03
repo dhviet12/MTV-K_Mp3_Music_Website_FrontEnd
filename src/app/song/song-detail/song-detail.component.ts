@@ -9,6 +9,7 @@ import {IComment} from '../../comment/icomment';
 import {AuthenService} from '../../user/service/authen.service';
 import {ILikeSong} from '../../likesong/ILikeSong';
 import {LikeSongService} from '../../likesong/likesong.service';
+import {DataService} from '../../shared/ dataTransmission/data.service';
 
 
 @Component({
@@ -55,7 +56,6 @@ export class SongDetailComponent implements OnInit {
       song: ['']
     }
   );
-  @Output() songCurrent = new EventEmitter();
   likeSong: ILikeSong = {
     user: this.authen.currentUserValue,
     song: this.song
@@ -70,7 +70,8 @@ export class SongDetailComponent implements OnInit {
               private formBuider: FormBuilder,
               private commentService: CommentService,
               private authen: AuthenService,
-              private likeSongService: LikeSongService) {
+              private likeSongService: LikeSongService,
+              private data: DataService) {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.song.id = Number(paramMap.get('id'));
       this.getSongById(this.song.id);
@@ -158,7 +159,7 @@ export class SongDetailComponent implements OnInit {
   }
   playSong(song: any): any{
     console.log(song);
-    this.songCurrent.emit(song);
+    this.data.changeData(song);
   }
 
 }

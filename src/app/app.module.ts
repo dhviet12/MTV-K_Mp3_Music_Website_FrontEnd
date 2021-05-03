@@ -28,20 +28,23 @@ import {SongModule} from './song/song.module';
     TimeConversionPipe,
     PlayMusicComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        NoopAnimationsModule,
-        MatSliderModule,
-        BrowserAnimationsModule,
-        AngularFireStorageModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
-        SongModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NoopAnimationsModule,
+    MatSliderModule,
+    BrowserAnimationsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
+    SongModule
+  ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
+  exports: [
+    AppComponent
   ],
   bootstrap: [AppComponent]
 })
