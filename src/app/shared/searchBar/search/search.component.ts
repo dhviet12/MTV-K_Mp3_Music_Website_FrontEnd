@@ -10,7 +10,7 @@ import {TokenStorageService} from '../../../user/service/tokenstorage.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  constructor(private authen: AuthenService, private tokenStorageService:TokenStorageService) { }
+  constructor(private authen: AuthenService, private tokenStorageService: TokenStorageService) { }
   checkLogin = false;
   user: any;
   ngOnInit(): void {
