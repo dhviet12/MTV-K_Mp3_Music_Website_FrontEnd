@@ -22,4 +22,8 @@ export class LikeSongService {
     console.log('call service', sid)
       return this.httpClient.delete<any>(URL + 'likeSong/unlike/' + `${sid}`);
     }
+
+    public showTotalLike(sid: number): Observable<any>{
+    return this.httpClient.get<any>(URL+ 'likeSong/total/' + `${sid}`);
+    }
 }
