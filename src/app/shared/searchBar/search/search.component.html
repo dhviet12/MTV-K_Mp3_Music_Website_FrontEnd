@@ -9,19 +9,19 @@
       <span></span>
     </button>
 
-    <form action="#" id="searchForm">
+    <form (ngSubmit)="getKeyWord()" id="searchForm">
 
-      <button type="button" class="btn ion-ios-search"></button>
-      <input type="text" placeholder="Tìm kiếm..." id="searchInput" class="form-control" (change)="getKeyWord($event)">
+      <button type="submit" class="btn ion-ios-search"></button>
+      <input type="text" placeholder="Nhập tên bài hát..." id="searchInput" name="search" class="form-control" [(ngModel)]="keyWord" (change)="getKeyWord()">
 
-      <!-- Begin | Search Card [[ Find at scss/framework/base/search/search.scss ]] BÀI HÁT GỢI Ý-->
+      <!-- Begin | Search Card [[ Find at scss/framework/base/search/search.scss ]] -->
       <div class="search-card" data-scrollable="true">
         <!-- Begin | Search Result List -->
         <div class="mb-3">
           <!-- Begin | Search Result List Header -->
           <div class="d-flex">
-            <span class="text-uppercase mr-auto font-weight-bold text-dark">Nghệ Sỹ</span>
-            <a href="artists.html">Xem</a>
+            <span class="text-uppercase mr-auto font-weight-bold text-dark">Artists</span>
+            <a href="artists.html">View All</a>
           </div>
           <!-- End | Search Result List Header -->
           <hr>
@@ -30,9 +30,9 @@
             <div class="col-xl-2 col-md-4 col-6">
               <div class="custom-card mb-3">
                 <a href="artist-details.html" class="text-dark">
-                  <img src="/assets/images/cover/medium/1.jpg" alt=""
+                  <img src="..." alt="cover"
                        class="card-img--radius-md">
-                  <p class="text-truncate mt-2">Arebica Luna</p>
+                  <p class="text-truncate mt-2">...</p>
                 </a>
               </div>
             </div>
@@ -45,8 +45,8 @@
         <div class="mb-3">
           <!-- Begin | Search Result List Header -->
           <div class="d-flex">
-            <span class="text-uppercase mr-auto font-weight-bold text-dark">Bài hát</span>
-            <a href="songs.html">Xem</a>
+            <span class="text-uppercase mr-auto font-weight-bold text-dark">Track</span>
+            <a href="songs.html">View All</a>
           </div>
           <!-- End | Search Result List Header -->
           <hr>
@@ -56,7 +56,7 @@
               <div class="custom-card mb-3">
                 <a href="song-details.html" class="text-dark custom-card--inline">
                   <div class="custom-card--inline-img">
-                    <img src="/assets/images/cover/small/1.jpg" alt=""
+                    <img src="../assets/images/cover/small/1.jpg" alt=""
                          class="card-img--radius-sm">
                   </div>
 
@@ -87,7 +87,7 @@
               <div class="custom-card mb-3">
                 <a href="song-details.html" class="text-dark custom-card--inline">
                   <div class="custom-card--inline-img">
-                    <img src="/assets/images/cover/small/4.jpg" alt=""
+                    <img src="../assets/images/cover/small/4.jpg" alt=""
                          class="card-img--radius-sm">
                   </div>
 
@@ -105,7 +105,6 @@
       <!-- End | Search Card -->
 
     </form>
-
     <!-- Begin | Header Options CÁ NHÂN-USER-->
     <ul class="header-options d-flex align-items-center">
       <li class="dropdown fade-in" [hidden]="checkLogin">
