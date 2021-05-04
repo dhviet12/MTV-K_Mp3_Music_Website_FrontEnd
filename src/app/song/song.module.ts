@@ -23,7 +23,8 @@ import { MySongComponent } from './my-song/my-song.component';
         MySongComponent
     ],
     exports: [
-        SongDetailComponent
+        SongDetailComponent,
+        SongListComponent
     ],
     imports: [
         CommonModule,

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {SongListComponent} from './song-list/song-list.component';
 import {CreateSongComponent} from './create-song/create-song.component';
 import {EditSongComponent} from './edit-song/edit-song.component';
@@ -8,11 +8,16 @@ import {TopSongsNewComponent} from './top-songs-new/top-songs-new.component';
 import {SongDetailComponent} from './song-detail/song-detail.component';
 import {HomeComponent} from '../shared/home/home.component';
 import {MySongComponent} from './my-song/my-song.component';
+import {SearchListComponent} from '../shared/searchBar/search-list/search-list.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'search',
+    component: SearchListComponent
   },
   {
     path: 'my-song',
@@ -48,4 +53,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SongRoutingModule { }
+export class SongRoutingModule {
+}
