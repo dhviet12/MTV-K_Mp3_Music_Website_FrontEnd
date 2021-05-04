@@ -1,0 +1,56 @@
+<div class="container">
+  <header class="jumbotron">
+    <div class="container emp-profile">
+      <form method="post">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="profile-head">
+              <h2 style="color: blue">
+                <strong>DANH SÁCH CÁC BÀI HÁT PLAYLIST</strong>
+              </h2>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="tab-content profile-tab" id="myTabContent">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Thứ tự</th>
+                  <th scope="col">Tên bài</th>
+                  <th scope="col">Ca sĩ</th>
+                  <th scope="col">Mp3</th>
+                  <th scope="col">Avatar</th>
+                  <th scope="col">Xoá</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let song of listSong; let i = index">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>
+                    <a [routerLink]="['/songs/detail/' + song.id]">{{song.nameSong}}</a>
+                  </td>
+                  <td>{{song.author}}</td>
+                  <td>
+                    <audio controls>
+                      <source src="{{song.fileMp3}}" type="audio/mpeg">
+                    </audio>
+                  </td>
+                  <td>
+                    <img src="{{song.fileImage}}" alt="banner" width="100" height="100">
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-secondary" (click)="deleteSong(song.id)">Delete</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </header>
+  <div>
+    <button type="button" class="btn btn-warning" [routerLink]="'/playlist'">Trở lại Playlist</button>
+  </div>
+</div>

@@ -9,8 +9,11 @@ import {IComment} from '../../comment/icomment';
 import {AuthenService} from '../../user/service/authen.service';
 import {ILikeSong} from '../../likesong/ILikeSong';
 import {LikeSongService} from '../../likesong/likesong.service';
-import {DataService} from '../../shared/ dataTransmission/data.service';
 
+import {PlayListService} from '../../play-list/play-list.service';
+import {PlayList} from '../../play-list/play-list';
+
+import {DataService} from '../../shared/ dataTransmission/data.service';
 
 @Component({
   selector: 'app-song-detail',
@@ -21,6 +24,10 @@ export class SongDetailComponent implements OnInit {
   song: ISong = {
     id: 0
   };
+  playlist: PlayList = {
+    id: 0
+  };
+  idPlaylist: any;
   // @ts-ignore
   comment: IComment = {
     content: '',
@@ -64,6 +71,7 @@ export class SongDetailComponent implements OnInit {
 
   currentUser: any = localStorage.getItem('user');
 
+  listPlaylist: PlayList[] = [];
 
   constructor(private songService: SongService,
               private activatedRoute: ActivatedRoute,
@@ -72,10 +80,17 @@ export class SongDetailComponent implements OnInit {
               private commentService: CommentService,
               private authen: AuthenService,
               private likeSongService: LikeSongService,
+              private playListService: PlayListService,
               private data: DataService) {
+    this.authen.currentUser.subscribe(value => {
+      this.currentUser = value;
+      this.getAllPlaylistByUsername(this.currentUser.username);
+    });
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.song.id = Number(paramMap.get('id'));
+      console.log(this.song.id);
       this.getSongById(this.song.id);
+      this.getPlaylistById(this.playlist.id);
       this.getAllCommentByIdSong(this.song.id);
       this.commentForm.get('createdBy')?.setValue(this.authen.currentUserValue);
       ///
@@ -147,7 +162,29 @@ export class SongDetailComponent implements OnInit {
       this.router.navigateByUrl('songs/detail/' + this.song.id);
       console.log(localStorage.getItem('statusLike'));
     });
+  }
 
+  getPlaylistById(id: number): any {
+    return this.playListService.getPlayListById(id, this.currentUser.username).subscribe(playlist => {
+      this.playlist = playlist;
+    });
+  }
+
+  getAllPlaylistByUsername(username: string): any {
+    this.playListService.getPlaylistByUsername(username).subscribe(value => {
+      this.listPlaylist = value;
+    });
+  }
+
+  addSongToPlayList(idSong: number, idPlaylist: number): any {
+    this.playListService.addSongToPlaylist(idSong, idPlaylist).subscribe(value => {
+      if (value == null) {
+        alert('Đã tồn tại bài hát trong playlist');
+      } else {
+        alert('Đã thêm bài hát vào playlist');
+        this.getAllPlaylistByUsername(this.currentUser.username);
+      }
+    });
   }
   delSong(id: number): any {
     if (confirm('Bạn có chắc muốn xoá bài hát này ?')){
@@ -160,7 +197,7 @@ export class SongDetailComponent implements OnInit {
     }
 
   }
-  playSong(song: any): any{
+  playSong(song: any): any {
     console.log(song);
     this.data.changeData(song);
   }

@@ -8,13 +8,15 @@ import { EditPlaylistComponent } from './edit-playlist/edit-playlist.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DetailComponent } from './detail/detail.component';
+import { ListsongPlaylistComponent } from './listsong-playlist/listsong-playlist.component';
 
 @NgModule({
   declarations: [
     PlaylistListComponent,
     CreatePlaylistComponent,
     EditPlaylistComponent,
-    DetailComponent
+    DetailComponent,
+    ListsongPlaylistComponent
   ],
     imports: [
         CommonModule,

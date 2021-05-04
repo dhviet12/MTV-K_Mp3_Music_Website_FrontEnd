@@ -12,6 +12,7 @@ import {AuthenService} from '../../user/service/authen.service';
 export class PlaylistListComponent implements OnInit {
   playlist: PlayList[] = [];
   currentUser: any;
+  keyword: any;
 
   constructor(private playlistService: PlayListService,
               private route: Router,
@@ -42,6 +43,14 @@ export class PlaylistListComponent implements OnInit {
         this.getAllPlayList();
       });
     }
+  }
+
+  searchPlaylist(): any {
+    this.playlistService.searchPlaylist(this.keyword).subscribe(searchPlaylist => {
+      console.log(this.keyword);
+      this.playlist = searchPlaylist;
+      console.log(this.playlist);
+    });
   }
 
 }

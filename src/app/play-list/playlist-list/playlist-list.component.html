@@ -7,8 +7,16 @@
             <div class="profile-head">
               <h2 style="text-align: center">
                 <strong>DANH SÁCH PLAYLIST</strong>
+                <div class="col">
+                  <form class="d-flex">
+                    <input [(ngModel)]="keyword" name="keyword" class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">
+                    <button (click)="searchPlaylist()" class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
               </h2>
+              <div>
               <button (click)="createPlayList()" class="btn btn-primary profile-button">Tạo playlist</button>
+              </div>
             </div>
           </div>
           <div class="col-md-12">
@@ -18,7 +26,6 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Tên Playlist</th>
-                  <th scope="col">Ngày tạo</th>
                   <th scope="col" colspan="2"></th>
                 </tr>
                 </thead>
@@ -26,10 +33,7 @@
                 <tr *ngFor="let playlist of playlist; let i = index">
                   <th scope="row">{{i + 1}}</th>
                   <td>
-                    <a [routerLink]="['/playlist/' + currentUser.username + '/' + playlist.id]">{{playlist.name}}</a>
-                  </td>
-                  <td>
-                    {{playlist.timeUpdate}}
+                    <a [routerLink]="['/playlist/listsongs/' + currentUser.username + '/' + playlist.id]">{{playlist.name}}</a>
                   </td>
                   <td>
                     <a [routerLink]="['/playlist/edit/' + currentUser.username + '/' + playlist.id]">
@@ -46,6 +50,9 @@
           </div>
         </div>
       </form>
+    </div>
+    <div>
+      <button [routerLink]="'/songs'" class="btn btn-warning profile-button">Danh sách bài hát</button>
     </div>
   </header>
 </div>

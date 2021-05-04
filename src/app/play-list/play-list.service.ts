@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {PlayList} from './play-list';
+import {ISong} from '../song/isong';
 
 const API_URL = `${environment.url}`;
 
@@ -35,6 +36,18 @@ export class PlayListService {
 
   editPlayListById(id: number, username: string, playlist: PlayList): Observable<PlayList> {
     return this.httpClient.put<PlayList>(API_URL + 'playlist/user/edit/' + username + '/' + id, playlist);
+  }
+
+  addSongToPlaylist(idSong: number, idPlaylist: number): Observable<PlayList> {
+    return this.httpClient.get<PlayList>(API_URL + 'playlist/user/' + idPlaylist + '/songs/' + idSong);
+  }
+
+  getPlaylistByUsername(username: string): Observable<PlayList[]>{
+    return this.httpClient.get<PlayList[]>(API_URL + 'playlist/user/' + username);
+  }
+
+  searchPlaylist(name: string): Observable<ISong[]> {
+    return this.httpClient.get<ISong[]>(API_URL + 'playlist/search?name=' + name);
   }
 
 }
