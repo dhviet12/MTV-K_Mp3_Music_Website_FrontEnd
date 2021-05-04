@@ -41,6 +41,14 @@
           <i class="la la-star"></i>
 <!--          <i class="la la-star-half-empty"></i>-->
         </div>
+
+        <form *ngIf="statusPlaylist=='null' && currentUser!=null" [formGroup]="likePlaylistForm" (ngSubmit)="like()">
+          <button type="submit" class="btn btn-info mt-3">Thích <i class="la la-thumbs-up"></i></button>
+        </form>
+        <form *ngIf="statusPlaylist=='true'" [formGroup]="likePlaylistForm" (ngSubmit)="unlike()">
+          <button type="submit" class="btn btn-warning mt-3">Bỏ thích <i class="la la-thumbs-down"></i></button>
+        </form>
+
         <div class="mt-4">
           <a href="javascript:void(0);" class="btn btn-pill btn-air btn-bold btn-danger">Phát tất cả</a>
         </div>
