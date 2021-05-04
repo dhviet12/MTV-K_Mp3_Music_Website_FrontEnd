@@ -58,12 +58,19 @@
 <!--</div>-->
 
 <!--giao diện mới-->
-
+<br> <br>
 <div class="section">
   <div class="heading">
     <div class="d-flex flex-wrap align-items-end">
       <div class="flex-grow-1">
-        <h4>Play list của "{{currentUser.username}}"</h4>
+        <h4>Playlist của "{{currentUser.username}}"</h4>
+      </div>
+      <div class="col">
+        <form class="d-flex">
+          <input [(ngModel)]="keyword" name="keyword" class="form-control me-2" type="search" placeholder="Tìm Kiếm Playlist"
+                 aria-label="Search">
+          <button (click)="searchPlaylist()" class="btn ion-ios-search" type="submit" style="background-color: violet"></button>
+        </form>
       </div>
     </div>
     <hr>
@@ -77,7 +84,7 @@
           </a>
         </div>
         <a [routerLink]="'/playlist/create/user'" class="custom-card--link mt-2 text-center">
-          <h6 class="mb-0">Thêm Play List</h6>
+          <h6 class="mb-0">Thêm Playlist</h6>
         </a>
       </div>
     </div>
@@ -86,14 +93,14 @@
     <div class="col-xl-2 col-lg-3 col-sm-4 col-6 pb-4" *ngFor="let playlist of playlist; let i = index">
       <div class="custom-card">
         <div class="custom-card--img">
-          <a href="javascript:void(0);" [routerLink]="['/playlist/detail/' + playlist.id]">
+          <a [routerLink]="['/playlist/detail/' + playlist.id]">
             <img src="../assets/images/cover/large/2.jpg" alt="Network" class="card-img--radius-md">
           </a>
         </div>
         <!--        đặt đường dẫn đến detail play list ở đây-->
-        <a [routerLink]="''" class="custom-card--link mt-2 text-center">
+        <a [routerLink]="['/playlist/detail/' + playlist.id]" class="custom-card--link mt-2 text-center">
           <h6 class="mb-0">
-            <a [routerLink]="['/playlist/detail/' + playlist.id]">{{playlist.name}}</a>
+            {{playlist.name}}
           </h6>
         </a>
         <a [routerLink]="['/playlist/edit/' + currentUser.username + '/' + playlist.id]">
