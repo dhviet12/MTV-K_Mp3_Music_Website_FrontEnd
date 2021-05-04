@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PlayList} from '../play-list';
 import {PlayListService} from '../play-list.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -42,7 +42,8 @@ export class CreatePlaylistComponent implements OnInit {
   }
 
   createPlayList(): any {
-    return this.playListService.createNewPlayList(this.playlist, this.currentUser.username).subscribe( () => {
+    alert('Tạo mới thành công');
+    return this.playListService.createNewPlayList(this.playlist, this.currentUser.username).subscribe(() => {
       console.log(this.playlist);
       this.router.navigate(['/playlist']);
     });
