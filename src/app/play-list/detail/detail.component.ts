@@ -33,61 +33,93 @@ export class DetailComponent implements OnInit {
       phone: '',
       avatar: '',
       token: '',
-    },
-    user: {
-      id: 0,
-      fullName: '',
-      avatar: ''
-    },
+    }
   };
   listSong: ISong[] = [];
   currentUser: any;
   idPlaylist: any;
   listPlaylist: PlayList[] = [];
+  checkUser = false;
 
-  constructor(private playListService: PlayListService,
+  constructor(private playlistService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder,
               private commentService: CommentService,
               private authenService: AuthenService,
-              private songService: SongService) {
+              private songService: SongService, ) {
     this.authenService.currentUser.subscribe(value => {
       this.currentUser = value;
     });
     this.sub = this.activatedRoute.paramMap.subscribe((p: ParamMap) => {
       this.playList.id = Number(p.get('id'));
       this.getPlaylistById(this.playList.id);
-      this.getAllCommentByPlaylist(this.playList.id);
+      this.getAllCommentByPlaylistId(this.playList.id);
       this.getPlaylistByIdAndUserName(this.playList.id, this.currentUser.username);
       // this.commentForm.get('user')?.setValue(this.authenService.currentPlaylistValue);
+      this.getAllCommentByPlaylistId(this.playList.id);
+      this.commentForm.get('createdBy')?.setValue(this.authenService.currentUserValue);
+      console.log(this.authenService.currentUserValue);
     });
   }
   commentForm = this.formBuilder.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
-    playlist: [''],
-    user: ['']
+    playList: [''],
+    createdBy: ['']
   });
 
-  getAllCommentByPlaylist(id: number): any{
+  getAllCommentByPlaylistId(id: number): any {
     return this.commentService.getAllCommentByPlayListId(id).subscribe((listCommnet) => {
       this.comments = listCommnet;
     });
   }
-  getPlaylistById(id: number): any {
-    return this.playListService.getPlaylistById(id).subscribe(p => {
-      // @ts-ignore
-      this.playList = p;
-    });
-  }
+
   getPlaylistByIdAndUserName(id: number, username: string): any {
-    return this.playListService.getPlayListById(id, username).subscribe(playlist => {
+    return this.playlistService.getPlayListById(id, username).subscribe(playlist => {
       this.playList = playlist;
     });
   }
-  createComment(): any {
+
+  getPlaylistById(id: number): any{
+    return this.playlistService.getPlaylistById(id).subscribe(p => {
+      this.playList = p;
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  check() {
+    if (this.authenService.currentUserValue == null){
+      alert('Mời bạn đăng nhập để comment');
+      this.router.navigateByUrl('user/login');
+      return this.checkUser = false;
+    }else {
+      return this.checkUser = true;
+    }}
+
+  createComment() {
     this.commentForm.get('playList')?.setValue(this.playList);
     return this.commentService.createCommentPlaylist(this.commentForm.value).subscribe(() => {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigateByUrl('playlist/detail/' + this.playList.id);
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  public delete(id: any) {
+    if (confirm('Bạn muốn xóa ?')){
+      this.commentService.deleteCommentPlaylist(id).subscribe(() => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl('playlist/detail/' + this.playList.id);
+      });
+    }
+  }
+
+  // tslint:disable-next-line:typedef
+  edit(id: any){
+    prompt('Nội dung');
+    this.commentService.editCommentPlaylist(id, this.comment).subscribe( () => {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl('playlist/detail/' + this.playList.id);
@@ -112,13 +144,13 @@ export class DetailComponent implements OnInit {
   }
 
   getAllPlaylistByUsername(username: string): any {
-    this.playListService.getPlaylistByUsername(username).subscribe(value => {
+    this.playlistService.getPlaylistByUsername(username).subscribe(value => {
       this.listPlaylist = value;
     });
   }
 
   addSongToPlayList(idSong: number, idPlaylist: number): any {
-    this.playListService.addSongToPlaylist(idSong, idPlaylist).subscribe(value => {
+    this.playlistService.addSongToPlaylist(idSong, idPlaylist).subscribe(value => {
       if (value == null) {
         alert('Đã tồn tại bài hát trong playlist');
       } else {
