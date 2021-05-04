@@ -3,16 +3,19 @@ import {ISong} from '../isong';
 import {SongService} from '../song.service';
 import {AuthenService} from '../../user/service/authen.service';
 import {Router} from '@angular/router';
+import {DataService} from '../../shared/ dataTransmission/data.service';
 
 @Component({
   selector: 'app-my-song',
   templateUrl: './my-song.component.html',
   styleUrls: ['./my-song.component.scss']
 })
+
 export class MySongComponent implements OnInit {
   constructor(private songService: SongService,
               private authen: AuthenService,
-              private router: Router) { }
+              private router: Router,
+              private data: DataService) { }
   mySongs: ISong[] = [];
   ngOnInit(): void {
     this.songsOfCurrentUser();
@@ -32,6 +35,9 @@ export class MySongComponent implements OnInit {
         this.router.navigateByUrl('songs/my-song') ;
       });
     }
+  }
 
+  changeSongAdd(id: any): any{
+    this.data.changeSong(id);
   }
 }

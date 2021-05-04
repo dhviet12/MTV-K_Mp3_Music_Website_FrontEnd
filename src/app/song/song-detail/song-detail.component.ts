@@ -192,7 +192,7 @@ export class SongDetailComponent implements OnInit {
 
   }
   playSong(song: any): any {
-    console.log(song);
+    // console.log(song);
     this.data.changeData(song);
   }
 

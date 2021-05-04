@@ -51,7 +51,7 @@ export class PlayListService {
 
   //
   getTop10PlaylistNew(): Observable<PlayList[]> {
-    return this.httpClient.get<PlayList[]>(API_URL+ 'playlist/top10newplaylist');
+    return this.httpClient.get<PlayList[]>(API_URL + 'playlist/top10newplaylist');
   }
 
 }
