@@ -4,8 +4,6 @@ import {RegisterComponent} from "./user/register/register.component";
 import {LoginComponent} from "./user/login/login.component";
 import {SignoutComponent} from "./user/signout/signout.component";
 
-
-// @ts-ignore
 const routes: Routes = [
   {
     path: 'songs',
@@ -29,6 +27,10 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+  },
+  {
+    path: 'playlist',
+    loadChildren: () => import('./play-list/play-list.module').then(module => module.PlayListModule)
   }
 ];
 

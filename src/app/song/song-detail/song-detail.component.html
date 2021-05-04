@@ -32,6 +32,25 @@
       </div>
     </div>
 
+
+    <form *ngIf="statusLike=='null' && currentUser!=null" [formGroup]="likeSongForm" (ngSubmit)="like()">
+      <div class="mb-4">
+        <div class="text-right mt-2">
+          <button type="submit" class="btn btn-info" >Like</button>
+        </div>
+      </div>
+    </form>
+
+    <form  *ngIf="statusLike=='true'" [formGroup]="likeSongForm" (ngSubmit)="unlike()">
+      <div class="mb-4">
+        <div class="text-right mt-2">
+          <button type="submit" class="btn btn-warning" >Unlike</button>
+        </div>
+      </div>
+    </form>
+
+
+
     <!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
     <div class="section">
       <!-- Begin | Line Tabs [[ Find at scss/framework/components/line-tabs.scss ]] -->
@@ -88,26 +107,27 @@
     <!-- End | Section -->
 
     <!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
-    <div class="section">
-      <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+    <div class="section" >
+      <form [formGroup]="commentForm"  (ngSubmit)="createComment()">
       <div class="mb-4">
         <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control" required></textarea>
         <div class="text-right mt-2">
-          <button type="submit" class="btn btn-info" [disabled]="commentForm.invalid">Comment</button>
+          <button type="submit" class="btn btn-info" (click)="check()"  [disabled]="commentForm.invalid">Comment</button>
         </div>
       </div>
-      </form>
-      <div class="d-flex mb-4">
-        <div *ngFor="let c of comments">
-        <div class="avatar avatar-sm avatar-circle">
-          <img src="{{c.createdBy.avatar}}" alt="avatar">
-        </div>
-        <div class="pl-3 flex-grow-1 flex-basis-0">
-          <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
-          <p class="mb-2">{{c.content}}</p>
+      </form><div class="d-flex mb-4">
+      <table>
+          <div *ngFor="let c of comments">
+            <div class="avatar avatar-sm avatar-circle">
+              <img src="{{c.createdBy.avatar}}" alt="avatar">
+            </div>
+            <div class="pl-3 flex-grow-1 flex-basis-0">
+              <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
+              <p class="mb-2">{{c.content}}</p>
+            </div>
           </div>
-        </div>
-      </div>
+      </table>
+    </div>
     </div>
     <!-- End | Section -->
 
