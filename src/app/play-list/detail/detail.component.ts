@@ -47,7 +47,7 @@ export class DetailComponent implements OnInit {
               private formBuilder: FormBuilder,
               private commentService: CommentService,
               private authenService: AuthenService,
-              private songService: SongService, ) {
+              private songService: SongService) {
     this.authenService.currentUser.subscribe(value => {
       this.currentUser = value;
     });
