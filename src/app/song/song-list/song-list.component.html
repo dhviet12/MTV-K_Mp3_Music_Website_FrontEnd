@@ -3,14 +3,14 @@
   <div class="right-sidebar-body" data-scrollable="true">
     <ul class="list-group list-group-flush">
       <!-- Begin | Custom List Item -->
-      <li class="custom-list--item list-group-item" *ngFor="let s of songList">
+      <li class="custom-list--item list-group-item" *ngFor="let s of songList, let i = index">
         <div class="text-dark custom-card--inline">
           <div class="custom-card--inline-img">
-            <img src="{{s.fileImage}}" alt="cover" class="card-img--radius-sm" (click)="playAlbum(songList)">
+            <img src="{{s.fileImage}}" alt="cover" class="card-img--radius-sm" (click)="playSong(i)">
           </div>
 
           <div class="custom-card--inline-desc">
-            <p class="text-truncate mb-0" (click)="playAlbum(songList)">{{s.nameSong}}</p>
+            <p class="text-truncate mb-0" (click)="playSong(i)">{{s.nameSong}}</p>
             <p class="text-truncate text-muted font-sm">{{s.singer}}</p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Subject} from 'rxjs';
+import {Audio} from '../audio';
 
 @Component({
   selector: 'app-play-music',
@@ -18,11 +19,11 @@ export class PlayMusicComponent implements OnInit {
   audioVolume = 100;
   isAudioEnded = new Subject();
   isMute = false;
-  selectedAudio: any;
-  currentAudioIndex = 0;
+  selectedAudio: Audio = {};
+  @Input() currentAudioIndex: any;
   repeatActive = false;
   isError = false;
-  @Input() audioList: any[] = [];
+  @Input() audioList: Audio[] = [];
   @Input() next = true;
   @Input() previous = true;
   @Input() shuffle = true;
