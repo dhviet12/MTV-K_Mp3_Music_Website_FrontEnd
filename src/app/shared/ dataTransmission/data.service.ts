@@ -12,7 +12,7 @@ export class DataService {
   keyWordSource = new BehaviorSubject<string>('truyền key word');
   keyWord = this.keyWordSource.asObservable();
   // lay ra playlist
-  albumSourse = new BehaviorSubject<any>('truyền album hiện tại');
+  albumSourse = new BehaviorSubject<any>('');
   currentAlbum = this.albumSourse.asObservable();
 
   constructor() {

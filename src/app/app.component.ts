@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ISong} from './song/isong';
 import {DataService} from './shared/ dataTransmission/data.service';
 import {PlayMusicComponent} from './shared/audio/play-music/play-music.component';
@@ -30,39 +30,39 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // this.loadData();
-    // this.loadAlbum();
-    // console.log(this.audioList + '??');
+    this.loadAlbum();
+    // console.log(this.audioList);
   }
 
-  // loadData(): any {
-  //   this.data.currentData.subscribe(songCurrent => {
-  //     this.songCurrent = songCurrent;
-  //     console.log('load' + this.songCurrent.nameSong);
-  //     if (this.songCurrent !== null) {
-  //       this.play = true;
-  //     }
-  //     this.audioList[0].id = String(this.songCurrent.id);
-  //     this.audioList[0].url = this.songCurrent.fileMp3;
-  //     if (this.songCurrent.nameSong != null) {
-  //       this.audioList[0].title = this.songCurrent.nameSong;
-  //     }
-  //     this.audioList[0].cover = this.songCurrent.fileImage;
-  //   });
-  // }
-  //
-  // loadAlbum(): any {
-  //   this.data.currentAlbum.subscribe(album => {
-  //     this.album = album;
-  //     console.log(this.album + 'dữ liệu nhận đc');
-  //     // tslint:disable-next-line:prefer-for-of
-  //     for (let i = 0; i < this.album.length; i++) {
-  //       this.audio.id = String(this.album[i].id);
-  //       this.audio.url = this.album[i].fileMp3;
-  //       this.audio.cover = this.album[i].fileImage;
-  //       this.audio.title = this.album[i].nameSong;
-  //       this.audio.artist = String(this.album[i].singer);
-  //       this.audioList.push(this.audio);
-  //     }
-  //   });
-  // }
+  loadData(): any {
+    this.data.currentData.subscribe(songCurrent => {
+      this.songCurrent = songCurrent;
+      console.log('load' + this.songCurrent.nameSong);
+      if (this.songCurrent !== null) {
+        this.play = true;
+      }
+      this.audioList[0].id = String(this.songCurrent.id);
+      this.audioList[0].url = this.songCurrent.fileMp3;
+      if (this.songCurrent.nameSong != null) {
+        this.audioList[0].title = this.songCurrent.nameSong;
+      }
+      this.audioList[0].cover = this.songCurrent.fileImage;
+    });
+  }
+
+  loadAlbum(): any {
+    this.data.currentAlbum.subscribe(album => {
+      this.album = album;
+      console.log(this.album.length + 'dữ liệu nhận đc');
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.album.length; i++) {
+        this.audio.id = String(this.album[i].id);
+        this.audio.url = this.album[i].fileMp3;
+        this.audio.cover = this.album[i].fileImage;
+        this.audio.title = this.album[i].nameSong;
+        this.audio.artist = String(this.album[i].singer);
+        this.audioList.push(this.audio);
+      }
+    });
+  }
 }
