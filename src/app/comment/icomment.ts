@@ -9,6 +9,5 @@ export interface IComment {
   content?: string;
   createdBy: IUserToken;
   song?: ISong;
-  user: IUser;
   playList?: PlayList;
 }

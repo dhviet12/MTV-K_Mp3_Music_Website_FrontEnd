@@ -41,11 +41,6 @@ export class SongDetailComponent implements OnInit {
       phone: '',
       avatar: '',
       token: '',
-    },
-    user: {
-      id: 0,
-      fullName: '',
-      avatar: ''
     }
   };
   checkUser = false;
