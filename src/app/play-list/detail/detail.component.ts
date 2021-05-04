@@ -91,6 +91,15 @@ export class DetailComponent implements OnInit {
       });
     }
   }
+  // tslint:disable-next-line:typedef
+  edit(id: any){
+    prompt('Nội dung');
+    this.commentService.editCommentPlaylist(id, this.comment).subscribe( () => {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigateByUrl('playlist/detail/' + this.playList.id);
+    });
+  }
   ngOnInit(): void {
   }
 
