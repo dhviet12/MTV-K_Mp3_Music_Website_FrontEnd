@@ -31,8 +31,8 @@
   <div class="col-xl-9 col-lg-8 col-sm-7">
     <div class="row pt-4">
       <div class="col-xl-8 col-lg-6">
-        <h5>tên play list</h5>
-        <p>ngày tạo</p>
+        <h5>{{playList.name}}</h5>
+        <p>{{playList.timeCreate | date:'dd/MM/yyyy'}}</p>
         <div class="text-warning stars">
           <i class="la la-star"></i>
           <i class="la la-star"></i>
@@ -83,7 +83,7 @@
   <div class="tab-content" id="artistDetailsContent">
     <div class="tab-pane fade show active" id="song" role="tabpanel" aria-labelledby="song-tab">
       <div class="row align-items-end">
-        <span class="col-6 font-weight-bold">(độ dài song.length) Track</span>
+        <span class="col-6 font-weight-bold">Track</span>
         <div class="col-6 ml-auto">
           <form action="#" class="form-inline justify-content-end">
             <label class="mr-2" for="filter1">Sắp xếp:</label>
@@ -98,15 +98,18 @@
       <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
       <div class="custom-list">
         <!-- Begin | Custom List Item -->
-        <div class="custom-list--item">
+        <div class="custom-list--item" *ngFor="let song of listSong; let i = index">
           <div class="text-dark custom-card--inline">
             <div class="custom-card--inline-img">
               <img src="../assets/images/cover/small/1.jpg" alt="" class="card-img--radius-sm">
             </div>
-
             <div class="custom-card--inline-desc">
-              <p class="text-truncate mb-0">tên bài hát abc</p>
-              <p class="text-truncate text-muted font-sm">tên ca sỹ</p>
+              <p class="text-truncate mb-0">
+                <a [routerLink]="'/songs/detail/' + song.id">
+                  {{song.nameSong}}
+                </a>
+              </p>
+              <p class="text-truncate text-muted font-sm">{{song.author}}</p>
             </div>
           </div>
           <ul class="custom-card--labels d-flex ml-auto">
@@ -120,22 +123,22 @@
                 <li class="dropdown-item">
                   <a href="javascript:void(0);" class="dropdown-link favorite">
                     <i class="la la-heart-o"></i>
-                    <span>yêu thích</span>
+                    <span>Yêu thích</span>
                   </a>
                 </li>
-                <li class="dropdown-item">
-                  <a href="javascript:void(0);" class="dropdown-link">
-                    <i class="la la-plus"></i>
-                    <span>Add to Playlist</span>
-                  </a>
-                </li>
+<!--                <li class="dropdown-item">-->
+<!--                  <a href="javascript:void(0);" class="dropdown-link">-->
+<!--                    <i class="la la-plus"></i>-->
+<!--                    <span>Add to Playlist</span>-->
+<!--                  </a>-->
+<!--                </li>-->
                 <li class="dropdown-item">
                   <a href="javascript:void(0);" class="dropdown-link">
                     <i class="la la-download"></i>
                     <span>Download</span>
                   </a>
                 </li>
-                <li class="dropdown-item">
+                <li class="dropdown-item" (click)="deleteSong(song.id)">
                   <a href="javascript:void(0);" class="dropdown-link">
                     <i class="la la-share-alt"></i>
                     <span>Xóa</span>
