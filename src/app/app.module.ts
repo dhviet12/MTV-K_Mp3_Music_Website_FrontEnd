@@ -21,6 +21,8 @@ import {PlayMusicComponent} from './shared/audio/play-music/play-music.component
 import {SongModule} from './song/song.module';
 import { SearchListComponent } from './shared/searchBar/search-list/search-list.component';
 import {FormsModule} from '@angular/forms';
+import {HomeComponent} from './shared/home/home.component';
+import {PlayListModule} from './play-list/play-list.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import {FormsModule} from '@angular/forms';
     SearchComponent,
     TimeConversionPipe,
     PlayMusicComponent,
-    SearchListComponent
+    SearchListComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,9 @@ import {FormsModule} from '@angular/forms';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
     SongModule,
-    FormsModule
+    FormsModule,
+    //
+    PlayListModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

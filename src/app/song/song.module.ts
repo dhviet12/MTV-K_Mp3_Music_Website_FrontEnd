@@ -10,6 +10,8 @@ import { EditSongComponent } from './edit-song/edit-song.component';
 import {TopSongsViewComponent} from './top-songs-view/top-songs-view.component';
 import {TopSongsNewComponent} from './top-songs-new/top-songs-new.component';
 import { MySongComponent } from './my-song/my-song.component';
+import { TopthinhhanhComponent } from './topthinhhanh/topthinhhanh.component';
+import { TopnghenhieuComponent } from './topnghenhieu/topnghenhieu.component';
 
 
 @NgModule({
@@ -20,12 +22,16 @@ import { MySongComponent } from './my-song/my-song.component';
         EditSongComponent,
         TopSongsViewComponent,
         TopSongsNewComponent,
-        MySongComponent
+        MySongComponent,
+        TopthinhhanhComponent,
+        TopnghenhieuComponent,
     ],
-    exports: [
-        SongDetailComponent,
-        SongListComponent
-    ],
+  exports: [
+    SongDetailComponent,
+    SongListComponent,
+    TopSongsNewComponent,
+    TopSongsViewComponent
+  ],
     imports: [
         CommonModule,
         SongRoutingModule,

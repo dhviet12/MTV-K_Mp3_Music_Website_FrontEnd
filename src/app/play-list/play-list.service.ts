@@ -49,4 +49,9 @@ export class PlayListService {
     return this.httpClient.get<ISong[]>(API_URL + 'playlist/search?name=' + name);
   }
 
+  //
+  getTop10PlaylistNew(): Observable<PlayList[]> {
+    return this.httpClient.get<PlayList[]>(API_URL+ 'playlist/top10newplaylist');
+  }
+
 }
