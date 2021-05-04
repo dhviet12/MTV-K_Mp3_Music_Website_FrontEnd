@@ -12,12 +12,12 @@ import {PlayList} from '../../../play-list/play-list';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+
   constructor(private authen: AuthenService,
               private tokenStorageService: TokenStorageService,
               private router: Router,
               private data: DataService,
-              private playlistService: PlayListService,
-  ) {
+              private playlistService: PlayListService) {
   }
 
   checkLogin = false;
@@ -66,9 +66,13 @@ export class SearchComponent implements OnInit {
     this.data.currentSongAdd.subscribe(songId => {
       this.songId = songId;
     });
-    this.playlistService.addSongToPlaylist(this.albumSelected.id, this.songId);
-    console.log(this.songId);
-    console.log(this.albumSelected.id);
-    alert('Đã thêm bào hát ' + this.albumSelected.name);
+    this.playlistService.addSongToPlaylist(this.songId, this.albumSelected.id).subscribe(value => {
+      if (value == null) {
+        alert('Đã tồn tại bài hát trong playlist');
+      } else {
+        alert('Đã thêm bài hát vào playlist');
+      }
+    });
   }
+
 }

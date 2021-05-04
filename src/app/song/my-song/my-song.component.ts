@@ -10,6 +10,7 @@ import {DataService} from '../../shared/ dataTransmission/data.service';
   templateUrl: './my-song.component.html',
   styleUrls: ['./my-song.component.scss']
 })
+
 export class MySongComponent implements OnInit {
   constructor(private songService: SongService,
               private authen: AuthenService,

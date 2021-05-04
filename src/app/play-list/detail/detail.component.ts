@@ -13,7 +13,6 @@ import {LikeplaylistService} from '../../likeplaylist/likeplaylist.service';
 import {ISong} from '../../song/isong';
 import {SongService} from '../../song/song.service';
 
-
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -39,7 +38,6 @@ export class DetailComponent implements OnInit {
       token: '',
     }
   };
-
 
   // code cua Viet
   currentUser: any = localStorage.getItem('user');
@@ -73,7 +71,6 @@ export class DetailComponent implements OnInit {
               private authenService: AuthenService,
               private likePlaylistService: LikeplaylistService,
               private songService: SongService) {
-
     this.authenService.currentUser.subscribe(value => {
       this.currentUser = value;
     });
@@ -133,6 +130,7 @@ export class DetailComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line:typedef
   createComment() {
     this.commentForm.get('playList')?.setValue(this.playList);
     return this.commentService.createCommentPlaylist(this.commentForm.value).subscribe(() => {
