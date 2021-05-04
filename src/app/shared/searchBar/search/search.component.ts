@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {DataService} from '../../ dataTransmission/data.service';
 import {ISong} from '../../../song/isong';
 import {SongService} from '../../../song/song.service';
+import {PlayListService} from '../../../play-list/play-list.service';
+import {PlayList} from '../../../play-list/play-list';
 
 @Component({
   selector: 'app-search',
@@ -15,8 +17,11 @@ export class SearchComponent implements OnInit {
   constructor(private authen: AuthenService,
               private tokenStorageService: TokenStorageService,
               private router: Router,
-              private data: DataService) { }
+              private data: DataService,
+              private playlistService: PlayListService,
+              ) { }
   checkLogin = false;
+  playlist: PlayList[] = [];
   user: any;
   keyWord: any;
   ngOnInit(): void {
@@ -41,5 +46,12 @@ export class SearchComponent implements OnInit {
     this.router.onSameUrlNavigation = 'reload';
     // @ts-ignore
     this.router.navigateByUrl('songs/search');
+  }
+
+  getAllPlayList(): any {
+    this.playlistService.getAllPlayList(this.authen.currentUserValue.username).subscribe(playlist => {
+      this.playlist = playlist;
+      console.log(this.playlist);
+    }, error => console.log(error));
   }
 }

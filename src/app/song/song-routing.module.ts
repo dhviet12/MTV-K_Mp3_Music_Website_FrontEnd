@@ -42,11 +42,7 @@ const routes: Routes = [
   {
     path: 'top10/view',
     component: TopSongsViewComponent
-  },
-  {
-    path: 'top10/new',
-    component: TopSongsNewComponent
-  },
+  }
 ];
 
 @NgModule({
