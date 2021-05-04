@@ -124,6 +124,7 @@
             <div class="pl-3 flex-grow-1 flex-basis-0">
               <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
               <p class="mb-2">{{c.content}}</p>
+              <a type="submit" (click)="delete(c.id)">delete</a>
             </div>
           </div>
       </table>

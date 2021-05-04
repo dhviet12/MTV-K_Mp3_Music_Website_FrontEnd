@@ -149,4 +149,14 @@ export class SongDetailComponent implements OnInit {
     });
 
   }
+  // tslint:disable-next-line:typedef
+  public delete(id: any) {
+    if (confirm('Bạn muốn xóa ?')){
+      this.commentService.deleteComment(id).subscribe(() => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl('songs/detail/' + this.song.id);
+      });
+    }
+  }
 }
