@@ -81,6 +81,16 @@ export class DetailComponent implements OnInit {
       this.router.navigateByUrl('playlist/detail/' + this.playList.id);
     });
   }
+  // tslint:disable-next-line:typedef
+  public delete(id: any) {
+    if (confirm('Bạn muốn xóa ?')){
+      this.commentService.deleteCommentPlaylist(id).subscribe(() => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl('playlist/detail/' + this.playList.id);
+      });
+    }
+  }
   ngOnInit(): void {
   }
 

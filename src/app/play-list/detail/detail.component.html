@@ -17,6 +17,7 @@
           <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
           <p class="mb-2">{{c.content}}</p>
         </div>
+        <button type="button" (click)="delete(c.id)" >delete</button>
       </div>
     </table>
   </div>
