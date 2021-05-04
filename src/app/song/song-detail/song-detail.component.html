@@ -32,7 +32,7 @@
         <div class="pt-3 pt-lg-0 text-lg-right">
           <button class="btn btn-pill btn-air btn-warning btn-icon-only"><i class="la la-plus"></i></button>
           <button class="btn btn-pill btn-air btn-success btn-icon-only"><i class="la la-download"></i></button>
-          <button class="btn btn-pill btn-air btn-brand btn-icon-only" (click)="delSong(song.id)"><i class="la la-trash"></i></button>
+          <button *ngIf="currentUser!=null" class="btn btn-pill btn-air btn-brand btn-icon-only" (click)="delSong(song.id)"><i class="la la-trash"></i></button>
         </div>
       </div>
     </div>
