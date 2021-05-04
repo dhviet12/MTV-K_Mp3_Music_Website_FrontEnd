@@ -52,14 +52,15 @@ export class DetailComponent implements OnInit {
               private commentService: CommentService,
               private authenService: AuthenService,
               private songService: SongService) {
+    this.authenService.currentUser.subscribe(value => {
+      this.currentUser = value;
+    });
     this.sub = this.activatedRoute.paramMap.subscribe((p: ParamMap) => {
       this.playList.id = Number(p.get('id'));
       this.getPlaylistById(this.playList.id);
       this.getAllCommentByPlaylist(this.playList.id);
+      this.getPlaylistByIdAndUserName(this.playList.id, this.currentUser.username);
       // this.commentForm.get('user')?.setValue(this.authenService.currentPlaylistValue);
-    });
-    this.authenService.currentUser.subscribe(value => {
-      this.currentUser = value;
     });
   }
   commentForm = this.formBuilder.group({
@@ -77,6 +78,11 @@ export class DetailComponent implements OnInit {
     return this.playListService.getPlaylistById(id).subscribe(p => {
       // @ts-ignore
       this.playList = p;
+    });
+  }
+  getPlaylistByIdAndUserName(id: number, username: string): any {
+    return this.playListService.getPlayListById(id, username).subscribe(playlist => {
+      this.playList = playlist;
     });
   }
   createComment(): any {
