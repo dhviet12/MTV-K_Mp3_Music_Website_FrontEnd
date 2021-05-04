@@ -1,72 +1,62 @@
-<div class="container-fluid">
-  <div class="row card-body text-center">
-    <div class="col">có <span style="color: blue">{{songList.length}}</span> bài hát</div>
-    <div class="col">
-      <button type="button" class="btn btn-outline-primary" [routerLink]="'/songs/create'">Thêm bài mới</button>
-    </div>
-    <div class="col">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="'/songs/top10/view'">10 Bài Hát Có Nhiều Lượt Nghe Nhất</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="'/songs/top10/new'">10 Bài Hát Mới Nhất</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col">
-      <form class="d-flex">
-        <input [(ngModel)]="keyword" name="keyword" class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">
-        <button (click)="searchSong()" class="btn btn-outline-success" type="submit">Tìm Kiếm</button>
-      </form>
-    </div>
+<aside id="rightSidebar">
+  <div class="right-sidebar-header">Nghe gì hôm nay</div>
+  <div class="right-sidebar-body" data-scrollable="true">
+    <ul class="list-group list-group-flush">
+      <!-- Begin | Custom List Item -->
+      <li class="custom-list--item list-group-item" *ngFor="let s of songList">
+        <div class="text-dark custom-card--inline">
+          <div class="custom-card--inline-img">
+            <img src="{{s.fileImage}}" alt="cover" class="card-img--radius-sm" (click)="playAlbum(songList)">
+          </div>
+
+          <div class="custom-card--inline-desc">
+            <p class="text-truncate mb-0" (click)="playAlbum(songList)">{{s.nameSong}}</p>
+            <p class="text-truncate text-muted font-sm">{{s.singer}}</p>
+          </div>
+        </div>
+        <ul class="custom-card--labels d-flex ml-auto">
+          <li class="dropleft">
+            <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="la la-ellipsis-h"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link favorite">
+                  <i class="la la-heart-o"></i>
+                  <span>Yêu thích</span>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-plus"></i>
+                  <span>Thêm vào Playlist</span>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-download"></i>
+                  <span>Download</span>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="javascript:void(0);" class="dropdown-link">
+                  <i class="la la-share-alt"></i>
+                  <span>Chia sẻ</span>
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a [routerLink]="'/songs/detail/'+ s.id" class="dropdown-link">
+                  <i class="la la-info-circle"></i>
+                  <span>Chi tiết</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <!-- End | Custom List Item -->
+
+    </ul>
   </div>
-  <table class="table text-center">
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Tên bài hát</th>
-      <th scope="col">Giới thiệu</th>
-      <th scope="col">MP3</th>
-      <th scope="col">Ảnh</th>
-      <th scope="col">Tác Giả</th>
-      <th scope="col">Ca Sỹ</th>
-      <th scope="col">Ablum</th>
-      <th scope="col">Người đăng</th>
-      <th scope="col">Thể loại</th>
-      <th scope="col" colspan="2">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let s of songList, let i = index">
-      <th scope="row">{{i + 1}}</th>
-      <td><a [routerLink]="'/songs/detail/'+s.id">{{s.nameSong}}</a></td>
-      <td>{{s.description}}</td>
-      <td>
-          <audio controls>
-            <source src="{{s.fileMp3}}" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-      </td>
-      <td><img src="{{s.fileImage}}" alt="banner" width="100" height="100"></td>
-      <td>{{s.author}}</td>
-      <td>{{s.author}}</td>
-      <td>{{s.author}}</td>
-      <td>{{s.author}}</td>
-      <td>{{s.author}}</td>
-      <td>
-        <button type="button" class="btn btn-outline-primary" [routerLink]="'/songs/edit/' + s.id">Edit</button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-outline-primary" (click)="delSong(s.id)">
-          Del
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+</aside>
