@@ -31,14 +31,9 @@ export class DetailComponent implements OnInit {
       phone: '',
       avatar: '',
       token: '',
-    },
-    user: {
-      id: 0,
-      fullName: '',
-      avatar: ''
-    },
+    }
   };
-
+  checkUser = false;
   constructor(private playlistService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -48,28 +43,38 @@ export class DetailComponent implements OnInit {
     this.sub = this.activatedRoute.paramMap.subscribe((p: ParamMap) => {
       this.playList.id = Number(p.get('id'));
       this.getPlaylistById(this.playList.id);
-      this.getAllCommentByPlaylist(this.playList.id);
-      // this.commentForm.get('user')?.setValue(this.authenService.currentPlaylistValue);
+      this.getAllCommentByPlaylistId(this.playList.id);
+      this.commentForm.get('createdBy')?.setValue(this.authenService.currentUserValue);
+      console.log(this.authenService.currentUserValue);
     });
   }
   commentForm = this.formBuilder.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
-    playlist: [''],
-    user: ['']
+    playList: [''],
+    createdBy: ['']
   });
 
-  getAllCommentByPlaylist(id: number): any{
+  getAllCommentByPlaylistId(id: number){
     return this.commentService.getAllCommentByPlayListId(id).subscribe((listCommnet) => {
       this.comments = listCommnet;
     });
+
   }
-  getPlaylistById(id: number): any {
+  getPlaylistById(id: number): any{
     return this.playlistService.getPlaylistById(id).subscribe(p => {
-      // @ts-ignore
       this.playList = p;
     });
   }
-  createComment(): any {
+  // tslint:disable-next-line:typedef
+  check() {
+    if (this.authenService.currentUserValue == null){
+      alert('Mời bạn đăng nhập để comment');
+      this.router.navigateByUrl('user/login');
+      return this.checkUser = false;
+    }else {
+      return this.checkUser = true;
+    }}
+  createComment() {
     this.commentForm.get('playList')?.setValue(this.playList);
     return this.commentService.createCommentPlaylist(this.commentForm.value).subscribe(() => {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -77,7 +82,25 @@ export class DetailComponent implements OnInit {
       this.router.navigateByUrl('playlist/detail/' + this.playList.id);
     });
   }
-
+  // tslint:disable-next-line:typedef
+  public delete(id: any) {
+    if (confirm('Bạn muốn xóa ?')){
+      this.commentService.deleteCommentPlaylist(id).subscribe(() => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl('playlist/detail/' + this.playList.id);
+      });
+    }
+  }
+  // tslint:disable-next-line:typedef
+  edit(id: any){
+    prompt('Nội dung');
+    this.commentService.editCommentPlaylist(id, this.comment).subscribe( () => {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigateByUrl('playlist/detail/' + this.playList.id);
+    });
+  }
   ngOnInit(): void {
   }
 
