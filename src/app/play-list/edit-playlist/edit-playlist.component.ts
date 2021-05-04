@@ -48,6 +48,7 @@ export class EditPlaylistComponent implements OnInit {
   }
 
   editPlaylist(id: any): any {
+    alert('Sửa thành công');
     this.playListService.editPlayListById(id, this.currentUser.username, this.playlist).subscribe(() => {
       this.router.navigate(['/playlist']);
     });

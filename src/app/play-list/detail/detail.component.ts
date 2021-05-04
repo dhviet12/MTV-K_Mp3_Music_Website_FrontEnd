@@ -7,6 +7,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {CommentService} from '../../comment/comment.service';
 import {AuthenService} from '../../user/service/authen.service';
 import {Subscription} from 'rxjs';
+import {ISong} from '../../song/isong';
+import {SongService} from '../../song/song.service';
 
 @Component({
   selector: 'app-detail',
@@ -38,18 +40,26 @@ export class DetailComponent implements OnInit {
       avatar: ''
     },
   };
+  listSong: ISong[] = [];
+  currentUser: any;
+  idPlaylist: any;
+  listPlaylist: PlayList[] = [];
 
-  constructor(private playlistService: PlayListService,
+  constructor(private playListService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder,
               private commentService: CommentService,
-              private authenService: AuthenService) {
+              private authenService: AuthenService,
+              private songService: SongService) {
     this.sub = this.activatedRoute.paramMap.subscribe((p: ParamMap) => {
       this.playList.id = Number(p.get('id'));
       this.getPlaylistById(this.playList.id);
       this.getAllCommentByPlaylist(this.playList.id);
       // this.commentForm.get('user')?.setValue(this.authenService.currentPlaylistValue);
+    });
+    this.authenService.currentUser.subscribe(value => {
+      this.currentUser = value;
     });
   }
   commentForm = this.formBuilder.group({
@@ -64,7 +74,7 @@ export class DetailComponent implements OnInit {
     });
   }
   getPlaylistById(id: number): any {
-    return this.playlistService.getPlaylistById(id).subscribe(p => {
+    return this.playListService.getPlaylistById(id).subscribe(p => {
       // @ts-ignore
       this.playList = p;
     });
@@ -79,6 +89,37 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      this.idPlaylist = paramMap.get('id');
+      this.songService.getSongsByPlaylistId(this.currentUser.username, this.idPlaylist).subscribe(list => {
+        this.listSong = list;
+      });
+    });
+  }
+
+  deleteSong(id: number): any {
+    if (confirm('Bạn chắc chắn xoá bài hát khỏi playlist không ?')) {
+      this.songService.deleteSongOutPlaylist(this.idPlaylist, this.currentUser.username, id).subscribe(songs => {
+        this.listSong = songs;
+      });
+    }
+  }
+
+  getAllPlaylistByUsername(username: string): any {
+    this.playListService.getPlaylistByUsername(username).subscribe(value => {
+      this.listPlaylist = value;
+    });
+  }
+
+  addSongToPlayList(idSong: number, idPlaylist: number): any {
+    this.playListService.addSongToPlaylist(idSong, idPlaylist).subscribe(value => {
+      if (value == null) {
+        alert('Đã tồn tại bài hát trong playlist');
+      } else {
+        alert('Đã thêm bài hát vào playlist');
+        this.getAllPlaylistByUsername(this.currentUser.username);
+      }
+    });
   }
 
 }
