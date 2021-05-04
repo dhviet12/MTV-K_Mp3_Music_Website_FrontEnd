@@ -24,7 +24,7 @@ import { TopnghenhieuComponent } from './topnghenhieu/topnghenhieu.component';
         TopSongsNewComponent,
         MySongComponent,
         TopthinhhanhComponent,
-        TopnghenhieuComponent
+        TopnghenhieuComponent,
     ],
   exports: [
     SongDetailComponent,

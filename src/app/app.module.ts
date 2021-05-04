@@ -22,6 +22,7 @@ import {SongModule} from './song/song.module';
 import { SearchListComponent } from './shared/searchBar/search-list/search-list.component';
 import {FormsModule} from '@angular/forms';
 import {HomeComponent} from './shared/home/home.component';
+import {PlayListModule} from './play-list/play-list.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import {HomeComponent} from './shared/home/home.component';
     TimeConversionPipe,
     PlayMusicComponent,
     SearchListComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,9 @@ import {HomeComponent} from './shared/home/home.component';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
     SongModule,
-    FormsModule
+    FormsModule,
+    //
+    PlayListModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

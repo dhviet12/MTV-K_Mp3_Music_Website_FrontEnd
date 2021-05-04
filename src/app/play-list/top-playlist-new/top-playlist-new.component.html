@@ -1,0 +1,25 @@
+<div class="section">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Playlist mới nhất</h4>
+      </div>
+      <a href="playlist.html" class="btn btn-sm btn-pill btn-air btn-primary">Xem</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-4 arrow-pos-1">
+    <div class="custom-card" *ngFor="let p of playList">
+      <div class="custom-card--img">
+        <a [routerLink]="'/playlist/detail/'+p.id">
+          <img src="../assets/images/background/horizontal/1.jpg" alt="DJ Remix"
+               class="card-img--radius-lg">
+          <span class="bg-blur">{{p.name}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
