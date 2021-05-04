@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PlayList} from '../play-list';
 import {IComment} from '../../comment/icomment';
 import {PlayListService} from '../play-list.service';
@@ -41,12 +41,12 @@ export class DetailComponent implements OnInit {
   };
 
 
-  //code cua Viet
+  // code cua Viet
   currentUser: any = localStorage.getItem('user');
   likePlaylist: ILikePlaylist = {
     user: this.authenService.currentUserValue,
     playlist: this.playList
-  }
+  };
 
   likePlaylistForm = this.formBuilder.group(
     {
@@ -97,6 +97,7 @@ export class DetailComponent implements OnInit {
       console.log(this.authenService.currentUserValue);
     });
   }
+
   commentForm = this.formBuilder.group({
     content: ['', [Validators.minLength(1), Validators.maxLength(500)]],
     playList: [''],
@@ -115,7 +116,7 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  getPlaylistById(id: number): any{
+  getPlaylistById(id: number): any {
     return this.playlistService.getPlaylistById(id).subscribe(p => {
       this.playList = p;
     });
@@ -123,13 +124,14 @@ export class DetailComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   check() {
-    if (this.authenService.currentUserValue == null){
+    if (this.authenService.currentUserValue == null) {
       alert('Mời bạn đăng nhập để comment');
       this.router.navigateByUrl('user/login');
       return this.checkUser = false;
-    }else {
+    } else {
       return this.checkUser = true;
-    }}
+    }
+  }
 
   createComment() {
     this.commentForm.get('playList')?.setValue(this.playList);
@@ -142,7 +144,7 @@ export class DetailComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   public delete(id: any) {
-    if (confirm('Bạn muốn xóa ?')){
+    if (confirm('Bạn muốn xóa ?')) {
       this.commentService.deleteCommentPlaylist(id).subscribe(() => {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
@@ -152,9 +154,9 @@ export class DetailComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  edit(id: any){
+  edit(id: any) {
     prompt('Nội dung');
-    this.commentService.editCommentPlaylist(id, this.comment).subscribe( () => {
+    this.commentService.editCommentPlaylist(id, this.comment).subscribe(() => {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl('playlist/detail/' + this.playList.id);
@@ -195,8 +197,8 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  //viet
-  like(): any{
+  // viet
+  like(): any {
     localStorage.setItem('statusPlaylist', 'true');
     this.likePlaylistForm.get('playList')?.setValue(this.playList);
     return this.likePlaylistService.likePlaylist(this.likePlaylistForm.value).subscribe(() => {
@@ -219,7 +221,6 @@ export class DetailComponent implements OnInit {
       console.log(localStorage.getItem('statusPlaylist'));
     });
   }
-
 
 
 }

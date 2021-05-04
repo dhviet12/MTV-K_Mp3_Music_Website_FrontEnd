@@ -1,51 +1,3 @@
-<!--<h1 style="text-align: center">Top 10 Songs New</h1>-->
-<!--<a [routerLink]="'/songs'">-->
-<!--  <button type="button" class="btn btn-outline-primary">Back to list Songs</button>-->
-<!--</a>-->
-<!--<table class="table text-center">-->
-<!--  <thead class="thead-dark">-->
-<!--  <tr>-->
-<!--    <th scope="col">#</th>-->
-<!--    <th scope="col">Tên bài hát</th>-->
-<!--    <th scope="col">Giới thiệu</th>-->
-<!--    <th scope="col">MP3</th>-->
-<!--    <th scope="col">Ảnh</th>-->
-<!--    <th scope="col">Tác Giả</th>-->
-<!--    <th scope="col">Ca Sỹ</th>-->
-<!--    <th scope="col">Ablum</th>-->
-<!--    <th scope="col">Người đăng</th>-->
-<!--    <th scope="col">Thể loại</th>-->
-<!--    <th scope="col" colspan="2">Action</th>-->
-<!--  </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<!--  <tr *ngFor="let s of songList, let i = index">-->
-<!--    <th scope="row">{{i + 1}}</th>-->
-<!--    <td><a [routerLink]="'detail/'+s.id">{{s.nameSong}}</a></td>-->
-<!--    <td>{{s.description}}</td>-->
-<!--    <td>-->
-<!--      <audio controls>-->
-<!--        <source src="{{s.fileMp3}}" type="audio/mpeg">-->
-<!--        Your browser does not support the audio element.-->
-<!--      </audio>-->
-<!--    </td>-->
-<!--    <td><img src="{{s.fileImage}}" alt="banner" width="100" height="100"></td>-->
-<!--    <td>{{s.author}}</td>-->
-<!--    <td>{{s.author}}</td>-->
-<!--    <td>{{s.author}}</td>-->
-<!--    <td>{{s.author}}</td>-->
-<!--    <td>{{s.author}}</td>-->
-<!--    <td>-->
-<!--      <button type="button" class="btn btn-outline-primary" [routerLink]="'/songs/edit/' + s.id">Edit</button>-->
-<!--    </td>-->
-<!--    <td>-->
-<!--      <button type="button" class="btn btn-outline-primary" (click)="delSong(s.id)">Delete</button>-->
-<!--    </td>-->
-<!--  </tr>-->
-<!--  </tbody>-->
-<!--</table>-->
-
-
 <div class="section">
 
   <div class="heading">
@@ -107,5 +59,6 @@
       </a>
     </div>
   </div>
+
 
 </div>

@@ -113,7 +113,7 @@
         </div>
       </li>
       <li class="dropdown fade-in" [hidden]="!checkLogin">
-        <a href="javascript:void(0);" class="d-flex align-items-center py-2" role="button" id="userMenu"
+        <a class="d-flex align-items-center py-2" role="button" id="userMenu"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <div class="avatar avatar-sm avatar-circle"><img src="{{user?.avatar}}" alt="avatar-user"></div>
           <span class="pl-2">Xin Chào: {{user?.username}}</span>
@@ -137,3 +137,33 @@
 
 </header>
 <!-- End | Header -->
+<div class="modal fade" id="lang" tabindex="-1" role="dialog" aria-labelledby="langTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title mb-1" id="langTitle">Play List</h5>
+          <p class="text-muted">Lựa chọn danh sách muốn thêm</p>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="addSongToAlbum()">
+      <div class="modal-body">
+        <ul class="list-group row">
+            <div class="custom-control">
+              <label for="ch1">Play List của bạn: </label>
+              <select name="playlist" class="custom-select" id="ch1" [(ngModel)]="albumSelected">
+                <option *ngFor="let pl of playlist" [ngValue]="pl">{{pl.name}}</option>
+              </select>
+            </div>
+        </ul>
+      </div>
+      <div class="modal-footer text-center d-block">
+        <button type="submit" class="btn btn-primary btn-pill" id="langApply">Thêm vào Play list</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
