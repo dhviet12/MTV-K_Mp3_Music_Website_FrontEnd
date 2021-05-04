@@ -1,5 +1,7 @@
 import {ISong} from '../song/isong';
 import {IUserToken} from '../user/model/IUserToken';
+import {IUser} from '../user/model/IUser';
+
 import {PlayList} from '../play-list/play-list';
 
 export interface IComment {
@@ -7,5 +9,6 @@ export interface IComment {
   content?: string;
   createdBy: IUserToken;
   song?: ISong;
+  user: IUser;
   playList?: PlayList;
 }

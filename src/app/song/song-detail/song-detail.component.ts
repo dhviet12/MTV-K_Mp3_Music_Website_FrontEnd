@@ -41,6 +41,11 @@ export class SongDetailComponent implements OnInit {
       phone: '',
       avatar: '',
       token: '',
+    },
+    user: {
+      id: 0,
+      fullName: '',
+      avatar: ''
     }
   };
   checkUser = false;
@@ -196,4 +201,14 @@ export class SongDetailComponent implements OnInit {
     this.data.changeData(song);
   }
 
+  // tslint:disable-next-line:typedef
+  public delete(id: any) {
+    if (confirm('Bạn muốn xóa ?')){
+      this.commentService.deleteComment(id).subscribe(() => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl('songs/detail/' + this.song.id);
+      });
+    }
+  }
 }
