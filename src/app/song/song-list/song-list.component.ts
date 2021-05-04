@@ -21,7 +21,7 @@ export class SongListComponent implements OnInit {
   getAllSong(): any {
     return this.songService.getAllSong().subscribe(songs => {
       this.songList = songs;
-      // console.log(this.songList);
+      console.log(this.songList);
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.songList.length; i++) {
         const audio: Audio = {};
@@ -32,6 +32,7 @@ export class SongListComponent implements OnInit {
         audio.artist = this.songList[i].singer;
         this.album.push(audio);
       }
+      console.log(this.album);
     });
   }
 

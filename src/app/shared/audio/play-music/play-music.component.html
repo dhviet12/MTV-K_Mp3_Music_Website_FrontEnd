@@ -13,7 +13,7 @@
 
   <!-- Begin | Audio -->
   <div class="audio">
-    <div class="song-image"><img src="{{selectedAudio?.cover}}" alt="cover"></div>
+    <div class="song-image"><img src="{{selectedAudio?.cover}}" alt="cover" (error)="onImgError($event)"></div>
     <div class="song-info pl-3">
       <span class="song-name d-inline-block text-truncate">{{selectedAudio?.title}}</span>
       <span class="song-artists d-block text-muted">{{selectedAudio?.artist}}</span>
@@ -69,22 +69,22 @@
       <ul class="dropdown-menu">
         <li class="dropdown-item">
           <a href="javascript:void(0);" class="dropdown-link">
-            <i class="la la-heart-o"></i> <span>Favorite</span>
+            <i class="la la-heart-o"></i> <span>Yêu thích</span>
           </a>
         </li>
         <li class="dropdown-item">
-          <a href="javascript:void(0);" class="dropdown-link">
-            <i class="la la-plus"></i> <span>Add to Playlist</span>
+          <a class="dropdown-link" data-toggle="modal" data-target="#lang" class="language" (click)="changeSongAdd(selectedAudio?.id)">
+            <i class="la la-plus"></i> <span>Thêm vào playlist</span>
           </a>
         </li>
         <li class="dropdown-item">
-          <a href="javascript:void(0);" class="dropdown-link">
-            <i class="la la-download"></i> <span>Download</span>
+          <a class="dropdown-link">
+            <i class="la la-download"></i> <span>Tải nhạc</span>
           </a>
         </li>
         <li class="dropdown-item">
-          <a href="javascript:void(0);" class="dropdown-link">
-            <i class="la la-share-alt"></i> <span>Share</span>
+          <a class="dropdown-link">
+            <i class="la la-share-alt"></i> <span>Chia sẻ</span>
           </a>
         </li>
         <li class="dropdown-item">

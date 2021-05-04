@@ -1,7 +1,5 @@
-import {AfterViewInit, Component, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ISong} from './song/isong';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from './shared/ dataTransmission/data.service';
-import {PlayMusicComponent} from './shared/audio/play-music/play-music.component';
 import {Audio} from './shared/audio/audio';
 import {Router} from '@angular/router';
 
@@ -15,29 +13,28 @@ export class AppComponent implements OnInit {
   }
 
   title = 'web-mp3-mtvk-fe';
-  songCurrent: ISong = {
-    id: 0
-  };
-  album: ISong[] = [];
   play = false;
   audio: Audio = {};
   index: any;
-  audioList: Audio[] = [];
-
+  audioList: Audio[] = [{
+    id: '',
+    url: 'https://firebasestorage.googleapis.com/v0/b/website-mp3-mtvk.appspot.com/o/image%2Ftest.png?alt=media&token=b2ec78b2-db3d-427c-aed3-28b378e48afc',
+    cover: 'https://firebasestorage.googleapis.com/v0/b/website-mp3-mtvk.appspot.com/o/mp3%2Fcha_oi_me_oi_con_lam_duoc_r_a_4674493149495671550.mp3?alt=media&token=8479d8de-f913-468d-8c2b-3f062e594588',
+    title: 'Welcome',
+    artist: 'MTV-K'
+  }];
   ngOnInit(): void {
     this.router.navigate(['/songs']);
-    // this.loadAlbum();
-    // this.loadData();
     this.loadDataMusic();
   }
   loadDataMusic(): any{
-    this.data.currentData.subscribe(index => {
-      this.index = index;
-      console.log(this.index);
-    });
     this.data.currentAlbum.subscribe( album => {
       this.audioList = album;
       console.log(this.audioList);
+    });
+    this.data.currentData.subscribe(index => {
+      this.index = index;
+      console.log(this.index);
     });
   }
 

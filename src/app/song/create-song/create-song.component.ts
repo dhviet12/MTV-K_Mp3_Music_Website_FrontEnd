@@ -11,6 +11,7 @@ import {AuthenService} from '../../user/service/authen.service';
 import {Icategory} from '../../model/icategory';
 import {CategoryService} from '../../service/categoryService/category.service';
 import {PlayList} from '../../play-list/play-list';
+import {PlayListService} from '../../play-list/play-list.service';
 
 @Component({
   selector: 'app-create-song',
@@ -23,7 +24,8 @@ export class CreateSongComponent implements OnInit {
               private router: Router,
               private fb: FormBuilder,
               private authen: AuthenService,
-              private cateService: CategoryService
+              private cateService: CategoryService,
+              private playlistService: PlayListService
   ) {
   }
 
@@ -46,12 +48,14 @@ export class CreateSongComponent implements OnInit {
     description: ['', Validators.maxLength(300)],
     createBy: [''],
     category: ['', [Validators.required]],
+    playList: ['']
   });
 
   ngOnInit(): void {
     // hiển thị tên file trên thanh input file
     bsCustomFileInput.init();
     this.getAllCate();
+    this.getAllPlayList();
   }
 
   // up file mp3 lên firebase storage
@@ -125,5 +129,11 @@ export class CreateSongComponent implements OnInit {
     this.cateService.getAllCate().subscribe( categories => {
       this.categories = categories;
     });
+  }
+  getAllPlayList(): any {
+    this.playlistService.getAllPlayList(this.authen.currentUserValue.username).subscribe(playlist => {
+      this.playList = playlist;
+      console.log(this.playList);
+    }, error => console.log(error));
   }
 }

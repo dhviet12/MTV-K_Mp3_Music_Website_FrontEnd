@@ -102,9 +102,8 @@
           <div class="form-row form-group">
             <label for="playlist" class="col-md-4 text-md-right col-form-label">Album </label>
             <div class="col-md-7">
-              <select class="custom-select my-1 mr-sm-2" id="playlist">
-<!--                <option *ngFor="let p of playList" [ngValue]="p">{{p.name}}</option>-->
-                <option selected>khác</option>
+              <select class="custom-select my-1 mr-sm-2" id="playlist" formControlName="playList" [(ngModel)]="song.playList">
+                <option *ngFor="let p of playList" [ngValue]="p">{{p.name}}</option>
               </select>
             </div>
           </div>

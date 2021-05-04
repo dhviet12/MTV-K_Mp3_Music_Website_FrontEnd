@@ -1,6 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Subject} from 'rxjs';
 import {Audio} from '../audio';
+import {DataService} from '../../ dataTransmission/data.service';
 
 @Component({
   selector: 'app-play-music',
@@ -8,7 +9,7 @@ import {Audio} from '../audio';
   styleUrls: ['./play-music.component.scss']
 })
 export class PlayMusicComponent implements OnInit {
-  constructor() {
+  constructor(private data: DataService) {
   }
 
   totalAudioLength: any;
@@ -152,6 +153,14 @@ export class PlayMusicComponent implements OnInit {
     }
     this.audioPlayer.nativeElement.currentTime = seekAudioValue.target.value;
     this.seekEvent.emit();
+  }
+
+  changeSongAdd(id: any): any {
+    this.data.changeSong(id);
+  }
+
+  onImgError(event: any): any {
+    event.target.src = './assets/my_img/test.png';
   }
 
   ngOnInit(): void {
