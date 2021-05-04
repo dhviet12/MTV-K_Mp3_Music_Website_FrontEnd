@@ -9,6 +9,8 @@ import {SongDetailComponent} from './song-detail/song-detail.component';
 import {HomeComponent} from '../shared/home/home.component';
 import {MySongComponent} from './my-song/my-song.component';
 import {SearchListComponent} from '../shared/searchBar/search-list/search-list.component';
+import {TopthinhhanhComponent} from './topthinhhanh/topthinhhanh.component';
+import {TopnghenhieuComponent} from './topnghenhieu/topnghenhieu.component';
 
 const routes: Routes = [
   {
@@ -41,7 +43,11 @@ const routes: Routes = [
   },
   {
     path: 'top10/view',
-    component: TopSongsViewComponent
+    component: TopthinhhanhComponent
+  },
+  {
+    path: 'top10/new',
+    component: TopnghenhieuComponent
   }
 ];
 

@@ -31,8 +31,8 @@
   <div class="col-xl-9 col-lg-8 col-sm-7">
     <div class="row pt-4">
       <div class="col-xl-8 col-lg-6">
-        <h5>tên play list</h5>
-        <p>ngày tạo</p>
+        <h5>{{playList.name}}</h5>
+        <p>{{playList.timeCreate | date:'dd/MM/yyyy'}}</p>
         <div class="text-warning stars">
           <i class="la la-star"></i>
           <i class="la la-star"></i>
@@ -41,6 +41,14 @@
           <i class="la la-star"></i>
 <!--          <i class="la la-star-half-empty"></i>-->
         </div>
+
+        <form *ngIf="statusPlaylist=='null' && currentUser!=null"  [formGroup]="likePlaylistForm" (ngSubmit)="like()">
+          <button type="submit" class="btn btn-info mt-3">Thích <i class="la la-thumbs-up"></i></button>
+        </form>
+        <form *ngIf="statusPlaylist=='true' && currentUser!=null" [formGroup]="likePlaylistForm" (ngSubmit)="unlike()">
+          <button type="submit" class="btn btn-warning mt-3">Bỏ thích <i class="la la-thumbs-down"></i></button>
+        </form>
+
         <div class="mt-4">
           <a href="javascript:void(0);" class="btn btn-pill btn-air btn-bold btn-danger">Phát tất cả</a>
         </div>
@@ -75,7 +83,7 @@
   <div class="tab-content" id="artistDetailsContent">
     <div class="tab-pane fade show active" id="song" role="tabpanel" aria-labelledby="song-tab">
       <div class="row align-items-end">
-        <span class="col-6 font-weight-bold">(độ dài song.length) Track</span>
+        <span class="col-6 font-weight-bold">Track</span>
         <div class="col-6 ml-auto">
           <form action="#" class="form-inline justify-content-end">
             <label class="mr-2" for="filter1">Sắp xếp:</label>
@@ -90,15 +98,18 @@
       <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
       <div class="custom-list">
         <!-- Begin | Custom List Item -->
-        <div class="custom-list--item">
+        <div class="custom-list--item" *ngFor="let song of listSong; let i = index">
           <div class="text-dark custom-card--inline">
             <div class="custom-card--inline-img">
               <img src="../assets/images/cover/small/1.jpg" alt="" class="card-img--radius-sm">
             </div>
-
             <div class="custom-card--inline-desc">
-              <p class="text-truncate mb-0">tên bài hát abc</p>
-              <p class="text-truncate text-muted font-sm">tên ca sỹ</p>
+              <p class="text-truncate mb-0">
+                <a [routerLink]="'/songs/detail/' + song.id">
+                  {{song.nameSong}}
+                </a>
+              </p>
+              <p class="text-truncate text-muted font-sm">{{song.author}}</p>
             </div>
           </div>
           <ul class="custom-card--labels d-flex ml-auto">
@@ -112,22 +123,22 @@
                 <li class="dropdown-item">
                   <a href="javascript:void(0);" class="dropdown-link favorite">
                     <i class="la la-heart-o"></i>
-                    <span>yêu thích</span>
+                    <span>Yêu thích</span>
                   </a>
                 </li>
-                <li class="dropdown-item">
-                  <a href="javascript:void(0);" class="dropdown-link">
-                    <i class="la la-plus"></i>
-                    <span>Add to Playlist</span>
-                  </a>
-                </li>
+<!--                <li class="dropdown-item">-->
+<!--                  <a href="javascript:void(0);" class="dropdown-link">-->
+<!--                    <i class="la la-plus"></i>-->
+<!--                    <span>Add to Playlist</span>-->
+<!--                  </a>-->
+<!--                </li>-->
                 <li class="dropdown-item">
                   <a href="javascript:void(0);" class="dropdown-link">
                     <i class="la la-download"></i>
                     <span>Download</span>
                   </a>
                 </li>
-                <li class="dropdown-item">
+                <li class="dropdown-item" (click)="deleteSong(song.id)">
                   <a href="javascript:void(0);" class="dropdown-link">
                     <i class="la la-share-alt"></i>
                     <span>Xóa</span>
@@ -235,35 +246,31 @@
 <div class="section">
   <div class="mb-4">
     <div class="d-flex mb-3">
-      <span>Rate:</span>
-      <div class="text-warning stars pl-2">
-        <i class="la la-star"></i>
-        <i class="la la-star"></i>
-        <i class="la la-star"></i>
-        <i class="la la-star"></i>
-        <i class="la la-star"></i>
+      <span>Bình luận</span>
+    </div>
+    <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+      <div class="mb-4">
+        <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+        <div class="text-right mt-2">
+          <button type="submit" class="btn btn-info" (click)="check()" [disabled]="commentForm.invalid">Bình luận</button>
+        </div>
       </div>
-    </div>
-    <textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
-    <div class="text-right mt-2">
-      <button class="btn btn-info">Bình luận</button>
-    </div>
+    </form>
   </div>
   <div class="d-flex mb-4">
-    <div class="avatar avatar-sm avatar-circle">
-      <img src="../assets/images/users/thumb.jpg" alt="avatar">
-    </div>
-    <div class="pl-3 flex-grow-1 flex-basis-0">
-      <span class="d-block font-weight-bold mb-1">Tên ng bình luận</span>
-      <div class="text-warning stars mb-2 font-md">
-        <i class="la la-star"></i>
-        <i class="la la-star"></i>
-        <i class="la la-star"></i>
-        <i class="la la-star"></i>
-        <i class="la la-star-half-empty"></i>
+    <table>
+      <div *ngFor="let c of comments">
+      <div class="avatar avatar-sm avatar-circle">
+        <img src="{{c.createdBy.avatar}}" alt="avatar">
       </div>
-      <p class="mb-2">nội dung</p>
-    </div>
+      <div class="pl-3 flex-grow-1 flex-basis-0">
+        <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
+        <p class="mb-2">{{c.content}}</p>
+<!--        <a type="button" (click)="delete(c.id)" >delete</a><br>-->
+<!--        <a type="button" (click)="edit(c.id)" >edit</a>-->
+      </div>
+      </div>
+    </table>
   </div>
 </div>
 <!-- End | Section -->

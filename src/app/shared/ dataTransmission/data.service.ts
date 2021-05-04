@@ -14,6 +14,9 @@ export class DataService {
   // lay ra playlist
   albumSourse = new BehaviorSubject<any>('');
   currentAlbum = this.albumSourse.asObservable();
+  // thêm bài hát vào album
+  addSongToAlbumSourse = new BehaviorSubject<any>('');
+  currentSongAdd = this.addSongToAlbumSourse.asObservable();
 
   constructor() {
   }
@@ -29,5 +32,9 @@ export class DataService {
 
   changeAlbum(album: any): any {
     this.albumSourse.next(album);
+  }
+
+  changeSong(song: any): any {
+    this.addSongToAlbumSourse.next(song);
   }
 }

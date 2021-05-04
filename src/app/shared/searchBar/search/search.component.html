@@ -149,19 +149,21 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form (ngSubmit)="addSongToAlbum()">
       <div class="modal-body">
         <ul class="list-group row">
             <div class="custom-control">
               <label for="ch1">Play List của bạn: </label>
-              <select name="playlist" class="custom-select" id="ch1" [ngModel]="playlist">
-                <option>alo</option>
+              <select name="playlist" class="custom-select" id="ch1" [(ngModel)]="albumSelected">
+                <option *ngFor="let pl of playlist" [ngValue]="pl">{{pl.name}}</option>
               </select>
             </div>
         </ul>
       </div>
       <div class="modal-footer text-center d-block">
-        <button type="button" class="btn btn-primary btn-pill" id="langApply">Thêm vào Play list</button>
+        <button type="submit" class="btn btn-primary btn-pill" id="langApply">Thêm vào Play list</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

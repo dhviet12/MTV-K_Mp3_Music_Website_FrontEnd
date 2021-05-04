@@ -1,5 +1,6 @@
+
 <div class="row align-items-end mt-5">
-  <span class="col-6 font-weight-bold">{{mySongs.length}} bài hát </span>
+  <span class="col-6 font-weight-bold">{{mySongs.length}} bài hát</span>
   <div class="col-6 ml-auto">
     <form class="form-inline justify-content-end">
       <label class="mr-2" for="filter2">Sắp xếp:</label>
@@ -42,7 +43,7 @@
             </a>
           </li>
           <li class="dropdown-item">
-            <a class="dropdown-link" data-toggle="modal" data-target="#lang" class="language" (click)="changeSongAdd(s.id)">
+            <a href="javascript:void(0);" class="dropdown-link">
               <i class="la la-plus"></i>
               <span>Thêm vào Play List</span>
             </a>
@@ -51,12 +52,6 @@
             <a href="javascript:void(0);" class="dropdown-link">
               <i class="la la-download"></i>
               <span>Tải nhạc</span>
-            </a>
-          </li>
-          <li class="dropdown-item">
-            <a (click)="delSong(s.id)" class="dropdown-link">
-              <i class="la la-trash-o"></i>
-              <span>Xóa</span>
             </a>
           </li>
           <li class="dropdown-item">
@@ -137,3 +132,5 @@
 
 </div>
 <!-- End | Section -->
+
+
