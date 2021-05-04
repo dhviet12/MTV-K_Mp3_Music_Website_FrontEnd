@@ -7,8 +7,12 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {CommentService} from '../../comment/comment.service';
 import {AuthenService} from '../../user/service/authen.service';
 import {Subscription} from 'rxjs';
+import {ILikePlaylist} from '../../likeplaylist/ILikePlaylist';
+import {LikeplaylistService} from '../../likeplaylist/likeplaylist.service';
+
 import {ISong} from '../../song/isong';
 import {SongService} from '../../song/song.service';
+
 
 @Component({
   selector: 'app-detail',
@@ -35,10 +39,30 @@ export class DetailComponent implements OnInit {
       token: '',
     }
   };
+
+
+  //code cua Viet
+  currentUser: any = localStorage.getItem('user');
+  likePlaylist: ILikePlaylist = {
+    user: this.authenService.currentUserValue,
+    playlist: this.playList
+  }
+
+  likePlaylistForm = this.formBuilder.group(
+    {
+      user: [''],
+      playList: ['']
+    }
+  );
+
+  statusPlaylist: any = localStorage.getItem('statusPlaylist');
+
+
   listSong: ISong[] = [];
-  currentUser: any;
+  // currentUser: any;
   idPlaylist: any;
   listPlaylist: PlayList[] = [];
+
   checkUser = false;
 
   constructor(private playlistService: PlayListService,
@@ -47,16 +71,27 @@ export class DetailComponent implements OnInit {
               private formBuilder: FormBuilder,
               private commentService: CommentService,
               private authenService: AuthenService,
-              private songService: SongService, ) {
+              private likePlaylistService: LikeplaylistService,
+              private songService: SongService) {
+
     this.authenService.currentUser.subscribe(value => {
       this.currentUser = value;
     });
+
     this.sub = this.activatedRoute.paramMap.subscribe((p: ParamMap) => {
       this.playList.id = Number(p.get('id'));
       this.getPlaylistById(this.playList.id);
       this.getAllCommentByPlaylistId(this.playList.id);
+
+      // this.commentForm.get('user')?.setValue(this.authenService.currentPlaylistValue);
+
+      // viet
+      this.likePlaylistForm.get('user')?.setValue(this.authenService.currentUserValue);
+
+
       this.getPlaylistByIdAndUserName(this.playList.id, this.currentUser.username);
       // this.commentForm.get('user')?.setValue(this.authenService.currentPlaylistValue);
+
       this.getAllCommentByPlaylistId(this.playList.id);
       this.commentForm.get('createdBy')?.setValue(this.authenService.currentUserValue);
       console.log(this.authenService.currentUserValue);
@@ -159,5 +194,32 @@ export class DetailComponent implements OnInit {
       }
     });
   }
+
+  //viet
+  like(): any{
+    localStorage.setItem('statusPlaylist', 'true');
+    this.likePlaylistForm.get('playList')?.setValue(this.playList);
+    return this.likePlaylistService.likePlaylist(this.likePlaylistForm.value).subscribe(() => {
+      console.log(this.playList);
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigateByUrl('playlist/detail/' + this.playList.id);
+      console.log(localStorage.getItem('statusPlaylist'));
+      //
+    });
+  }
+
+  unlike(): any {
+    // @ts-ignore
+    localStorage.setItem('statusPlaylist', null);
+    return this.likePlaylistService.unlikePlaylist(this.playList.id).subscribe(() => {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigateByUrl('playlist/detail/' + this.playList.id);
+      console.log(localStorage.getItem('statusPlaylist'));
+    });
+  }
+
+
 
 }
