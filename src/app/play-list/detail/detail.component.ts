@@ -46,7 +46,7 @@ export class DetailComponent implements OnInit {
   likePlaylistForm = this.formBuilder.group(
     {
       user: [''],
-      playlist: ['']
+      playList: ['']
     }
   );
 
@@ -69,7 +69,7 @@ export class DetailComponent implements OnInit {
 
       // viet
       this.likePlaylistForm.get('user')?.setValue(this.authenService.currentUserValue);
-      console.log(this.playList.name);
+
 
 
       this.getAllCommentByPlaylistId(this.playList.id);
@@ -136,9 +136,9 @@ export class DetailComponent implements OnInit {
   //viet
   like(): any{
     localStorage.setItem('statusPlaylist', 'true');
-    this.likePlaylistForm.get('playlist')?.setValue(this.playList);
+    this.likePlaylistForm.get('playList')?.setValue(this.playList);
     return this.likePlaylistService.likePlaylist(this.likePlaylistForm.value).subscribe(() => {
-      console.log( this.likePlaylistForm);
+      console.log(this.playList);
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl('playlist/detail/' + this.playList.id);

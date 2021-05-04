@@ -20,7 +20,7 @@
         <form *ngIf="statusLike=='null' && currentUser!=null" [formGroup]="likeSongForm" (ngSubmit)="like()">
           <button type="submit" class="btn btn-info mt-3">Thích <i class="la la-thumbs-up"></i></button>
         </form>
-        <form *ngIf="statusLike=='true'" [formGroup]="likeSongForm" (ngSubmit)="unlike()">
+        <form *ngIf="statusLike=='true' && currentUser!=null" [formGroup]="likeSongForm" (ngSubmit)="unlike()">
           <button type="submit" class="btn btn-warning mt-3">Bỏ thích <i class="la la-thumbs-down"></i></button>
         </form>
 
