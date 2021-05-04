@@ -1,58 +1,102 @@
-<div class="container">
-  <header class="jumbotron">
-    <div class="container emp-profile">
-      <form method="post">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="profile-head">
-              <h2 style="text-align: center">
-                <strong>DANH SÁCH PLAYLIST</strong>
-                <div class="col">
-                  <form class="d-flex">
-                    <input [(ngModel)]="keyword" name="keyword" class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">
-                    <button (click)="searchPlaylist()" class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
-                </div>
-              </h2>
-              <div>
-              <button (click)="createPlayList()" class="btn btn-primary profile-button">Tạo playlist</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="tab-content profile-tab" id="myTabContent">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Tên Playlist</th>
-                  <th scope="col" colspan="2"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let playlist of playlist; let i = index">
-                  <th scope="row">{{i + 1}}</th>
-                  <td>
-                    <a [routerLink]="['/playlist/listsongs/' + currentUser.username + '/' + playlist.id]">{{playlist.name}}</a>
-                  </td>
-                  <td>
-                    <a [routerLink]="['/playlist/edit/' + currentUser.username + '/' + playlist.id]">
-                      <button type="button" class="btn btn-secondary">Edit</button>
-                    </a>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-secondary" (click)="deletePlayList(playlist.id)">Delete</button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+<!--<div class="container">-->
+<!--  <header class="jumbotron">-->
+<!--    <div class="container emp-profile">-->
+<!--      <form method="post">-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-3">-->
+<!--            <div class="profile-head">-->
+<!--              <h2 style="text-align: center">-->
+<!--                <strong>DANH SÁCH PLAYLIST</strong>-->
+<!--                <div class="col">-->
+<!--                  <form class="d-flex">-->
+<!--                    <input [(ngModel)]="keyword" name="keyword" class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">-->
+<!--                    <button (click)="searchPlaylist()" class="btn btn-outline-success" type="submit">Search</button>-->
+<!--                  </form>-->
+<!--                </div>-->
+<!--              </h2>-->
+<!--              <div>-->
+<!--              <button (click)="createPlayList()" class="btn btn-primary profile-button">Tạo playlist</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-md-12">-->
+<!--            <div class="tab-content profile-tab" id="myTabContent">-->
+<!--              <table class="table">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                  <th scope="col">#</th>-->
+<!--                  <th scope="col">Tên Playlist</th>-->
+<!--                  <th scope="col" colspan="2"></th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr *ngFor="let playlist of playlist; let i = index">-->
+<!--                  <th scope="row">{{i + 1}}</th>-->
+<!--                  <td>-->
+<!--                    <a [routerLink]="['/playlist/listsongs/' + currentUser.username + '/' + playlist.id]">{{playlist.name}}</a>-->
+<!--                  </td>-->
+<!--                  <td>-->
+<!--                    <a [routerLink]="['/playlist/edit/' + currentUser.username + '/' + playlist.id]">-->
+<!--                      <button type="button" class="btn btn-secondary">Edit</button>-->
+<!--                    </a>-->
+<!--                  </td>-->
+<!--                  <td>-->
+<!--                    <button type="button" class="btn btn-secondary" (click)="deletePlayList(playlist.id)">Delete</button>-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--              </table>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <button [routerLink]="'/songs'" class="btn btn-warning profile-button">Danh sách bài hát</button>-->
+<!--    </div>-->
+<!--  </header>-->
+<!--</div>-->
+
+<!--giao diện mới-->
+
+<div class="section">
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Play list của tôi</h4>
+        <p>......</p>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-xl-2 col-lg-3 col-sm-4 col-6 pb-4">
+      <div class="custom-card">
+        <div class="custom-card--img">
+          <a [routerLink]="'/playlist/create/user'">
+            <img src="/assets/my_img/add.jpg" alt="add-playlist" class="card-img--radius-md">
+          </a>
         </div>
-      </form>
+
+        <a [routerLink]="'/playlist/create/user'" class="custom-card--link mt-2 text-center">
+          <h6 class="mb-0">Thêm Play List</h6>
+        </a>
+      </div>
     </div>
-    <div>
-      <button [routerLink]="'/songs'" class="btn btn-warning profile-button">Danh sách bài hát</button>
+
+<!--    đặt vòng lặp ở đây-->
+    <div class="col-xl-2 col-lg-3 col-sm-4 col-6 pb-4">
+      <div class="custom-card">
+        <div class="custom-card--img">
+          <a href="javascript:void(0);">
+            <img src="../assets/images/cover/large/2.jpg" alt="Network" class="card-img--radius-md">
+          </a>
+        </div>
+
+        <a href="javascript:void(0);" class="custom-card--link mt-2">
+          <h6 class="mb-0">Tên bài hát</h6>
+        </a>
+      </div>
     </div>
-  </header>
+  </div>
 </div>
