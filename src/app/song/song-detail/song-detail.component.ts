@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ISong} from '../isong';
 import {Subscription} from 'rxjs';
 import {SongService} from '../song.service';
@@ -9,9 +9,11 @@ import {IComment} from '../../comment/icomment';
 import {AuthenService} from '../../user/service/authen.service';
 import {ILikeSong} from '../../likesong/ILikeSong';
 import {LikeSongService} from '../../likesong/likesong.service';
+
 import {PlayListService} from '../../play-list/play-list.service';
 import {PlayList} from '../../play-list/play-list';
 
+import {DataService} from '../../shared/ dataTransmission/data.service';
 
 @Component({
   selector: 'app-song-detail',
@@ -55,17 +57,12 @@ export class SongDetailComponent implements OnInit {
   comments: IComment[] = [];
   sub: Subscription;
 
-  // @ts-ignore
-  //
-
-
   likeSongForm = this.formBuider.group(
     {
       user: [''],
       song: ['']
     }
   );
-
   likeSong: ILikeSong = {
     user: this.authen.currentUserValue,
     song: this.song
@@ -83,7 +80,8 @@ export class SongDetailComponent implements OnInit {
               private commentService: CommentService,
               private authen: AuthenService,
               private likeSongService: LikeSongService,
-              private playListService: PlayListService) {
+              private playListService: PlayListService,
+              private data: DataService) {
     this.authen.currentUser.subscribe(value => {
       this.currentUser = value;
       this.getAllPlaylistByUsername(this.currentUser.username);
@@ -111,7 +109,7 @@ export class SongDetailComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  check() {
+  check(): any {
     if (this.authen.currentUserValue == null){
       alert('Mời bạn đăng nhập để comment');
       this.router.navigateByUrl('user/login');
@@ -119,7 +117,7 @@ export class SongDetailComponent implements OnInit {
     }else {
       return this.checkUser = true;
   }}
-  createComment() {
+  createComment(): any {
     this.commentForm.get('song')?.setValue(this.song);
     return this.commentService.createComment(this.commentForm.value).subscribe(() => {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -128,14 +126,14 @@ export class SongDetailComponent implements OnInit {
     });
   }
 
-  getAllCommentByIdSong(id: number) {
+  getAllCommentByIdSong(id: number): any {
     return this.commentService.getAllCommentBySongId(id).subscribe(commentList => {
       this.comments = commentList;
     });
   }
 
   //
-  like() {
+  like(): any{
     localStorage.setItem('statusLike', 'true');
     this.likeSongForm.get('song')?.setValue(this.song);
     return this.likeSongService.likeSong(this.likeSongForm.value).subscribe(() => {
@@ -143,13 +141,13 @@ export class SongDetailComponent implements OnInit {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigateByUrl('songs/detail/' + this.song.id);
-      console.log(localStorage.getItem('statusLike'))
+      console.log(localStorage.getItem('statusLike'));
 
       //
     });
   }
 
-  unlike() {
+  unlike(): any {
     // @ts-ignore
     localStorage.setItem('statusLike', null);
     // this.statusLike = localStorage.getItem('statusLike')
@@ -186,6 +184,20 @@ export class SongDetailComponent implements OnInit {
       }
     });
   }
+  delSong(id: number): any {
+    if (confirm('Bạn có chắc muốn xoá bài hát này ?')){
+      this.songService.delSong(id).subscribe( () => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        alert('Đã xóa bài hát ' + this.song.nameSong);
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl('songs/my-song') ;
+      });
+    }
 
+  }
+  playSong(song: any): any {
+    console.log(song);
+    this.data.changeData(song);
+  }
 
 }

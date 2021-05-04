@@ -9,22 +9,27 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditSongComponent } from './edit-song/edit-song.component';
 import {TopSongsViewComponent} from './top-songs-view/top-songs-view.component';
 import {TopSongsNewComponent} from './top-songs-new/top-songs-new.component';
+import { MySongComponent } from './my-song/my-song.component';
 
 
 @NgModule({
-  declarations: [
-    CreateSongComponent,
-    SongListComponent,
-    SongDetailComponent,
-    EditSongComponent,
-    TopSongsViewComponent,
-    TopSongsNewComponent
-  ],
-  imports: [
-    CommonModule,
-    SongRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ]
+    declarations: [
+        CreateSongComponent,
+        SongListComponent,
+        SongDetailComponent,
+        EditSongComponent,
+        TopSongsViewComponent,
+        TopSongsNewComponent,
+        MySongComponent
+    ],
+    exports: [
+        SongDetailComponent
+    ],
+    imports: [
+        CommonModule,
+        SongRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+    ]
 })
 export class SongModule { }

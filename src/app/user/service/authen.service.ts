@@ -4,7 +4,7 @@ import {IUserToken} from '../model/IUserToken';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {SignUpForm} from '../model/SignUpForm';
-import {IUser} from "../model/IUser";
+import {IUser} from '../model/IUser';
 
 const URL_SERVER = 'http://localhost:8080/auth/';
 @Injectable({

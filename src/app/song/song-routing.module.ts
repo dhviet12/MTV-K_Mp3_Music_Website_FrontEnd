@@ -6,10 +6,20 @@ import {EditSongComponent} from './edit-song/edit-song.component';
 import {TopSongsViewComponent} from './top-songs-view/top-songs-view.component';
 import {TopSongsNewComponent} from './top-songs-new/top-songs-new.component';
 import {SongDetailComponent} from './song-detail/song-detail.component';
+import {HomeComponent} from '../shared/home/home.component';
+import {MySongComponent} from './my-song/my-song.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'my-song',
+    component: MySongComponent
+  },
+  {
+    path: 'list',
     component: SongListComponent
   },
   {

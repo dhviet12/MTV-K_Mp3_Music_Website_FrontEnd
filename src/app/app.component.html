@@ -1,1 +1,660 @@
-<router-outlet></router-outlet>
+<!-- Begin | Loading [[ Find at scss/framework/base/loader/loader.scss ]] THANH LOADING-->
+<div id="loading">
+  <div class="loader">
+    <div class="eq">
+      <span class="eq-bar eq-bar--1"></span>
+      <span class="eq-bar eq-bar--2"></span>
+      <span class="eq-bar eq-bar--3"></span>
+      <span class="eq-bar eq-bar--4"></span>
+      <span class="eq-bar eq-bar--5"></span>
+      <span class="eq-bar eq-bar--6"></span>
+    </div>
+    <span class="text">Loading</span>
+  </div>
+</div>
+<!-- End | Loading -->
+
+<!-- Begin | Wrapper [[ Find at scss/framework/base/wrapper/wrapper.scss ]] KHỐI BAO TỔNG-->
+<div id="wrapper" data-scrollable="true">
+
+  <!-- Begin | Sidebar [[ Find at scss/framework/base/sidebar/left/sidebar.scss ]] THANH NAVBAR-->
+  <aside id="sidebar" class="sidebar-primary">
+
+    <!-- Begin | Sidebar Header LOGO-->
+    <div class="sidebar-header d-flex align-items-center">
+      <a [routerLink]="'/songs'" class="brand">
+        <img src="../assets/my_img/logo-pro.png" alt="listen-app" class="ml-5">
+      </a>
+
+      <button type="button" class="btn p-0 ml-auto" id="hideSidebar">
+        <i class="ion-md-arrow-back h3"></i>
+      </button>
+
+      <button type="button" class="btn toggle-menu" id="toggleSidebar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <!-- End | Sidebar Header -->
+
+    <!-- Begin | Navbar [[ Find at scss/framework/components/navbar/navbar.scss ]] THANH ĐIỂU HƯỚNG-->
+    <nav class="navbar">
+      <ul class="navbar-nav" data-scrollable="true">
+        <li class="nav-item nav-header">Browse Music</li>
+        <li class="nav-item">
+          <a [routerLink]="'/songs'" class="nav-link active"><i class="la la-home"></i><span>Trang chủ</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="genres.html" class="nav-link"><i class="la la-diamond"></i><span>Ca khúc thịnh hành</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="music.html" class="nav-link"><i class="la la-music"></i><span>Bài hát mới</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="artists.html" class="nav-link"><i class="la la-headphones"></i><span>Albums thịnh hành</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="stations.html" class="nav-link"><i class="la la-file-sound-o"></i><span>Albums mới</span></a>
+        </li>
+        <li class="nav-item nav-header">Your Music</li>
+        <li class="nav-item">
+          <a [routerLink]="'/songs/my-song'" class="nav-link"><i class="la la-fast-forward"></i><span>Bài hát của bạn</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="favorites.html" class="nav-link"><i class="la la-play-circle"></i><span>Albums của bạn</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="history.html" class="nav-link"><i class="la la-heart-o"></i><span>Yêu thích</span></a>
+        </li>
+      </ul>
+    </nav>
+    <!-- End | Navbar -->
+
+    <!-- Begin | Sidebar Footer THÊM BÀI HÁT-->
+    <div class="sidebar-footer">
+      <a [routerLink]="'/songs/create'" class="btn btn-block btn-danger btn-air btn-bold">
+        <i class="ion-md-musical-note"></i>
+        <span>Thêm bài hát</span>
+      </a>
+    </div>
+    <!-- End | Sidebar Footer -->
+
+  </aside>
+  <!-- End | Sidebar -->
+
+  <!-- Begin | Page Wrapper [[ Find at scss/framework/base/wrapper/wrapper.scss ]] KHỐI BAO GIỮA-->
+  <main id="pageWrapper">
+
+    <app-search></app-search>
+
+    <!-- Page Banner [[ Find at scss/base/core.scss ]] BANNER-->
+    <div class="banner bg-home"><img src="../assets/my_img/banner.png" alt="Banner" class="card-img--radius-lg"></div>
+
+    <!-- Begin | Main Container [[ Find at scss/base/core.scss ]] khối bao trung tâm-router-oultet-->
+    <div class="main-container" id="appRoute">
+
+      <router-outlet></router-outlet>
+
+    </div>
+    <!-- End | Main Container -->
+
+    <!-- Begin | Footer [[ Find at scss/framework/base/footer/footer.scss ]] -->
+    <footer id="footer" class="bg-img">
+      <div class="footer-content">
+        <img src="../assets/my_img/logo-pro.png" alt="MTV-K" style="width: 300px; height: 300px" class="card-img--radius-sm mb-5">
+        <div class="platform-btn-inline">
+          <a href="#" class="btn btn-dark btn-air platform-btn">
+            <i class="ion-logo-android"></i>
+            <div class="platform-btn-info">
+              <span class="platform-desc">Available on</span>
+              <span class="platform-name">Android</span>
+            </div>
+          </a>
+          <a href="#" class="btn btn-danger btn-air platform-btn">
+            <i class="ion-logo-apple"></i>
+            <div class="platform-btn-info">
+              <span class="platform-desc">Available on</span>
+              <span class="platform-name">App Store</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <!-- End | Footer -->
+
+    <!-- Begin | Audio Player [[ Find at scss/framework/base/audio-player/audio-player.scss ]] TRÌNH CHƠI NHẠC-->
+    <app-play-music [audioList]="audioList"></app-play-music>
+    <!-- End | Audio Player -->
+
+  </main>
+  <!-- End | Page Wrapper -->
+
+  <!-- Begin | Right Sidebar [[ Find at scss/framework/base/sidebar/right/sidebar.scss ]] DANH SÁCH NHẠC MẶC ĐỊNH-->
+  <aside id="rightSidebar">
+    <div class="right-sidebar-header">Listen Special</div>
+    <div class="right-sidebar-body" data-scrollable="true">
+      <ul class="list-group list-group-flush">
+        <!-- Begin | Custom List Item -->
+        <li class="custom-list--item list-group-item">
+          <div class="text-dark custom-card--inline amplitude-song-container amplitude-play-pause"
+               data-amplitude-song-index="0" data-amplitude-playlist="special">
+            <div class="custom-card--inline-img">
+              <img src="../assets/images/cover/small/1.jpg" alt="" class="card-img--radius-sm">
+            </div>
+
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">I Love You Mummy 222</p>
+              <p class="text-truncate text-muted font-sm">Arebica Luna</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Favorite</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-plus"></i>
+                    <span>Add to Playlist</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Share</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Song Info</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- End | Custom List Item -->
+
+        <!-- Begin | Custom List Item -->
+        <li class="custom-list--item list-group-item">
+          <div class="text-dark custom-card--inline amplitude-song-container amplitude-play-pause"
+               data-amplitude-song-index="1" data-amplitude-playlist="special">
+            <div class="custom-card--inline-img">
+              <img src="../assets/images/cover/small/2.jpg" alt="" class="card-img--radius-sm">
+            </div>
+
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">Shack your butty</p>
+              <p class="text-truncate text-muted font-sm">Gerrina Linda</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Favorite</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-plus"></i>
+                    <span>Add to Playlist</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Share</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Song Info</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- End | Custom List Item -->
+
+        <!-- Begin | Custom List Item -->
+        <li class="custom-list--item list-group-item">
+          <div class="text-dark custom-card--inline amplitude-song-container amplitude-play-pause"
+               data-amplitude-song-index="2" data-amplitude-playlist="special">
+            <div class="custom-card--inline-img">
+              <img src="../assets/images/cover/small/3.jpg" alt="" class="card-img--radius-sm">
+            </div>
+
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">Do it your way(Female)</p>
+              <p class="text-truncate text-muted font-sm">Zunira Willy & Nutty Nina</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Favorite</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-plus"></i>
+                    <span>Add to Playlist</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Share</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Song Info</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- End | Custom List Item -->
+
+        <!-- Begin | Custom List Item -->
+        <li class="custom-list--item list-group-item">
+          <div class="text-dark custom-card--inline amplitude-song-container amplitude-play-pause"
+               data-amplitude-song-index="3" data-amplitude-playlist="special">
+            <div class="custom-card--inline-img">
+              <img src="../assets/images/cover/small/4.jpg" alt="" class="card-img--radius-sm">
+            </div>
+
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">Say yes</p>
+              <p class="text-truncate text-muted font-sm">Johnny Marro</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Favorite</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-plus"></i>
+                    <span>Add to Playlist</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Share</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Song Info</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- End | Custom List Item -->
+
+        <!-- Begin | Custom List Item -->
+        <li class="custom-list--item list-group-item">
+          <div class="text-dark custom-card--inline amplitude-song-container amplitude-play-pause"
+               data-amplitude-song-index="4" data-amplitude-playlist="special">
+            <div class="custom-card--inline-img">
+              <img src="../assets/images/cover/small/5.jpg" alt="" class="card-img--radius-sm">
+            </div>
+
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">Where is your letter</p>
+              <p class="text-truncate text-muted font-sm">Jina Moore & Lenisa Gory</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Favorite</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-plus"></i>
+                    <span>Add to Playlist</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Share</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Song Info</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- End | Custom List Item -->
+
+        <!-- Begin | Custom List Item -->
+        <li class="custom-list--item list-group-item">
+          <div class="text-dark custom-card--inline amplitude-song-container amplitude-play-pause"
+               data-amplitude-song-index="5" data-amplitude-playlist="special">
+            <div class="custom-card--inline-img">
+              <img src="../assets/images/cover/small/6.jpg" alt="" class="card-img--radius-sm">
+            </div>
+
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">Hey not me</p>
+              <p class="text-truncate text-muted font-sm">Rasomi Pelina</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Favorite</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-plus"></i>
+                    <span>Add to Playlist</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Share</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Song Info</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- End | Custom List Item -->
+
+        <!-- Begin | Custom List Item -->
+        <li class="custom-list--item list-group-item">
+          <div class="text-dark custom-card--inline amplitude-song-container amplitude-play-pause"
+               data-amplitude-song-index="6" data-amplitude-playlist="special">
+            <div class="custom-card--inline-img">
+              <img src="../assets/images/cover/small/7.jpg" alt="" class="card-img--radius-sm">
+            </div>
+
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">Deep inside</p>
+              <p class="text-truncate text-muted font-sm">Pimila Holliwy</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Favorite</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-plus"></i>
+                    <span>Add to Playlist</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Share</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Song Info</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- End | Custom List Item -->
+      </ul>
+    </div>
+  </aside>
+  <!-- End | Right Sidebar -->
+
+</div>
+<!-- End | Wrapper -->
+
+<!-- Begin | Language Modal -->
+<div class="modal fade" id="lang" tabindex="-1" role="dialog" aria-labelledby="langTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title mb-1" id="langTitle">Language</h5>
+          <p class="text-muted">Please select the language(s) of the music you listen to.</p>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group row">
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch1" checked>
+              <label class="custom-control-label" for="ch1">Hindi</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch2">
+              <label class="custom-control-label" for="ch2">Punjabi</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch3">
+              <label class="custom-control-label" for="ch3">Tamil</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch4">
+              <label class="custom-control-label" for="ch4">Bengali</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch5">
+              <label class="custom-control-label" for="ch5">Kannada</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch6">
+              <label class="custom-control-label" for="ch6">Gujarati</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch7">
+              <label class="custom-control-label" for="ch7">Urdu</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch8">
+              <label class="custom-control-label" for="ch8">Rajasthani</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch9" checked>
+              <label class="custom-control-label" for="ch9">English</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch10">
+              <label class="custom-control-label" for="ch10">Telugu</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch11">
+              <label class="custom-control-label" for="ch11">Bhojpuri</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch12">
+              <label class="custom-control-label" for="ch12">Malayalam</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch13">
+              <label class="custom-control-label" for="ch13">Marathi</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch14">
+              <label class="custom-control-label" for="ch14">Haryanvi</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch15">
+              <label class="custom-control-label" for="ch15">Assamese</label>
+            </div>
+          </li>
+          <li class="list-group-item border-0 col-sm-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="ch16">
+              <label class="custom-control-label" for="ch16">Odia</label>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer text-center d-block">
+        <button type="button" class="btn btn-primary btn-pill" id="langApply">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End | Language Modal -->
+
+<!-- Back Drop -->
+<div class="backdrop header-backdrop"></div>
+<div class="backdrop sidebar-backdrop"></div>
