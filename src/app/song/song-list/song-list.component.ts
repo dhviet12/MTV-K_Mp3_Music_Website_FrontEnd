@@ -21,7 +21,6 @@ export class SongListComponent implements OnInit {
   getAllSong(): any {
     return this.songService.getAllSong().subscribe(songs => {
       this.songList = songs;
-      console.log(this.songList);
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.songList.length; i++) {
         const audio: Audio = {};
@@ -37,8 +36,8 @@ export class SongListComponent implements OnInit {
   }
 
   playSong(i: any): any {
-    this.data.changeAlbum(this.album);
     this.data.changeData(i);
+    this.data.changeAlbum(this.album);
   }
 
   ngOnInit(): void {

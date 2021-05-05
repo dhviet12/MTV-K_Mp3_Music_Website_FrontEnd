@@ -2,6 +2,7 @@ import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} f
 import {Subject} from 'rxjs';
 import {Audio} from '../audio';
 import {DataService} from '../../ dataTransmission/data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-play-music',
@@ -9,7 +10,7 @@ import {DataService} from '../../ dataTransmission/data.service';
   styleUrls: ['./play-music.component.scss']
 })
 export class PlayMusicComponent implements OnInit {
-  constructor(private data: DataService) {
+  constructor(private data: DataService, private router: Router) {
   }
 
   totalAudioLength: any;
@@ -20,15 +21,22 @@ export class PlayMusicComponent implements OnInit {
   audioVolume = 100;
   isAudioEnded = new Subject();
   isMute = false;
-  selectedAudio: Audio = {};
-  currentAudioIndex = 0;
-  @Input()
-  set index(index: any){
-    this.currentAudioIndex = index;
-  }
-  repeatActive = false;
   isError = false;
-  @Input() audioList: Audio[] = [];
+  currentAudioIndex = 0;
+  repeatActive = false;
+  selectedAudio: Audio = {
+    id: null,
+    url: 'https://firebasestorage.googleapis.com/v0/b/website-mp3-mtvk.appspot.com/o/mp3%2Fcha_oi_me_oi_con_lam_duoc_r_a_4674493149495671550.mp3?alt=media&token=8479d8de-f913-468d-8c2b-3f062e594588',
+    cover: 'https://firebasestorage.googleapis.com/v0/b/website-mp3-mtvk.appspot.com/o/mp3%2Fcha_oi_me_oi_con_lam_duoc_r_a_4674493149495671550.mp3?alt=media&token=8479d8de-f913-468d-8c2b-3f062e594588',
+    title: 'Welcome',
+    artist: 'MTV-K'
+  };
+  // @Input()
+  // set index(index: any) {
+  //   this.currentAudioIndex = index;
+  // }
+  // @Input()
+  audioList: Audio[] = [];
   @Input() next = true;
   @Input() previous = true;
   @Input() shuffle = true;
@@ -49,6 +57,7 @@ export class PlayMusicComponent implements OnInit {
   options(): void {
     // emit play when playing audio
     this.audioPlayer.nativeElement.addEventListener('playing', () => {
+      this.isAudioPlaying = true;
     });
     // emit when intial loading of audio
     this.audioPlayer.nativeElement.addEventListener('loadeddata', () => {
@@ -89,7 +98,7 @@ export class PlayMusicComponent implements OnInit {
     setTimeout(() => {
       this.audioPlayer.nativeElement.pause();
       this.pauseEvent.emit();
-    }, 0);
+    }, 50);
   }
 
   getAudioLength(): any {
@@ -159,6 +168,23 @@ export class PlayMusicComponent implements OnInit {
     this.seekEvent.emit();
   }
 
+  // test
+  loadDataMusic(): any {
+    this.data.currentAlbum.subscribe(album => {
+      if (album !== null && album !== []) {
+        this.audioList = album;
+        console.log(this.audioList);
+        this.initiateAudioPlayer();
+      }
+    });
+    this.data.currentData.subscribe(index => {
+      if (index !== null) {
+        this.currentAudioIndex = index;
+        console.log(this.currentAudioIndex);
+      }
+    });
+  }
+
   changeSongAdd(id: any): any {
     this.data.changeSong(id);
   }
@@ -169,12 +195,13 @@ export class PlayMusicComponent implements OnInit {
 
   ngOnInit(): void {
     this.options();
-    this.initiateAudioPlayer();
+    this.loadDataMusic();
     // ceck audio is ended for next song
     this.isAudioEnded.subscribe(date => {
       if (!this.isRepeat && this.audioList.length > 0) {
         this.nextAudio();
       }
     });
+    console.log(this.audioList);
   }
 }

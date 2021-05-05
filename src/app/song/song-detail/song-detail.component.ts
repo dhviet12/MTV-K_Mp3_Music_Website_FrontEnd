@@ -14,6 +14,7 @@ import {PlayListService} from '../../play-list/play-list.service';
 import {PlayList} from '../../play-list/play-list';
 
 import {DataService} from '../../shared/ dataTransmission/data.service';
+import {Audio} from '../../shared/audio/audio';
 
 @Component({
   selector: 'app-song-detail',
@@ -27,6 +28,7 @@ export class SongDetailComponent implements OnInit {
   playlist: PlayList = {
     id: 0
   };
+  audio: Audio[] = [];
   idPlaylist: any;
   // @ts-ignore
   comment: IComment = {
@@ -101,6 +103,13 @@ export class SongDetailComponent implements OnInit {
   getSongById(id: number): any {
     return this.songService.getSongById(id).subscribe(song => {
       this.song = song;
+      const audio: Audio = {};
+      audio.id = this.song.id;
+      audio.url = this.song.fileMp3;
+      audio.cover = this.song.fileImage;
+      audio.artist = this.song.singer;
+      audio.title = this.song.nameSong;
+      this.audio.push(audio);
     });
   }
 
@@ -191,9 +200,10 @@ export class SongDetailComponent implements OnInit {
     }
 
   }
-  playSong(song: any): any {
-    // console.log(song);
-    this.data.changeData(song);
+  playSong(): any {
+    // console.log(this.audio);
+    this.data.changeAlbum(this.audio);
+    this.data.changeData(0);
   }
 
   // tslint:disable-next-line:typedef
