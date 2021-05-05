@@ -1630,7 +1630,7 @@ body.theme-dark #footer:after {
   margin: 0 -2rem;
   padding: 2rem 2rem 8rem;
   text-align: center;
-  background-image: url("../images/background/footer.jpg");
+  background-image: url("../my_img/bg1.png");
   position: relative;
 }
 

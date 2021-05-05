@@ -1,0 +1,362 @@
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] TOP-VIEW-->
+<app-top-songs-new></app-top-songs-new>
+<!-- End | Section -->
+
+<div class="row">
+  <!-- Begin | Section [[ Find at scss/base/core.scss ]] SỰ KIỆN-->
+  <div class="section col-xl-7 col-lg-6">
+    <div class="row h-100">
+      <div class="col-sm-5 pb-4">
+        <div class="h-100 event event-v bg-img bg-img-radius-lg"
+             style="background-image: url('/assets/images/background/vertical/1.jpg')">
+          <div class="event-content p-4">
+            <a href="event-details.html"><h6>New Year Party</h6></a>
+            <span class="countdown mb-3"></span>
+            <a href="#" class="btn btn-bold btn-pill btn-air btn-warning btn-sm">Buy Ticket</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="h-50 pb-4">
+          <div class="h-100 event event-h bg-img bg-img-radius-lg"
+               style="background-image: url('/assets/images/background/horizontal/1.jpg')">
+            <div class="event-content p-4">
+              <a href="event-details.html"><h6>Dance with DJ Nowan</h6></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consectetur,
+                ex explicabo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="h-50 pb-4">
+          <div class="h-100 event event-h bg-img bg-img-radius-lg"
+               style="background-image: url('/assets/images/background/horizontal/2.jpg')">
+            <div class="event-content p-4">
+              <a href="event-details.html"><h6>Move You's Legs</h6></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consectetur,
+                ex explicabo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End | Section -->
+
+  <!-- Begin | Section [[ Find at scss/base/core.scss ]] LIST NHẠC-->
+  <div class="section col-xl-5 col-lg-6">
+    <!-- Begin | Line Tabs [[ Find at scss/framework/components/line-tabs.scss ]] -->
+    <ul class="nav nav-tabs line-tabs line-tabs-primary text-uppercase mb-4" id="songsList"
+        role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
+           aria-controls="recent" aria-selected="true">Nổi bật</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="trending-tab" data-toggle="tab" href="#trending" role="tab"
+           aria-controls="trending" aria-selected="false">Sản phẩm mới</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="international-tab" data-toggle="tab" href="#international"
+           role="tab" aria-controls="international" aria-selected="false">Có thể bạn thích</a>
+      </li>
+    </ul>
+    <!-- End | Line Tabs -->
+
+    <!-- Begin | Tab Content -->
+    <div class="tab-content" id="songsListContent">
+      <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+        <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+        <div class="custom-list" *ngFor="let sv of top10view, let i = index">
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="{{sv.fileImage}}" alt="cover" class="card-img--radius-sm" (error)="onImgError($event)"
+                     (click)="playSongView(i)">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0" (click)="playSongView(i)">{{sv.nameSong}}</p>
+                <p class="text-truncate text-muted font-sm">{{sv.singer}}</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Yêu thích</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Thêm vào Play List</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Tải nhạc</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Chia sẻ</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a [routerLink]="'/songs/detail/'+ sv.id" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Chi tiết</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+        </div>
+        <!-- End | Custom List -->
+      </div>
+      <div class="tab-pane fade" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+        <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+        <div class="custom-list" *ngFor="let sn of top10new, let i = index">
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="{{sn.fileImage}}" alt="cover" (error)="onImgError($event)" (click)="playSongsNew(i)"
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0" (click)="playSongsNew(i)">{{sn.nameSong}}</p>
+                <p class="text-truncate text-muted font-sm">{{sn.singer}}</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-warning"><i
+                class="la la-star"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Yêu Thích</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Thêm vào Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Tải nhạc</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Chia sẻ</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a [routerLink]="'/songs/detail/'+sn.id" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Chi tiết</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+        </div>
+        <!-- End | Custom List -->
+      </div>
+      <div class="tab-pane fade" id="international" role="tabpanel"
+           aria-labelledby="international-tab">
+        <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+        <div class="custom-list">
+          <!-- Begin | Custom List Item -->
+          <div class="custom-list--item">
+            <div class="text-dark custom-card--inline">
+              <div class="custom-card--inline-img">
+                <img src="" alt="cover"
+                     class="card-img--radius-sm">
+              </div>
+
+              <div class="custom-card--inline-desc">
+                <p class="text-truncate mb-0">I Love You Mummy</p>
+                <p class="text-truncate text-muted font-sm">Arebica Luna</p>
+              </div>
+            </div>
+            <ul class="custom-card--labels d-flex ml-auto">
+              <li><span class="badge badge-pill badge-warning"><i
+                class="la la-star"></i></span></li>
+              <li class="dropleft">
+                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="la la-ellipsis-h"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link favorite">
+                      <i class="la la-heart-o"></i>
+                      <span>Yêu thích</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-plus"></i>
+                      <span>Thêm vào Playlist</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-download"></i>
+                      <span>Tải nhạc</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="javascript:void(0);" class="dropdown-link">
+                      <i class="la la-share-alt"></i>
+                      <span>Chia sẻ</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a href="song-details.html" class="dropdown-link">
+                      <i class="la la-info-circle"></i>
+                      <span>Chi tiết</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End | Custom List Item -->
+        </div>
+        <!-- End | Custom List -->
+      </div>
+    </div>
+    <!-- End | Tab Content -->
+
+  </div>
+  <!-- End | Section -->
+</div>
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] BÀI HÁT MỚI-->
+<app-top-songs-view></app-top-songs-view>
+<!-- End | Section -->
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] ALBUMS THỊNH HÀNH-->
+<app-top-playlist-new></app-top-playlist-new>
+<!-- End | Section -->
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] ALBUMS MỚI-->
+<div class="section">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Albums thịnh hành</h4>
+        <p>Những ca khúc nổi bật</p>
+      </div>
+      <a href="playlist.html" class="btn btn-sm btn-pill btn-air btn-primary">Xem</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-4 arrow-pos-1">
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/1.jpg" alt="DJ Remix"
+               class="card-img--radius-lg">
+          <span class="bg-blur">DJ Remix</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- End | Section -->
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] THỂ LOẠI-->
+<div class="section">
+
+  <div class="heading">
+    <div class="d-flex flex-wrap align-items-end">
+      <div class="flex-grow-1">
+        <h4>Thể loại</h4>
+        <p>Dòng nhạc bất hủ</p>
+      </div>
+      <a href="genres.html" class="btn btn-sm btn-pill btn-air btn-primary">Xem</a>
+    </div>
+    <hr>
+  </div>
+
+  <div class="carousel-item-6 arrow-pos-1">
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/2.jpg" alt="Rock Songs"
+               class="card-img--radius-md">
+          <span class="bg-blur">Rock Songs</span>
+        </a>
+      </div>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/3.jpg" alt="Sufi Songs"
+               class="card-img--radius-md">
+          <span class="bg-blur">Sufi Songs</span>
+        </a>
+      </div>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/4.jpg" alt="Romantic Songs"
+               class="card-img--radius-md">
+          <span class="bg-blur">Romantic Songs</span>
+        </a>
+      </div>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/5.jpg" alt="Sports Songs"
+               class="card-img--radius-md">
+          <span class="bg-blur">Sports Songs</span>
+        </a>
+      </div>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card--img">
+        <a href="javascript:void(0);">
+          <img src="../assets/images/background/horizontal/6.jpg" alt="Old Songs"
+               class="card-img--radius-lg">
+          <span class="bg-blur">Old Songs</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- End | Section -->

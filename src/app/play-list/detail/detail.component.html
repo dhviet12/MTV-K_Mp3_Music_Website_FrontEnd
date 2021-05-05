@@ -1,21 +1,253 @@
-<div class="section">
-  <form [formGroup]="commentForm" (ngSubmit)="createComment()">
-    <div class="mb-4">
-      <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control" required></textarea>
-      <div class="text-right mt-2">
-        <button type="submit" class="btn btn-info" [disabled]="commentForm.invalid">Comment</button>
+<!--giao diện mới-->
+
+<div class="row section text-center text-md-left">
+  <div class="col-xl-3 col-lg-4 col-sm-5">
+<!--    ảnh playlist-->
+    <img src="../assets/images/cover/large/10.jpg" alt="" class="card-img--radius-lg">
+  </div>
+  <div class="col-xl-9 col-lg-8 col-sm-7">
+    <div class="row pt-4">
+      <div class="col-xl-8 col-lg-6">
+        <h5>{{playList.name}}</h5>
+        <p>{{playList.timeCreate | date:'dd/MM/yyyy'}}</p>
+        <div class="text-warning stars">
+          <i class="la la-star"></i>
+          <i class="la la-star"></i>
+          <i class="la la-star"></i>
+          <i class="la la-star"></i>
+          <i class="la la-star"></i>
+<!--          <i class="la la-star-half-empty"></i>-->
+        </div>
+
+        <form *ngIf="statusPlaylist=='null' && currentUser!=null" [formGroup]="likePlaylistForm" (ngSubmit)="like()">
+          <button type="submit" class="btn btn-info mt-3">Thích <i class="la la-thumbs-up"></i></button>
+        </form>
+        <form *ngIf="statusPlaylist=='true' && currentUser!=null" [formGroup]="likePlaylistForm" (ngSubmit)="unlike()">
+          <button type="submit" class="btn btn-warning mt-3">Bỏ thích <i class="la la-thumbs-down"></i></button>
+        </form>
+
+        <div class="mt-4">
+          <a class="btn btn-pill btn-air btn-bold btn-danger" (click)="playAlbum()">Phát tất cả</a>
+        </div>
       </div>
-    </div>
-  </form>
-  <div class="d-flex mb-4">
-    <div *ngFor="let c of comments">
-      <div class="avatar avatar-sm avatar-circle">
-<!--        <img src="{{c.user.avatar}}" alt="avatar">-->
-      </div>
-      <div class="pl-3 flex-grow-1 flex-basis-0">
-        <span class="d-block font-weight-bold mb-1">ABC</span>
-        <p class="mb-2">{{c.content}}</p>
+      <div class="col-xl-4 col-lg-6">
+        <div class="pt-3 pt-lg-0 text-lg-right">
+          <button class="btn btn-pill btn-air btn-danger btn-icon-only"><i class="la la-heart-o"></i></button>
+          <button class="btn btn-pill btn-air btn-brand btn-icon-only"><i class="la la-share-alt"></i></button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
+<div class="section">
+  <!-- Begin | Line Tabs [[ Find at scss/framework/components/line-tabs.scss ]] -->
+  <ul class="nav nav-tabs line-tabs line-tabs-primary text-uppercase mb-4" id="artistDetails" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="song-tab" data-toggle="tab" href="#song" role="tab" aria-controls="song" aria-selected="true">Danh sách bài hát</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="album-tab" data-toggle="tab" href="#album" role="tab" aria-controls="album" aria-selected="false">Gợi ý cho bạn</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="bio-tab" data-toggle="tab" href="#bio" role="tab" aria-controls="bio" aria-selected="false">Giới thiệu</a>
+    </li>
+  </ul>
+  <!-- End | Line Tabs -->
+
+  <!-- Begin | Tab Content -->
+  <div class="tab-content" id="artistDetailsContent">
+    <div class="tab-pane fade show active" id="song" role="tabpanel" aria-labelledby="song-tab">
+      <div class="row align-items-end">
+        <span class="col-6 font-weight-bold">Track</span>
+        <div class="col-6 ml-auto">
+          <form action="#" class="form-inline justify-content-end">
+            <label class="mr-2" for="filter1">Sắp xếp:</label>
+            <select class="custom-select mr-sm-2" id="filter1">
+              <option value="1">A-Z</option>
+              <option value="2">Z-A</option>
+            </select>
+          </form>
+        </div>
+        <div class="col-12"><hr></div>
+      </div>
+      <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+      <div class="custom-list">
+        <!-- Begin | Custom List Item -->
+        <div class="custom-list--item" *ngFor="let song of listSong; let i = index">
+          <div class="text-dark custom-card--inline">
+            <div class="custom-card--inline-img">
+              <img src="{{song.fileImage}}" alt="cover" class="card-img--radius-sm">
+            </div>
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">
+                <a [routerLink]="'/songs/detail/' + song.id">
+                  {{song.nameSong}}
+                </a>
+              </p>
+              <p class="text-truncate text-muted font-sm">{{song.author}}</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+            <li>05:03</li>
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Yêu thích</span>
+                  </a>
+                </li>
+<!--                <li class="dropdown-item">-->
+<!--                  <a href="javascript:void(0);" class="dropdown-link">-->
+<!--                    <i class="la la-plus"></i>-->
+<!--                    <span>Add to Playlist</span>-->
+<!--                  </a>-->
+<!--                </li>-->
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item" (click)="deleteSong(song.id)">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Xóa</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Chi tiết</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- End | Custom List Item -->
+
+      </div>
+      <!-- End | Custom List -->
+    </div>
+    <div class="tab-pane fade show" id="album" role="tabpanel" aria-labelledby="album-tab">
+      <div class="row align-items-end">
+        <span class="col-6 font-weight-bold">12 Album</span>
+        <div class="col-6 ml-auto">
+          <form action="#" class="form-inline justify-content-end">
+            <label class="mr-2" for="filter2">Sorted By:</label>
+            <select class="custom-select mr-sm-2" id="filter2">
+              <option selected>Popular</option>
+              <option value="1">A-Z</option>
+              <option value="2">Z-A</option>
+            </select>
+          </form>
+        </div>
+        <div class="col-12"><hr></div>
+      </div>
+      <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
+      <div class="custom-list">
+        <!-- Begin | Custom List Item -->
+        <div class="custom-list--item">
+          <div class="text-dark custom-card--inline">
+            <div class="custom-card--inline-img">
+              <img src="../assets/images/cover/small/1.jpg" alt="" class="card-img--radius-sm">
+            </div>
+
+            <div class="custom-card--inline-desc">
+              <p class="text-truncate mb-0">I Love You Mummy</p>
+              <p class="text-truncate text-muted font-sm">Arebica Luna</p>
+            </div>
+          </div>
+          <ul class="custom-card--labels d-flex ml-auto">
+            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+            <li>05:03</li>
+            <li class="dropleft">
+              <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-ellipsis-h"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link favorite">
+                    <i class="la la-heart-o"></i>
+                    <span>Favorite</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-plus"></i>
+                    <span>Add to Playlist</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-download"></i>
+                    <span>Download</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);" class="dropdown-link">
+                    <i class="la la-share-alt"></i>
+                    <span>Share</span>
+                  </a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="song-details.html" class="dropdown-link">
+                    <i class="la la-info-circle"></i>
+                    <span>Song Info</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- End | Custom List Item -->
+      </div>
+      <!-- End | Custom List -->
+    </div>
+    <div class="tab-pane fade show" id="bio" role="tabpanel" aria-labelledby="bio-tab">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ex magnam magni odit praesentium, recusandae reiciendis sequi tempora? Ad commodi consequatur deleniti dolorum fugiat iste minima rerum sed similique voluptate.</p>
+    </div>
+  </div>
+  <!-- End | Tab Content -->
+</div>
+<!-- End | Section -->
+
+<!-- Begin | Section [[ Find at scss/base/core.scss ]] -->
+<div class="section">
+  <div class="mb-4">
+    <div class="d-flex mb-3">
+      <span>Bình luận</span>
+    </div>
+    <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+      <div class="mb-4">
+        <textarea formControlName="content" [(ngModel)]="comment.content" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+        <div class="text-right mt-2">
+          <button type="submit" class="btn btn-info" (click)="check()" [disabled]="commentForm.invalid">Bình luận</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-flex mb-4">
+    <table>
+      <div *ngFor="let c of comments">
+      <div class="avatar avatar-sm avatar-circle">
+        <img src="{{c.createdBy.avatar}}" alt="avatar">
+      </div>
+      <div class="pl-3 flex-grow-1 flex-basis-0">
+        <span class="d-block font-weight-bold mb-1">{{c.createdBy.fullName}}</span>
+        <p class="mb-2">{{c.content}}</p>
+<!--        <a type="button" (click)="delete(c.id)" >delete</a><br>-->
+<!--        <a type="button" (click)="edit(c.id)" >edit</a>-->
+      </div>
+      </div>
+    </table>
+  </div>
+</div>
+<!-- End | Section -->

@@ -3,6 +3,7 @@ import {PlayListService} from '../play-list.service';
 import {AuthenService} from '../../user/service/authen.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PlayList} from '../play-list';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-playlist',
@@ -25,10 +26,18 @@ export class EditPlaylistComponent implements OnInit {
   };
   editSuccess = false;
 
+  editPlaylistForm = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    kindOfMusic: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+  });
+
   constructor(private playListService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private authen: AuthenService,
-              private router: Router) {
+              private router: Router,
+              private fb: FormBuilder) {
     this.authen.currentUser.subscribe(value => {
       this.currentUser = value;
       console.log(this.currentUser);
@@ -48,6 +57,7 @@ export class EditPlaylistComponent implements OnInit {
   }
 
   editPlaylist(id: any): any {
+    alert('Sửa thành công');
     this.playListService.editPlayListById(id, this.currentUser.username, this.playlist).subscribe(() => {
       this.router.navigate(['/playlist']);
     });

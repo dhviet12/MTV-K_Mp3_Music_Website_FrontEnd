@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PlayList} from '../play-list';
 import {PlayListService} from '../play-list.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenService} from '../../user/service/authen.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-create-playlist',
@@ -24,10 +25,19 @@ export class CreatePlaylistComponent implements OnInit {
   username: any;
   createSuccess = false;
 
+  createPlaylistForm = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    kindOfMusic: ['', [Validators.required, Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$')]],
+    description: ['', Validators.maxLength(300)],
+  });
+
   constructor(private playListService: PlayListService,
               private activatedRoute: ActivatedRoute,
               private authen: AuthenService,
-              private router: Router) {
+              private router: Router,
+              private fb: FormBuilder) {
     this.authen.currentUser.subscribe(value => {
       this.currentUser = value;
       console.log(this.currentUser);
@@ -42,7 +52,8 @@ export class CreatePlaylistComponent implements OnInit {
   }
 
   createPlayList(): any {
-    return this.playListService.createNewPlayList(this.playlist, this.currentUser.username).subscribe( () => {
+    alert('Tạo mới thành công');
+    return this.playListService.createNewPlayList(this.playlist, this.currentUser.username).subscribe(() => {
       console.log(this.playlist);
       this.router.navigate(['/playlist']);
     });

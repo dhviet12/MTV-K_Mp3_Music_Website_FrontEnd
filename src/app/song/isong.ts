@@ -1,6 +1,7 @@
-import {IUser} from '../user/model/IUser';
-import {Timestamp} from 'rxjs';
+
 import {IUserToken} from '../user/model/IUserToken';
+import {Icategory} from '../model/icategory';
+import {PlayList} from '../play-list/play-list';
 
 export interface ISong {
   id: number;
@@ -14,7 +15,8 @@ export interface ISong {
   numberOfView?: number;
   singer?: any;
   createdBy?: IUserToken;
-  category?: any;
+  category?: Icategory;
+  playList?: PlayList;
   likes?: any;
   comment?: any;
 }

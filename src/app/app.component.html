@@ -1,1 +1,148 @@
-<router-outlet></router-outlet>
+<!-- Begin | Loading [[ Find at scss/framework/base/loader/loader.scss ]] THANH LOADING-->
+<div id="loading">
+  <div class="loader">
+    <div class="eq">
+      <span class="eq-bar eq-bar--1"></span>
+      <span class="eq-bar eq-bar--2"></span>
+      <span class="eq-bar eq-bar--3"></span>
+      <span class="eq-bar eq-bar--4"></span>
+      <span class="eq-bar eq-bar--5"></span>
+      <span class="eq-bar eq-bar--6"></span>
+    </div>
+    <span class="text">Loading</span>
+  </div>
+</div>
+<!-- End | Loading -->
+
+<!-- Begin | Wrapper [[ Find at scss/framework/base/wrapper/wrapper.scss ]] KHỐI BAO TỔNG-->
+<div id="wrapper" data-scrollable="true">
+
+  <!-- Begin | Sidebar [[ Find at scss/framework/base/sidebar/left/sidebar.scss ]] THANH NAVBAR-->
+  <aside id="sidebar" class="sidebar-primary">
+
+    <!-- Begin | Sidebar Header LOGO-->
+    <div class="sidebar-header d-flex align-items-center">
+      <a [routerLink]="'/songs'" class="brand">
+        <img src="../assets/my_img/logo-pro.png" alt="listen-app" class="ml-5">
+      </a>
+
+      <button type="button" class="btn p-0 ml-auto" id="hideSidebar">
+        <i class="ion-md-arrow-back h3"></i>
+      </button>
+
+      <button type="button" class="btn toggle-menu" id="toggleSidebar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <!-- End | Sidebar Header -->
+
+    <!-- Begin | Navbar [[ Find at scss/framework/components/navbar/navbar.scss ]] THANH ĐIỂU HƯỚNG-->
+    <nav class="navbar">
+      <ul class="navbar-nav" data-scrollable="true">
+        <li class="nav-item nav-header">Browse Music</li>
+        <li class="nav-item">
+          <a [routerLink]="'/songs'" class="nav-link active"><i class="la la-home"></i><span>Trang chủ</span></a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="'/songs/top10/view'" class="nav-link"><i
+            class="la la-diamond"></i><span>Ca khúc thịnh hành</span></a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="'/songs/top10/new'" class="nav-link"><i class="la la-music"></i><span>Bài hát mới</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="artists.html" class="nav-link"><i class="la la-headphones"></i><span>Albums thịnh hành</span></a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="'/playlist/top10new'" class="nav-link"><i
+            class="la la-file-sound-o"></i><span>Albums mới</span></a>
+        </li>
+        <li class="nav-item nav-header">Your Music</li>
+        <li class="nav-item">
+          <a [routerLink]="'/songs/my-song'" class="nav-link"><i
+            class="la la-fast-forward"></i><span>Bài hát của bạn</span></a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="'/playlist'" class="nav-link"><i
+            class="la la-play-circle"></i><span>Albums của bạn</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="history.html" class="nav-link"><i class="la la-heart-o"></i><span>Yêu thích</span></a>
+        </li>
+      </ul>
+    </nav>
+    <!-- End | Navbar -->
+
+    <!-- Begin | Sidebar Footer THÊM BÀI HÁT-->
+    <div class="sidebar-footer">
+      <a [routerLink]="'/songs/create'" class="btn btn-block btn-danger btn-air btn-bold">
+        <i class="ion-md-musical-note"></i>
+        <span>Thêm bài hát</span>
+      </a>
+    </div>
+    <!-- End | Sidebar Footer -->
+
+  </aside>
+  <!-- End | Sidebar -->
+
+  <!-- Begin | Page Wrapper [[ Find at scss/framework/base/wrapper/wrapper.scss ]] KHỐI BAO GIỮA-->
+  <main id="pageWrapper">
+
+    <app-search></app-search>
+
+    <!-- Page Banner [[ Find at scss/base/core.scss ]] BANNER-->
+    <div class="banner bg-home"><img src="../assets/my_img/banner.png" alt="Banner" class="card-img--radius-lg"></div>
+
+    <!-- Begin | Main Container [[ Find at scss/base/core.scss ]] khối bao trung tâm-router-oultet-->
+    <div class="main-container" id="appRoute">
+
+      <router-outlet></router-outlet>
+
+    </div>
+    <!-- End | Main Container -->
+
+    <!-- Begin | Footer [[ Find at scss/framework/base/footer/footer.scss ]] -->
+    <footer id="footer" class="bg-img">
+      <div class="footer-content">
+        <img src="../assets/my_img/logo-pro.png" alt="MTV-K" style="width: 300px; height: 300px"
+             class="card-img--radius-sm mb-5">
+        <div class="platform-btn-inline">
+          <a href="#" class="btn btn-dark btn-air platform-btn">
+            <i class="ion-logo-android"></i>
+            <div class="platform-btn-info">
+              <span class="platform-desc">Available on</span>
+              <span class="platform-name">Android</span>
+            </div>
+          </a>
+          <a href="#" class="btn btn-danger btn-air platform-btn">
+            <i class="ion-logo-apple"></i>
+            <div class="platform-btn-info">
+              <span class="platform-desc">Available on</span>
+              <span class="platform-name">App Store</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <!-- End | Footer -->
+
+    <!-- Begin | Audio Player [[ Find at scss/framework/base/audio-player/audio-player.scss ]] TRÌNH CHƠI NHẠC-->
+    <!--    <app-play-music [audioList]="audioList" [index]="index"></app-play-music>-->
+    <app-play-music></app-play-music>
+    <!-- End | Audio Player -->
+
+  </main>
+  <!-- End | Page Wrapper -->
+
+  <!-- Begin | Right Sidebar [[ Find at scss/framework/base/sidebar/right/sidebar.scss ]] DANH SÁCH NHẠC MẶC ĐỊNH-->
+  <app-song-list></app-song-list>
+  <!-- End | Right Sidebar -->
+
+</div>
+<!-- End | Wrapper -->
+
+<!-- Back Drop -->
+<div class="backdrop header-backdrop"></div>
+<div class="backdrop sidebar-backdrop"></div>

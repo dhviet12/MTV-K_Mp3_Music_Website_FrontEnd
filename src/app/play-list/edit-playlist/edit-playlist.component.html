@@ -1,4 +1,4 @@
-<form (ngSubmit)="editPlaylist(playlist.id)">
+<form (ngSubmit)="editPlaylist(playlist.id)" [formGroup]="editPlaylistForm">
   <div class="container rounded bg-white mt-5 mb-5">
   <span class="text-uppercase name" style="text-align: center">
     <h1>CẬP NHẬT PLAYLIST</h1>
@@ -7,23 +7,34 @@
       <div>
         <div class="p-3 py-5">
           <div class="row mt-3">
-            <div class="col-md-12"><label class="labels">Tên Playlist</label><input type="text" class="form-control" placeholder="Tên playlist" name="name" [(ngModel)]="playlist.name"></div>
+            <div class="col-md-12">
+              <label class="labels">Tên Playlist</label>
+              <input type="text" name="name" class="form-control" formControlName="name"
+                     [(ngModel)]="playlist.name">
+              <small *ngIf="editPlaylistForm.get('name')?.invalid" class="text-danger">
+                Tên playlist có độ tài tối thiểu 2 ký tự , không sử dụng ký tự đặc biệt !
+              </small>
+            </div>
           </div>
           <div class="row mt-3">
-            <div class="col-md-12"><label class="labels">Dòng nhạc</label><input type="text" class="form-control" placeholder="Dòng nhạc" name="kindOfMusic" [(ngModel)]="playlist.kindOfMusic"></div>
+            <div class="col-md-12">
+              <label class="labels">Dòng nhạc</label>
+              <input  type="text" name="kindOfMusic" class="form-control" formControlName="kindOfMusic"
+                     [(ngModel)]="playlist.kindOfMusic">
+              <small *ngIf="editPlaylistForm.get('kindOfMusic')?.invalid" class="text-danger">
+                Tên playlist có độ tài tối thiểu 2 ký tự , không sử dụng ký tự đặc biệt !
+              </small>
+            </div>
           </div>
           <div class="row mt-3">
             <div class="col-md-12"><label class="labels">Mô tả</label><input type="text" class="form-control" placeholder="Mô tả" name="description" [(ngModel)]="playlist.description"></div>
           </div>
         </div>
         <div>
-          <p style="color: red" *ngIf="editSuccess">Tạo playlist thành công</p>
-        </div>
-        <div>
           <div class="mt-5 text-center">
-            <button class="btn btn-primary profile-button" type="submit">Save</button>
+            <button class="btn btn-primary profile-button" type="submit" [disabled]="editPlaylistForm.invalid" >Lưu</button>
           </div>
-          <div class="mt-5 text-center">
+          <div class="mt-4 text-center">
             <button class="btn btn-primary profile-button" [routerLink]="'/playlist'">Trở về</button>
           </div>
         </div>

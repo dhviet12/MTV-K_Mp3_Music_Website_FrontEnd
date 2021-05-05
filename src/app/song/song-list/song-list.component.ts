@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SongService} from '../song.service';
 import {ISong} from '../isong';
-import {Router} from '@angular/router';
+import {DataService} from '../../shared/ dataTransmission/data.service';
+import {Audio} from '../../shared/audio/audio';
 
 @Component({
   selector: 'app-song-list',
@@ -9,38 +10,42 @@ import {Router} from '@angular/router';
   styleUrls: ['./song-list.component.scss']
 })
 export class SongListComponent implements OnInit {
-  constructor(private songService: SongService, private router: Router) {
+  constructor(private songService: SongService,
+              private data: DataService) {
+  }
+
+  songList: ISong[] = [];
+  album: Audio[] = [];
+
+  getAllSong(): any {
+    return this.songService.getAllSong().subscribe(songs => {
+      this.songList = songs;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.songList.length; i++) {
+        const audio: Audio = {};
+        audio.id = this.songList[i].id;
+        audio.url = this.songList[i].fileMp3;
+        audio.cover = this.songList[i].fileImage;
+        audio.title = this.songList[i].nameSong;
+        audio.artist = this.songList[i].singer;
+        this.album.push(audio);
+      }
+      console.log(this.album);
+    });
+  }
+
+  playSong(i: any): any {
+    this.data.changeData(i);
+    this.data.changeAlbum(this.album);
+  }
+
+  ngOnInit(): void {
     this.getAllSong();
   }
-  keyword: any;
-  songList: ISong[] = [];
-  getAllSong(): any {
-    return this.songService.getAllSong().subscribe( songs => {
-      this.songList = songs;
-    });
-  }
-  delSong(id: number): any {
-    if(confirm("Bạn có chắc muốn xoá bài hát này ?")){
-      this.songService.delSong(id).subscribe( () => {
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigateByUrl('songs') ;
-      });
-    }
-
-  }
-  // xóa bái hát trên firebase
-  // delSong(): any{
-  //   const storageRef = this.storage.ref('mp3/');
-  //   storageRef.child('audio_xe_dap_oi.mp3').delete();
-  // }
-  searchSong(): any {
-    this.songService.searchSong(this.keyword).subscribe(songList => {
-      console.log(this.keyword);
-      this.songList = songList;
-      console.log(this.songList);
-    });
-  }
-  ngOnInit(): void {
-  }
 }
+
+// xóa bái hát trên firebase
+// delSong(): any{
+//   const storageRef = this.storage.ref('mp3/');
+//   storageRef.child('audio_xe_dap_oi.mp3').delete();
+// }

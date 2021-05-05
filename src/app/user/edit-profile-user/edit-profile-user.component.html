@@ -1,87 +1,87 @@
-<div class="container-fluid">
-  <div class="main-container under-banner-content">
-    <div class="row section">
-      <div class="col-xl-10 mx-auto">
-        <div class="row">
-          <div class="col-xl-4 col-md-5">
-            <div class="card h-auto">
-              <div class="card-body text-center">
-                <div class="avatar avatar-xl avatar-circle mx-auto mb-4">
-                  <img src="{{userToken.avatar}}" width="128" height="128" alt="avatar">
+<div class="main-container under-banner-content">
+  <div class="row section">
+    <div class="col-xl-10 mx-auto">
+      <div class="row">
+        <div class="col-xl-4 col-md-5">
+          <div class="card h-auto">
+            <div class="card-body text-center">
+              <div class="avatar avatar-xl avatar-circle mx-auto mb-4">
+                <img src="{{userToken.avatar}}" width="128" height="128" alt="avatar">
+              </div>
+              <h4 class="mb-3">Xin chào: {{userToken.fullName}}</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <button type="button" class="btn btn-danger btn-air" (click)="changeClick()">Đổi Avatar</button>
                 </div>
-                <h4 class="mb-3">Xin chào: {{userToken.fullName}}</h4>
-                <div class="row">
-                  <div class="col-md-6">
-                    <button type="button" class="btn btn-danger btn-air" (click)="changeClick()">Đổi Avatar</button>
-                  </div>
-                  <div class="col-md-6">
-                    <button type="button" class="btn btn-danger btn-air">Playlist </button>
-                  </div>
+                <div class="col-md-6">
+                  <button [routerLink]="'/playlist'" class="btn btn-danger btn-air">Playlist</button>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-8 col-md-7">
-            <div class="card h-auto">
-              <div class="card-body">
-                <form #f="ngForm" [formGroup]="editUserProfileForm" (ngSubmit)="editProfile()" class="row">
-                  <div class="col-xl-6 form-group">
-                    <label for="firstName" class="form-label">Họ tên:</label>
-                    <input type="text" id="firstName" class="form-control" [(ngModel)]="userToken.fullName"
-                           formControlName="fullName" required>
-                    <small *ngIf="editUserProfileForm.get('fullName')?.invalid " class="text-danger">
-                     Họ tên không được để trống
-                    </small>
-                  </div>
-                  <div class="col-xl-6 form-group">
-                    <label for="lastName" class="form-label">Email:</label>
-                    <input type="text" id="lastName" class="form-control" [(ngModel)]="userToken.email"
-                           formControlName="email">
-                    <small *ngIf="editUserProfileForm.get('email')?.invalid " class="text-danger">
-                      Email không đúng định đạng
-                    </small>
-                  </div>
-                  <div class="col-12 form-group">
-                    <label for="displayName" class="form-label">Địa chỉ:</label>
-                    <input type="text" id="displayName" class="form-control" [(ngModel)]="userToken.address"
-                           formControlName="address"
-                           required>
-                    <small *ngIf="editUserProfileForm.get('address')?.invalid" class="text-danger">
-                      Địa chỉ không được để trống
-                    </small>
-                  </div>
-                  <div class="col-xl-6 form-group">
-                    <label for="password" class="form-label">Mật khẩu</label>
-                    <input type="password" id="password" class="form-control" [(ngModel)]="userToken.password" formControlName="password"
-                           required minlength="6" maxlength="20">
-                    <small *ngIf="editUserProfileForm.get('password')?.invalid" class="text-danger">
-                      Mật khẩu không được để trống, có độ dài từ 6 đến 20 ký tự
-                    </small>
+        </div>
+        <div class="col-xl-8 col-md-7">
+          <div class="card h-auto">
+            <div class="card-body">
+              <form #f="ngForm" [formGroup]="editUserProfileForm" (ngSubmit)="editProfile()" class="row">
+                <div class="col-xl-6 form-group">
+                  <label for="firstName" class="form-label">Họ tên:</label>
+                  <input type="text" id="firstName" class="form-control" [(ngModel)]="userToken.fullName"
+                         formControlName="fullName" required>
+                  <small *ngIf="editUserProfileForm.get('fullName')?.invalid " class="text-danger">
+                    Họ tên không được để trống
+                  </small>
+                </div>
+                <div class="col-xl-6 form-group">
+                  <label for="lastName" class="form-label">Email:</label>
+                  <input type="text" id="lastName" class="form-control" [(ngModel)]="userToken.email"
+                         formControlName="email">
+                  <small *ngIf="editUserProfileForm.get('email')?.invalid " class="text-danger">
+                    Email không đúng định đạng
+                  </small>
+                </div>
+                <div class="col-12 form-group">
+                  <label for="displayName" class="form-label">Địa chỉ:</label>
+                  <input type="text" id="displayName" class="form-control" [(ngModel)]="userToken.address"
+                         formControlName="address"
+                         required>
+                  <small *ngIf="editUserProfileForm.get('address')?.invalid" class="text-danger">
+                    Địa chỉ không được để trống
+                  </small>
+                </div>
+                <div class="col-xl-6 form-group">
+                  <label for="password" class="form-label">Mật khẩu</label>
+                  <input type="password" id="password" class="form-control" [(ngModel)]="userToken.password"
+                         formControlName="password"
+                         required minlength="6" maxlength="20">
+                  <small *ngIf="editUserProfileForm.get('password')?.invalid" class="text-danger">
+                    Mật khẩu không được để trống, có độ dài từ 6 đến 20 ký tự
+                  </small>
 
+                </div>
+                <div class="col-xl-6 form-group">
+                  <label for="phone" class="form-label">Số điện thoại</label>
+                  <input type="number" id="phone" class="form-control" [(ngModel)]="userToken.phone"
+                         formControlName="phone"
+                         required>
+                  <small *ngIf="editUserProfileForm.get('phone')?.invalid" class="text-danger">
+                    Số điện thoại không được để trống
+                  </small>
+                </div>
+                <div class="col-12 form-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="avatar" accept="image/*"
+                           (change)="upFileAvatar($event)" formControlName="avatar" hidden>
                   </div>
-                  <div class="col-xl-6 form-group">
-                    <label for="phone" class="form-label">Số điện thoại</label>
-                    <input type="number" id="phone" class="form-control" [(ngModel)]="userToken.phone" formControlName="phone"
-                           required>
-                    <small *ngIf="editUserProfileForm.get('phone')?.invalid" class="text-danger">
-                      Số điện thoại không được để trống
-                    </small>
-                  </div>
-                  <div class="col-12 form-group">
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="avatar" accept="image/*"
-                             (change)="upFileAvatar($event)" formControlName="avatar" hidden>
-                    </div>
-                  </div>
-                  <div class="col-12 form-group">
-                    <label for="about" class="form-label">Giới thiệu về bản thân</label>
-                    <textarea name="about" id="about" cols="30" rows="5" class="form-control"></textarea>
-                  </div>
-                  <div class="col-12">
-                    <button [disabled]="f.invalid" type="submit" class="btn btn-primary btn-air">Lưu</button>
-                  </div>
-                </form>
-              </div>
+                </div>
+                <div class="col-12 form-group">
+                  <label for="about" class="form-label">Giới thiệu về bản thân</label>
+                  <textarea name="about" id="about" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+                <div class="col-12">
+                  <button [disabled]="f.invalid" type="submit" class="btn btn-primary btn-air">Lưu</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
