@@ -12,6 +12,8 @@ import {LikeplaylistService} from '../../likeplaylist/likeplaylist.service';
 
 import {ISong} from '../../song/isong';
 import {SongService} from '../../song/song.service';
+import {Audio} from '../../shared/audio/audio';
+import {DataService} from '../../shared/ dataTransmission/data.service';
 
 @Component({
   selector: 'app-detail',
@@ -38,7 +40,7 @@ export class DetailComponent implements OnInit {
       token: '',
     }
   };
-
+  album: Audio[] = [];
   // code cua Viet
   currentUser: any = localStorage.getItem('user');
   likePlaylist: ILikePlaylist = {
@@ -70,7 +72,8 @@ export class DetailComponent implements OnInit {
               private commentService: CommentService,
               private authenService: AuthenService,
               private likePlaylistService: LikeplaylistService,
-              private songService: SongService) {
+              private songService: SongService,
+              private data: DataService) {
     this.authenService.currentUser.subscribe(value => {
       this.currentUser = value;
     });
@@ -162,12 +165,30 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getSongsOfAlbum();
+  }
+
+  getSongsOfAlbum(): any {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.idPlaylist = paramMap.get('id');
       this.songService.getSongsByPlaylistId(this.currentUser.username, this.idPlaylist).subscribe(list => {
         this.listSong = list;
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < this.listSong.length; i++) {
+          const audio: Audio = {};
+          audio.id = this.listSong[i].id;
+          audio.url = this.listSong[i].fileMp3;
+          audio.cover = this.listSong[i].fileImage;
+          audio.title = this.listSong[i].nameSong;
+          audio.artist = this.listSong[i].singer;
+          this.album.push(audio);
+        }
       });
     });
+  }
+  playAlbum(): any{
+    this.data.changeData(0);
+    this.data.changeAlbum(this.album);
   }
 
   deleteSong(id: number): any {

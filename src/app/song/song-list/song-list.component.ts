@@ -16,7 +16,6 @@ export class SongListComponent implements OnInit {
 
   songList: ISong[] = [];
   album: Audio[] = [];
-  audio: Audio = {};
 
   getAllSong(): any {
     return this.songService.getAllSong().subscribe(songs => {
