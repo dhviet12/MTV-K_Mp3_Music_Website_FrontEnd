@@ -26,7 +26,7 @@ export class PlayMusicComponent implements OnInit {
   repeatActive = false;
   selectedAudio: Audio = {
     id: null,
-    url: 'https://firebasestorage.googleapis.com/v0/b/website-mp3-mtvk.appspot.com/o/mp3%2Fcha_oi_me_oi_con_lam_duoc_r_a_4674493149495671550.mp3?alt=media&token=8479d8de-f913-468d-8c2b-3f062e594588',
+    url: '',
     cover: 'https://firebasestorage.googleapis.com/v0/b/website-mp3-mtvk.appspot.com/o/mp3%2Fcha_oi_me_oi_con_lam_duoc_r_a_4674493149495671550.mp3?alt=media&token=8479d8de-f913-468d-8c2b-3f062e594588',
     title: 'Welcome',
     artist: 'MTV-K'
