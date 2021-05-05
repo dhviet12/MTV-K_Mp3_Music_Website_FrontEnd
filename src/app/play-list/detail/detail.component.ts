@@ -24,7 +24,7 @@ export class DetailComponent implements OnInit {
   };
   comments: IComment[] = [];
   sub: Subscription;
-  comment: IComment = {
+  comment: IComment | any = {
     content: '',
     createdBy: {
       id: 0,

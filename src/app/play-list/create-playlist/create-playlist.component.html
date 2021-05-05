@@ -1,5 +1,5 @@
 <!--giao diện mới-->
-<form (ngSubmit)="createPlayList()">
+<form (ngSubmit)="createPlayList()" [formGroup]="createPlaylistForm">
   <div class="row section">
     <div class="col-xl-8 col-md-10 mx-auto">
       <div class="card">
@@ -9,15 +9,23 @@
         <div class="card-body">
           <form>
             <div class="form-row form-group">
-              <label class="col-md-4 text-md-right col-form-label">Tên: </label>
+              <label class="col-md-4 text-md-right col-form-label">Tên playlist <sup>*</sup></label>
               <div class="col-md-7">
-                <input type="text" name="name" class="form-control" [(ngModel)]="playlist.name">
+                <input type="text" name="name" class="form-control" formControlName="name"
+                       [ngModel]="playlist.name" required>
+                <small *ngIf="createPlaylistForm.get('name')?.invalid" class="text-danger">
+                  Tên playlist có độ tài tối thiểu 2 ký tự , không sử dụng ký tự đặc biệt !
+                </small>
               </div>
             </div>
             <div class="form-row form-group">
-              <label class="col-md-4 text-md-right col-form-label">Thể loại </label>
+              <label class="col-md-4 text-md-right col-form-label">Các thể loại <sup>*</sup></label>
               <div class="col-md-7">
-                <input type="text" name="kindOfMusic" class="form-control" [(ngModel)]="playlist.kindOfMusic">
+                <input type="text" name="kindOfMusic" class="form-control" formControlName="kindOfMusic"
+                       [ngModel]="playlist.kindOfMusic" required>
+                <small *ngIf="createPlaylistForm.get('kindOfMusic')?.invalid" class="text-danger">
+                  Tên các thể loại playlist có độ dài tối thiểu 2 ký tự , không sử dụng ký tự đặc biệt !
+                </small>
               </div>
             </div>
 <!--                      <div class="form-row form-group">-->
@@ -41,16 +49,11 @@
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-3">
-              <button type="submit" class="btn btn-brand btn-air">Tạo mới</button>
+              <button type="submit" class="btn btn-brand btn-air" [disabled]="createPlaylistForm.invalid" >Tạo mới</button>
             </div>
             <div class="col-md-5">
-              <button type="button" class="btn btn-outline-secondary">Nhập lại</button>
-            </div>
-            <div class="row">
-              <div class="col-lg-12 text-center">
               <button [routerLink]="'/playlist'" type="button" class="btn btn-outline-secondary">Trở lại</button>
-              </div>
-              </div>
+            </div>
           </div>
         </div>
       </div>
