@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {ISong} from '../isong';
 import {SongService} from '../song.service';
 import {Router} from '@angular/router';
@@ -10,7 +10,6 @@ import {Router} from '@angular/router';
 })
 export class TopSongsNewComponent implements OnInit {
   songList: ISong[] = [];
-
   constructor(private songService: SongService, private router: Router) {
     this.topSongsNew();
   }
