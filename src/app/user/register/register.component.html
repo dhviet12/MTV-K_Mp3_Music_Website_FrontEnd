@@ -1,72 +1,158 @@
-<div id="signup">
-  <div class="container">
-    <div id="signup-row" class="row justify-content-center align-items-center">
-      <div id="signup-column" class="col-md-6">
-        <div id="signup-box" class="col-md-12">
-          <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate id="signup-form" class="form"
-                method="post">
-            <h1 class="text-center text-info">Đăng ký</h1>
-            <div class="form-group">
-              <label for="username" class="text-info">Tên tài khoản:</label><br>
-              <input type="text" name="username" id="username" class="form-control"
-                     placeholder="Nhập tên tài khoản" [(ngModel)]="form.username" #username="ngModel" required minlength="6" maxlength="20">
+<!--<div id="signup">-->
+<!--  <div class="container">-->
+<!--    <div id="signup-row" class="row justify-content-center align-items-center">-->
+<!--      <div id="signup-column" class="col-md-6">-->
+<!--        <div id="signup-box" class="col-md-12">-->
+<!--          <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate id="signup-form" class="form"-->
+<!--                method="post">-->
+<!--            <h1 class="text-center text-info">Đăng ký</h1>-->
+<!--            <div class="form-group">-->
+<!--              <label for="username" class="text-info">Tên tài khoản:</label><br>-->
+<!--              <input type="text" name="username" id="username" class="form-control"-->
+<!--                     placeholder="Nhập tên tài khoản" [(ngModel)]="form.username" #username="ngModel" required minlength="6" maxlength="20">-->
+<!--              <div *ngIf="f.submitted && username.invalid"></div>-->
+<!--              <div style="color: red" *ngIf="username.hasError('required')">Tên tài khoản không được để trống</div>-->
+<!--              <div style="color: red" *ngIf="username.hasError('minlength')">Tên tài khoản tối thiểu 6 ký tự</div>-->
+<!--              <div style="color: red" *ngIf="username.hasError('maxlength')">Tên tài khoản tối đa 20 ký tự</div>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--              <label for="password" class="text-info">Mật khẩu:</label><br>-->
+<!--              <input type="password" name="password" id="password" class="form-control "-->
+<!--                     placeholder="Nhập mật khẩu" [(ngModel)]="form.password" #password="ngModel" required minlength="6" maxlength="20">-->
+<!--              <p *ngIf="f.submitted && password.invalid"></p>-->
+<!--              <p style="color: red" *ngIf="password.hasError('required')">Mật khẩu không được để trống</p>-->
+<!--              <p style="color: red" *ngIf="password.hasError('minlength')">Mật khẩu có độ dài từ 6-20 ký tự</p>-->
+<!--              <p style="color: red" *ngIf="password.hasError('maxlength')">Mật khẩu có độ dài từ 6-20 ký tự</p>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--              <label for="fullName" class="text-info">Họ và tên:</label><br>-->
+<!--              <input type="text" name="fullName" id="fullName" class="form-control"-->
+<!--                     placeholder="Nhập họ và tên" [(ngModel)]="form.fullName" #fullName="ngModel" required>-->
+<!--              <p *ngIf="f.submitted && fullName.invalid"></p>-->
+<!--              <p style="color: red" *ngIf="fullName.hasError('required')">Họ và tên không được để trống</p>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <label for="address" class="text-info">Địa chỉ:</label><br>-->
+<!--              <input type="text" name="address" id="address" class="form-control"-->
+<!--                     placeholder="Nhập địa chỉ" [(ngModel)]="form.address">-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <label for="email" class="text-info">Email:</label><br>-->
+<!--              <input type="text" name="email" id="email" class="form-control"-->
+<!--                     placeholder="Nhập Email" [(ngModel)]="form.email" #email="ngModel" email required>-->
+<!--              <p *ngIf="f.submitted && email.invalid"></p>-->
+<!--              <p style="color: red" *ngIf="email.hasError('required')">Email không được để trống</p>-->
+<!--              <p style="color: red" *ngIf="email.hasError('email')">Email không hợp lệ</p>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <label for="phone" class="text-info">Số điện thoại:</label><br>-->
+<!--              <input type="text" name="phone" id="phone" class="form-control"-->
+<!--                     placeholder="Nhập số điện thoại" [(ngModel)]="form.phone" #phone="ngModel" required>-->
+<!--              <p style="color: red" *ngIf="phone.hasError('required')">Số điện thoại không được để trống</p>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <div class="form-group" style="float: left; width: 100px" >-->
+<!--                <input type="submit" [disabled]="f.invalid" name="submit" class="btn btn-info btn-md" value="Đăng ký">-->
+<!--              </div>-->
+<!--              <div class="form-group" style="float: right; width: 100px">-->
+<!--                <input class="btn btn-primary btn-md"  type="button" value="Huỷ bỏ" [routerLink]="'/user/login'">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="row section">
+  <div class="card">
+
+    <div class="card-header text-center">
+      <h6 class="card-title mb-0">Đăng ký</h6>
+    </div>
+    <div class="form-group">
+      <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" id="signup-form" class="form" novalidate method="post">
+        <div class="card-body">
+
+          <div class="form-row form-group">
+            <label for="username" class="col-md-4 text-md-right col-form-label">Tên tài khoản</label>
+            <div class="col-md-7">
+              <input type="text" name="username" id="username" class="form-control" placeholder="Nhập tên tài khoản"
+                     [(ngModel)]="form.username" #username="ngModel" required minlength="6" maxlength="20">
               <div *ngIf="f.submitted && username.invalid"></div>
               <div style="color: red" *ngIf="username.hasError('required')">Tên tài khoản không được để trống</div>
               <div style="color: red" *ngIf="username.hasError('minlength')">Tên tài khoản tối thiểu 6 ký tự</div>
               <div style="color: red" *ngIf="username.hasError('maxlength')">Tên tài khoản tối đa 20 ký tự</div>
             </div>
-
-            <div class="form-group">
-              <label for="password" class="text-info">Mật khẩu:</label><br>
-              <input type="password" name="password" id="password" class="form-control "
-                     placeholder="Nhập mật khẩu" [(ngModel)]="form.password" #password="ngModel" required minlength="6" maxlength="20">
-              <p *ngIf="f.submitted && password.invalid"></p>
-              <p style="color: red" *ngIf="password.hasError('required')">Mật khẩu không được để trống</p>
-              <p style="color: red" *ngIf="password.hasError('minlength')">Mật khẩu có độ dài từ 6-20 ký tự</p>
-              <p style="color: red" *ngIf="password.hasError('maxlength')">Mật khẩu có độ dài từ 6-20 ký tự</p>
-            </div>
-
-            <div class="form-group">
-              <label for="fullName" class="text-info">Họ và tên:</label><br>
-              <input type="text" name="fullName" id="fullName" class="form-control"
-                     placeholder="Nhập họ và tên" [(ngModel)]="form.fullName" #fullName="ngModel" required>
-              <p *ngIf="f.submitted && fullName.invalid"></p>
-              <p style="color: red" *ngIf="fullName.hasError('required')">Họ và tên không được để trống</p>
-            </div>
-            <div class="form-group">
-              <label for="address" class="text-info">Địa chỉ:</label><br>
-              <input type="text" name="address" id="address" class="form-control"
-                     placeholder="Nhập địa chỉ" [(ngModel)]="form.address">
-            </div>
-            <div class="form-group">
-              <label for="email" class="text-info">Email:</label><br>
-              <input type="text" name="email" id="email" class="form-control"
-                     placeholder="Nhập Email" [(ngModel)]="form.email" #email="ngModel" email required>
-              <p *ngIf="f.submitted && email.invalid"></p>
-              <p style="color: red" *ngIf="email.hasError('required')">Email không được để trống</p>
-              <p style="color: red" *ngIf="email.hasError('email')">Email không hợp lệ</p>
-            </div>
-            <div class="form-group">
-              <label for="phone" class="text-info">Số điện thoại:</label><br>
-              <input type="text" name="phone" id="phone" class="form-control"
-                     placeholder="Nhập số điện thoại" [(ngModel)]="form.phone" #phone="ngModel" required>
-              <p style="color: red" *ngIf="phone.hasError('required')">Số điện thoại không được để trống</p>
-            </div>
-            <div>
-              <div class="form-group" style="float: left; width: 100px" >
-                <input type="submit" [disabled]="f.invalid" name="submit" class="btn btn-info btn-md" value="Đăng ký">
-              </div>
-              <div class="form-group" style="float: right; width: 100px">
-                <input class="btn btn-primary btn-md"  type="button" value="Huỷ bỏ" [routerLink]="'/user/login'">
-              </div>
-            </div>
-
-
-
-
-          </form>
+          </div>
         </div>
-      </div>
+        <div class="form-row form-group">
+          <label for="password" class="col-md-4 text-md-right col-form-label">Mật khẩu</label>
+          <div class="col-md-7">
+            <input type="password" name="password" id="password" class="form-control " placeholder="Nhập mật khẩu"
+                   [(ngModel)]="form.password" #password="ngModel" required minlength="6" maxlength="20">
+            <p *ngIf="f.submitted && password.invalid"></p>
+            <p style="color: red" *ngIf="password.hasError('required')">Mật khẩu không được để trống</p>
+            <p style="color: red" *ngIf="password.hasError('minlength')">Mật khẩu có độ dài từ 6-20 ký tự</p>
+            <p style="color: red" *ngIf="password.hasError('maxlength')">Mật khẩu có độ dài từ 6-20 ký tự</p>
+          </div>
+        </div>
+
+
+        <div class="form-row form-group">
+          <label for="fullName" class="col-md-4 text-md-right col-form-label">Họ và tên</label>
+          <div class="col-md-7">
+            <input type="text" name="fullName" id="fullName" class="form-control"
+                   placeholder="Nhập họ và tên" [(ngModel)]="form.fullName" #fullName="ngModel" required>
+            <p *ngIf="f.submitted && fullName.invalid"></p>
+            <p style="color: red" *ngIf="fullName.hasError('required')">Họ và tên không được để trống</p>
+          </div>
+        </div>
+
+        <div class="form-row form-group">
+          <label for="address" class="col-md-4 text-md-right col-form-label">Địa chỉ</label>
+          <div class="col-md-7">
+            <input type="text" name="address" id="address" class="form-control"
+                   placeholder="Nhập địa chỉ" [(ngModel)]="form.address">
+          </div>
+        </div>
+
+        <div class="form-row form-group">
+          <label for="email" class="col-md-4 text-md-right col-form-label">Email</label>
+          <div class="col-md-7">
+            <input type="text" name="email" id="email" class="form-control"
+                   placeholder="Nhập Email" [(ngModel)]="form.email" #email="ngModel" email required>
+            <p *ngIf="f.submitted && email.invalid"></p>
+            <p style="color: red" *ngIf="email.hasError('required')">Email không được để trống</p>
+            <p style="color: red" *ngIf="email.hasError('email')">Email không hợp lệ</p>
+          </div>
+        </div>
+
+        <div class="form-row form-group">
+          <label for="phone" class="col-md-4 text-md-right col-form-label">Số điện thoại</label>
+          <div class="col-md-7">
+            <input type="text" name="phone" id="phone" class="form-control"
+            placeholder="Nhập số điện thoại" [(ngModel)]="form.phone" #phone="ngModel" required>
+            <p style="color: red" *ngIf="phone.hasError('required')">Số điện thoại không được để trống</p>
+          </div>
+
+        </div>
+
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-brand btn-air" [disabled]="f.invalid" name="submit">Đăng ký</button>
+            </div>
+            <div class="col-md-5">
+              <button [routerLink]="'/user/login'" class="btn btn-outline-secondary">Huỷ bỏ</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
