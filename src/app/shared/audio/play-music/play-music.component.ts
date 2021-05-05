@@ -21,7 +21,11 @@ export class PlayMusicComponent implements OnInit {
   isAudioEnded = new Subject();
   isMute = false;
   selectedAudio: Audio = {};
-  @Input() currentAudioIndex: any;
+  currentAudioIndex = 0;
+  @Input()
+  set index(index: any){
+    this.currentAudioIndex = index;
+  }
   repeatActive = false;
   isError = false;
   @Input() audioList: Audio[] = [];

@@ -15,14 +15,14 @@
 <!-- Begin | Custom List [[ Find at scss/framework/components/custom-list.scss ]] -->
 <div class="section custom-list mt-5">
   <!-- Begin | Custom List Item -->
-  <div class="custom-list--item" *ngFor="let s of mySongs">
+  <div class="custom-list--item" *ngFor="let s of mySongs, let i = index">
     <div class="text-dark custom-card--inline">
       <div class="custom-card--inline-img">
-        <img src="{{s.fileImage}}" alt="banner" class="card-img--radius-sm">
+        <img src="{{s.fileImage}}" alt="banner" class="card-img--radius-sm" (click)="playSong(i)">
       </div>
 
       <div class="custom-card--inline-desc">
-        <p class="text-truncate mb-0">{{s.nameSong}}</p>
+        <p class="text-truncate mb-0" (click)="playSong(i)">{{s.nameSong}}</p>
         <p class="text-truncate text-muted font-sm">{{s.singer}}</p>
       </div>
     </div>
